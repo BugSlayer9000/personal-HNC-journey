@@ -1,5 +1,8 @@
 # personal-HNC-journey
 "Self-paced study of HNC Level 7 Software Development"
+
+I will be documenting and posting my self paced HNC software dev journy here.
+
 plaintext
 CopyEdit
 hnc-software-dev/

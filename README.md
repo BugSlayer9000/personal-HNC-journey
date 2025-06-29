@@ -3,18 +3,28 @@
 
 I will be documenting and posting my self paced HNC software dev journy here.
 
-plaintext
-CopyEdit
+"Folder structure"
+
 hnc-software-dev/
 
 │
+
 ├── README.md
+
 ├── week1_intro_to_programming/
-│   ├── notes.md
+
+│   ├── notes.md 
+
 │   └── exercises/
+
 ├── week2_oop_python/
+
 │   └── flashcard_app/
+
 ├── week3_sql_databases/
+
 │   └── sql_queries.sql
+
 └── progress.md
+
 

@@ -6,6 +6,7 @@ I will be documenting and posting my self paced HNC software dev journy here.
 plaintext
 CopyEdit
 hnc-software-dev/
+
 │
 ├── README.md
 ├── week1_intro_to_programming/

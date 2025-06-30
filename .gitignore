@@ -1,0 +1,82 @@
+# === PYTHON ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.log
+*.sqlite3
+.env
+.venv/
+venv/
+ENV/
+env.bak/
+env/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pytest
+.cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+.pyre/
+
+# pipenv / poetry
+Pipfile.lock
+poetry.lock
+
+# === NODE / JAVASCRIPT ===
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Build tools
+dist/
+build/
+.cache/
+.eslintcache
+webpack-stats.json
+
+# === FRONTEND / GENERAL ===
+.DS_Store
+Thumbs.db
+*.log
+*.bak
+*.swp
+*.tmp
+*.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# === ENVIRONMENT / SECRETS ===
+.env
+.env.*
+*.key
+*.pem
+*.crt
+.secret
+.secrets/
+
+# === OS-Generated Files ===
+ehthumbs.db
+Icon?
+desktop.ini
+
+# === GIT ===
+*.orig

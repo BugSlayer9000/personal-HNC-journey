@@ -11,13 +11,15 @@ hnc-software-dev/
 
 ├── README.md
 
-├── week1_intro_to_programming/
+├── Phase 1/
 
-│   ├── notes.md 
+│   ├── Week 1/ 
 
-│   └── exercises/
+│       ├── Notes.md
 
-├── week2_oop_python/
+│       └── Exersises/
+
+├── Phase 2/
 
 │   └── flashcard_app/
 

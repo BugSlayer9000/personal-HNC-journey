@@ -14,18 +14,22 @@ class StudentManagement:
     def enroll(self):
         print(f"{self.name} has enrolled in {self.course}. ")
 
-student1_details = StudentManagement("samod",1234567,"HND computing")
-student1_details.enroll()
+def main():
+    student1_details = StudentManagement("samod",1234567,"HND computing")
+    student1_details.enroll()
 
-# Extended Exersise
-student2_details = StudentManagement("Robert", 12345678, "HND Gardning")
-student2_details.enroll()
+    # Extended Exersise
+    student2_details = StudentManagement("Robert", 12345678, "HND Gardning")
+    student2_details.enroll()
 
-student3_details = StudentManagement("Kelum", 12345678, "HND Web Dev")
-student3_details.enroll()
+    student3_details = StudentManagement("Kelum", 12345678, "HND Web Dev")
+    student3_details.enroll()
 
-student4_details = StudentManagement("Ash", 12345678, "HND Computing")
-student4_details.enroll()
+    student4_details = StudentManagement("Ash", 12345678, "HND Computing")
+    student4_details.enroll()
+
+if __name__ == "__main__":
+    main()
 
 
 

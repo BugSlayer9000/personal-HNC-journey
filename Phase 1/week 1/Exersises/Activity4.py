@@ -22,7 +22,7 @@ class BookLibrary:
 
 
 
-def title_by_author():
+def main():
     books = [
         ["Pride and prejudice", "jane Austin", 324331],
         ["Wolf Brother", "Michelle Paver", 324335],
@@ -39,7 +39,8 @@ def title_by_author():
         
 
 
-title_by_author()
+if __name__ == "__main__":
+    main()
         
 
 

@@ -14,13 +14,17 @@ class Car:
     
     # extend exersise
     def display_info(self):
-        print(f"\nMake Company - {self.make}")
-        print(f"\nModel of the vehicle - {self.model}")
-        print(f"\nYear of release - {self.year}")
+        print(f"Make Company - {self.make}")
+        print(f"Model of the vehicle - {self.model}")
+        print(f"Year of release - {self.year}")
 
 
-car = Car("Nissan", "GTR", 2019)
-car.start_engine()
-car.display_info()
+def main():
+    car = Car("Nissan", "GTR", 2019)
+    car.start_engine()
+    car.display_info()
+
+if __name__ == "__main__":
+    main()
 
 

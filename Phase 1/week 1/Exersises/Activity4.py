@@ -10,8 +10,8 @@
 # Create a list of 3 Book objects and iterate over them to print summaries.
 
 
-class BookLibrary:
-    def __init__(self, title = "", author = "", isbn = int):
+class BookLibrary: #  name is a bit too long -  should be Book
+    def __init__(self, title = "", author = "", isbn: int = 0): # isbn = int in __init__	Change to isbn: int = 0	 Default values should be actual data, not type declarations
         self.title = title
         self.author = author
         self.isbn = isbn
@@ -28,6 +28,8 @@ def main():
         ["Wolf Brother", "Michelle Paver", 324335],
         ["Privet Peacefull", "Michel Morpurgo", 878402]
         ]
+
+    # Book list is list of lists - Use a list of Book objects instead
     
     for i,book in enumerate(books,0):
         

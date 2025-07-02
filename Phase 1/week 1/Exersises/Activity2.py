@@ -5,13 +5,14 @@
 
 # 🔁 Extend: Create 3 different student objects with different data.
 
-class StudentManagement:
+class StudentManagement: # change the name to `Student`
     def __init__(self, name, student_id, course):
         self.name = name
         self.student_id = student_id
         self.course = course
     
     def enroll(self):
+        print(f"Student ID = {self.student_id}") # Added some details to the method
         print(f"{self.name} has enrolled in {self.course}. ")
 
 def main():
@@ -31,7 +32,9 @@ def main():
 if __name__ == "__main__":
     main()
 
-
+# things I should add to class 
+# def __str__(self):
+#     return f"Name: {self.name}, ID: {self.student_id}, Course: {self.course}"
 
 
     

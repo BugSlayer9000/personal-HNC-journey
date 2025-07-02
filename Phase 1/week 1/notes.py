@@ -2,9 +2,9 @@
 # This is the synatx overview for a class 
 
 class Dog:
-    def __init__(self, name, breed):
+    def __init__(self, name, breed): #  construckter 
         self.name = name
-        self.breed = breed
+        self.breed = breed #  attributes 
     
     def bark(self):
         print(f"{self.name} says woof! ")

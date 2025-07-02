@@ -13,6 +13,9 @@ class Rectangle:
             self.width = int(int(input("Enter the Width : ")))
         except:
             print("Invalid Input ! ")
+        
+        # should ve added a loop and more solid input validation 
+        #At HNC Level 7, strong error handling and clean logic matter
     
     def area(self):
         area = self.width * self.height
@@ -33,4 +36,5 @@ def main():
 if __name__ == "__main__":
     main()
     
-
+# ✅ Verdict: Pass with Advisory
+# ✅ You hit all required functionality

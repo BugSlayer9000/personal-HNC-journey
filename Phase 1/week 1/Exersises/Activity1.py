@@ -12,6 +12,7 @@ class Car:
     def start_engine(self):
         print(f"Engine startrd for {self.make} {self.model}")
     
+    # extend exersise
     def display_info(self):
         print(f"\nMake Company - {self.make}")
         print(f"\nModel of the vehicle - {self.model}")
@@ -22,4 +23,4 @@ car = Car("Nissan", "GTR", 2019)
 car.start_engine()
 car.display_info()
 
-# extend exersise
+

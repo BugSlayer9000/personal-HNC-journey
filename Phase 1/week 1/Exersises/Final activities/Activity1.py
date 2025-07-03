@@ -24,13 +24,14 @@
 
 class Student:
     
-    total = 0
+    student_count = 0
     
     def __init__(self, name, student_id, course):
         self.name = name
         self.student_id = student_id
         self.course = course
         self.grades = []
+        Student.student_count += 1 #  increment when used 
     
     def add_grade(self,grade):
         # adds a grade to the student's record
@@ -38,22 +39,49 @@ class Student:
     
     def get_average(self):
         # Calculate and returns the avarage grade
-        self.total = 0
-        for i,grade in enumerate(self.grades,1):
-            self.total += grade
         
-        return self.total/i
+        # my solution unnecessarily complex
+        # self.total = 0
+        # for i,grade in enumerate(self.grades,1):
+        #     self.total += grade
+        
+        # return self.total/i
+        
+        # Better solution
+        # Use in built fuctions 
+        if not self.grades:
+            return 0 
+        
+        return sum(self.grades) / len(self.grades)
+        
                 
     
     def get_letter_grade(self):
         # Create a letter based on the grade (A: 90+, B: 80-89, C: 70-79, D: 60-69, F: <60)
-        if self.total >= 90:
+       
+        # My solution - Hidden dipendancies between methods. this should be self contained
+        # if self.total >= 90:
+        #     return f"Grade is A"
+        # elif 89 >= self.total >= 80 :
+        #     return f"Grade is B"
+        # elif 79 >= self.total >= 70 :
+        #     return f"Grade is C"
+        # elif 69 >= self.total >= 60 :
+        #     return f"Grade is D"
+        # else:
+        #     return f"Grade is F"
+        
+        # suggested solution 
+        # self contained 
+        
+        avarage = self.get_average()
+        if avarage >= 90:
             return f"Grade is A"
-        elif 89 >= self.total >= 80 :
+        elif 89 >= avarage >= 80 :
             return f"Grade is B"
-        elif 79 >= self.total >= 70 :
+        elif 79 >= avarage >= 70 :
             return f"Grade is C"
-        elif 69 >= self.total >= 60 :
+        elif 69 >= avarage >= 60 :
             return f"Grade is D"
         else:
             return f"Grade is F"

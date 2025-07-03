@@ -2,6 +2,9 @@
 # This is the synatx overview for a class 
 
 class Dog:
+    
+    dogs = ""
+    
     def __init__(self, name, breed): #  construckter 
         self.name = name
         self.breed = breed #  attributes 

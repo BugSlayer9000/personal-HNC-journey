@@ -98,23 +98,49 @@ class Library:
             return f"Book not found"
     
     def get_available_books(self):
-        pass
+        
+        avilable_books = []
+        
+        if len(self.collection) != 0:
+            for book in self.collection:
+                if book.is_available == True:
+                    avilable_books.append(f"{book.title} by {book.author}")
+            
+            return avilable_books
+        else:
+            return "All books are borrowed at the moment ! "
+             
+                
     
     def get_overdue_books(self):
+        # I will implenet it later after I get the basic logic done
         pass
     
     def __str__(self):
        return f"Book collection - {self.collection}"
 
 # Add books
-library = Library("CityLibrary")
 book1 = Book("Python Programming", "John Smith", "978-1234567890")
 book2 = Book("Data Structures", "Jane Doe", "978-0987654321")
 book3 = Book("Web Development", "Mike Johnson", "978-1122334455")
+book4 = Book("Software dev", "Mike Johnson", "978-1122334455")
+
+library = Library("Samods super Library")
 
 library.add_book(book1)
 library.add_book(book2)
 library.add_book(book3)
 
+# Test borrowing
 print(library.borrow_book("Python Programming", "Alice"))
 print(library.borrow_book("Data Structures", "Bob"))
+
+# Display available books
+print("\nAvailable Books:")
+for book in library.get_available_books():
+    print(f"- {book}")
+
+# Try to borrow already borrowed book
+print(f"\n{library.borrow_book("Python Programming", "Alice")}")
+
+

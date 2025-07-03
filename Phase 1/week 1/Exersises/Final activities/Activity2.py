@@ -144,3 +144,123 @@ for book in library.get_available_books():
 print(f"\n{library.borrow_book("Python Programming", "Alice")}")
 
 
+# claude Review
+
+# Good progress on Activity 2! You've got the basic structure working, but there are several issues to address. Let me give you detailed feedback:
+# ✅ What You Did Well
+
+# Basic class structure is correct
+# Object interaction is working (Library calls Book methods)
+# Core functionality is implemented
+# Testing approach shows good understanding
+# Incremental development (leaving complex parts for later) is smart
+
+# ❌ Issues to Fix
+# 1. Method Name Inconsistency
+# python# Your Book class has:
+# def returnbook(self):  # No underscore
+
+# # But requirements specify:
+# def return_book(self):  # With underscore
+# 2. Logical Error in borrow_book()
+# python# Your current implementation:
+# def borrow_book(self, title, borrower):
+#     book_found, book = self.find_book(title)
+#     if book_found and book.is_available : 
+#         book.borrower = borrower        # ❌ Direct attribute modification
+#         book.is_available = False       # ❌ Direct attribute modification
+#         return f"{book.title} by {book.author} borrowed by `{borrower}`successfully"
+# Problem: You're bypassing the Book's borrow() method and directly modifying attributes. This breaks encapsulation.
+# Better approach:
+# pythondef borrow_book(self, title, borrower):
+#     book_found, book = self.find_book(title)
+#     if book_found:
+#         return book.borrow(borrower)  # Use Book's method
+#     else:
+#         return f"Book '{title}' not found"
+# 3. find_book() Return Format
+# python# Your current implementation:
+# def find_book(self, title):
+#     for book in self.collection:
+#         if book.title == title:
+#             return True, book  # ❌ Returns tuple
+#     else:
+#         return False, None
+# Problem: Requirements specify it should return the Book object if found, not a tuple.
+# Better approach:
+# pythondef find_book(self, title):
+#     for book in self.collection:
+#         if book.title.lower() == title.lower():  # Case-insensitive
+#             return book
+#     return None  # Book not found
+# 4. Missing self Parameter
+# pythondef is_overdue():  # ❌ Missing self parameter
+#     pass
+# Should be:
+# pythondef is_overdue(self):
+#     pass
+# 5. Logic Error in get_available_books()
+# python# Your current logic:
+# if len(self.collection) != 0:
+#     # ... find available books
+# else:
+#     return "All books are borrowed at the moment ! "  # ❌ Wrong logic
+# Problem: If collection is empty, it doesn't mean all books are borrowed - it means there are no books!
+# Better approach:
+# pythondef get_available_books(self):
+#     available = []
+#     for book in self.collection:
+#         if book.is_available:
+#             available.append(book)
+#     return available
+# 6. Inconsistent Variable Names
+# python# You use both:
+# avilable_books = []  # ❌ Typo in "available"
+# self.collection = []  # Different from requirements (should be self.books)
+# 7. Missing return_book() Method in Library
+# Your Library class is missing the return_book() method that's required.
+# 🔧 Key Corrections Needed
+# Fix the Library Class Methods:
+# pythondef borrow_book(self, title, borrower):
+#     book = self.find_book(title)
+#     if book:
+#         return book.borrow(borrower)  # Use Book's method
+#     else:
+#         return f"Book '{title}' not found"
+
+# def return_book(self, title):
+#     book = self.find_book(title)
+#     if book:
+#         return book.return_book()  # Use Book's method
+#     else:
+#         return f"Book '{title}' not found"
+
+# def get_available_books(self):
+#     return [book for book in self.collection if book.is_available]
+# Fix the Book Class:
+# pythondef return_book(self):  # Fix method name
+#     if not self.is_available:
+#         self.is_available = True
+#         borrower = self.borrower
+#         self.borrower = None
+#         self.due_date = None
+#         return f"{self.title} returned by {borrower}"
+#     else:
+#         return f"{self.title} was not borrowed"
+# 🎯 Key Learning Points
+
+# Use Object Methods: When Library needs to change Book state, call Book methods rather than directly modifying attributes
+# Consistent Naming: Follow the exact method names specified in requirements
+# Proper Encapsulation: Let each object manage its own state
+# Return Appropriate Types: Methods should return what they promise (find_book should return Book object, not tuple)
+
+# 🚀 Next Steps
+
+# Fix the method names and missing methods
+# Use proper object interaction (Library calls Book methods)
+# Add the missing return_book() method to Library
+# Test the return functionality
+# Then tackle the date logic for due dates
+
+# Your core understanding is solid - these are mostly implementation details that need polishing. The object interaction concept is working well!
+

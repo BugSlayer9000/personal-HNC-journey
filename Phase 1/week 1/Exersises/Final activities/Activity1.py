@@ -107,3 +107,21 @@ print()
 print(student2)
 print(f"Average: {student2.get_average():.1f}")
 print(f"Letter Grade: {student2.get_letter_grade()}")
+
+# review 
+# 🎯 Key Learning Points
+
+# Method Independence: Each method should work independently without relying on side effects from other methods
+# Use Built-in Functions: Python's sum() and len() are more readable than manual loops for simple operations
+# Handle Edge Cases: Always consider what happens with empty lists or invalid data
+# Clear Return Values: Return exactly what the method name suggests (letter grade should return just the letter)
+
+# 🚀 Next Steps
+# Try implementing the challenges:
+
+# Add input validation for grades (0-100)
+# Properly implement the student counter
+# Add a remove_grade(index) method
+# Implement __eq__() for student comparison
+
+# Your foundation is solid - these fixes will make your code more robust and professional!

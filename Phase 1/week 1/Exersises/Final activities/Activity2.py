@@ -80,10 +80,11 @@ class Library:
         self.collection.append(name)
     
     def find_book(self, title):
+        
         # Access its title using book.title.
         for book in self.collection:
-            if book.title == title:
-                return True, book
+            if book.title.lower() == title.lower(): #  made it case insensitive
+                return True, book # This should return the book object if found not the tuple
         else:
             return False, None
             
@@ -110,14 +111,15 @@ class Library:
     
     def get_available_books(self):
         
-        avilable_books = []
+        # Simple Typo added
+        available_books = []
         
         if len(self.collection) != 0:
             for book in self.collection:
                 if book.is_available == True:
-                    avilable_books.append(f"{book.title} by {book.author}")
+                    available_books.append(f"{book.title} by {book.author}")
             
-            return avilable_books
+            return available_books
         else:
             return "All books are borrowed at the moment ! "
              
@@ -192,8 +194,10 @@ print(f"\n{library.borrow_book("Python Programming", "Alice")}")
 #         return book.borrow(borrower)  # Use Book's method
 #     else:
 #         return f"Book '{title}' not found"
+
 # 3. find_book() Return Format
 # python# Your current implementation:
+
 # def find_book(self, title):
 #     for book in self.collection:
 #         if book.title == title:

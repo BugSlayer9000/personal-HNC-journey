@@ -47,7 +47,7 @@ class Book:
         else:
             return f"{self.title} is already borrowed. "
     
-    def returnbook(self):
+    def return_book(self):
         if not self.is_available:
             self.is_available = True
             # add the due logic later 
@@ -89,13 +89,24 @@ class Library:
             
     
     def borrow_book(self, title, borrower):
-        book_found, book = self.find_book(title)
-        if book_found and book.is_available : 
-            book.borrower = borrower
-            book.is_available = False
-            return f"{book.title} by {book.author} borrowed by `{borrower}`successfully"
-        else:
-            return f"Book not found"
+        book_found, book = self.find_book(title) 
+        
+        # Solution 
+        if book_found :
+            return book.borrow(borrower)
+        else: 
+            return f"{book.title} was not found ! "
+           
+        # My code 
+        # issues 
+            # Breaking Encapsulation by accessing by Direct attribute modification 
+        
+        # if book_found and book.is_available : 
+        #     book.borrower = borrower          ❌Direct attribute modification 
+        #     book.is_available = False         ❌Direct attribute modification 
+        #     return f"{book.title} by {book.author} borrowed by `{borrower}`successfully"
+        # else:
+        #     return f"Book not found"
     
     def get_available_books(self):
         
@@ -158,7 +169,9 @@ print(f"\n{library.borrow_book("Python Programming", "Alice")}")
 # ❌ Issues to Fix
 # 1. Method Name Inconsistency
 # python# Your Book class has:
-# def returnbook(self):  # No underscore
+# def returnbook(self):  # No underscore  
+
+# Added 
 
 # # But requirements specify:
 # def return_book(self):  # With underscore
@@ -171,6 +184,7 @@ print(f"\n{library.borrow_book("Python Programming", "Alice")}")
 #         book.is_available = False       # ❌ Direct attribute modification
 #         return f"{book.title} by {book.author} borrowed by `{borrower}`successfully"
 # Problem: You're bypassing the Book's borrow() method and directly modifying attributes. This breaks encapsulation.
+
 # Better approach:
 # pythondef borrow_book(self, title, borrower):
 #     book_found, book = self.find_book(title)

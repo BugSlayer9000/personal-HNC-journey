@@ -143,6 +143,7 @@ library = Library("Samods super Library")
 library.add_book(book1)
 library.add_book(book2)
 library.add_book(book3)
+library.add_book(book4)
 
 # Test borrowing
 print(library.borrow_book("Python Programming", "Alice"))

@@ -159,22 +159,35 @@ class ShoppingCart:
     # Attributes: customer, items (dictionary: product -> quantity)
     
     def __init__(self, customer):
-        pass
+        self.customer = customer
+        self.items = [] # (product -> quantity)
     
-    def add_item(self, product, quantitiy):
-        pass
+    def add_item(self, product, quantitiy): # adds product to cart
+        self.items[product] = quantitiy
     
-    def remove_item(self, product):
-        pass
+    def remove_item(self, product): # removes product from cart
+        if product.Lower() in self.items.Lower():
+            del self.items[product]
+        else:
+            print("Product not found !")
     
-    def update_quantitiy(self, product):
-        pass
+    def update_quantitiy(self, product, new_quantity): # updates quantity
+        if product.Lower() in self.items.Lower():
+            if not new_quantity < 0:
+                self.items[product] = new_quantity
+            else: 
+                print("Quantity must be above 0 ")
+        else:
+            print("Product not found ! ")
     
-    def get_total(self):
-        pass
+    def get_total(self): # calculates total price
+        for product in self.items.keys():
+            print(product)
+            # I'll complete this after Store Class 
     
-    def checkout(self):
+    def checkout(self): # processes the order and updates stock
         pass
+    # I'll complete this after Store Class 
 
 class Store:
     # Attributes: name, products, customers

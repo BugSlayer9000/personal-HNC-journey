@@ -103,18 +103,20 @@
     # Design Pattern Challenge: Implement the Observer pattern to notify customers of stock updates
     # Database Challenge: Modify classes to work with a simple database (using sqlite3)
 
+import re
+
 class Product:
     # Attributes: name, price, category, stock_quantity, product_id
     
-    def __init__(self, name, price, category, stock_quantitiy):
+    def __init__(self, name, price, category, stock_quantity):
         self.name = name
         self.price = price
         self.category = category
-        self.stock_quantitiy = stock_quantitiy
+        self.stock_quantity = stock_quantity
         self.product_id = 0 # have to work on this 
     
     def update_stock(self, quantitiy): # adds/removes stock
-        self.stock_quantitiy += quantitiy
+        self.stock_quantity += quantitiy
     
     def apply_discount(self, percentage:int): # applies discount to price
         self.price = self.price * (percentage/100) 
@@ -123,7 +125,7 @@ class Product:
         return f"Product name = {self.name} \nPrice per 1  - 3{self.price} "
     
     def __repr__(self):
-        return f"Product({self.name!r}, {self.price!r}, {self.category!r}, {self.stock_quantitiy!r})"
+        return f"Product({self.name!r}, {self.price!r}, {self.category!r}, {self.stock_quantity!r})"
     
     def __eq__(self, value):
         return self.name == self.name
@@ -160,10 +162,10 @@ class ShoppingCart:
     
     def __init__(self, customer):
         self.customer = customer
-        self.items = [] # (product -> quantity)
+        self.items = {} # (product -> quantity)
     
     def add_item(self, product, quantitiy): # adds product to cart
-        self.items[product] = quantitiy
+        self.items[str(product)] = quantitiy
     
     def remove_item(self, product): # removes product from cart
         if product.Lower() in self.items.Lower():
@@ -181,13 +183,22 @@ class ShoppingCart:
             print("Product not found ! ")
     
     def get_total(self): # calculates total price
-        for product in self.items.keys():
-            print(product)
-            # I'll complete this after Store Class 
+        total_price = 0
+        
+        for product, quantitiy in self.items.items(): # getting items in the cart
+            match = re.search(r'-\s*(\d+\.\d+)', product) # Searche for prices within the product string 
+            
+            if match:
+                price = float(match.group(1))
+                total_price = price * quantitiy
+            else:
+                return "Price not found" 
+        
+        return total_price
+            
     
     def checkout(self): # processes the order and updates stock
         pass
-    # I'll complete this after Store Class 
 
 class Store:
     # Attributes: name, products, customers
@@ -197,7 +208,7 @@ class Store:
         self.products = []
         self.customers = []
     
-    def add_products(self, product): # adds product to store
+    def add_product(self, product): # adds product to store
         self.products.append(product)
     
     def register_customer(self, customer): # registers a customer
@@ -212,7 +223,7 @@ class Store:
     def get_low_stock_products(self, threshhold = 5): # returns products with low stock
         low_stock = []
         for product in self.products:
-            if product.stock_quantitiy < threshhold:
+            if product.stock_quantity < threshhold:
                 low_stock.append(product.name)
             else:
                 pass

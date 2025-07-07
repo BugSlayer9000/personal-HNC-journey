@@ -103,4 +103,77 @@
     # Design Pattern Challenge: Implement the Observer pattern to notify customers of stock updates
     # Database Challenge: Modify classes to work with a simple database (using sqlite3)
 
+class Product:
+    # Attributes: name, price, category, stock_quantity, product_id
+    
+    def __init__(self, name, price, category, stock_quantitiy):
+        pass
+    
+    def update_stock(self, quantitiy):
+        pass
+    
+    def apply_discount(self, percentage):
+        pass
+    
+    def __str__(self):
+        pass
+    
+    def __repr__(self):
+        pass
+    
+    def __eq__(self, value):
+        pass
+    
+class Customer:
+    # Attributes: name, email, customer_id, purchase_history
+    
+    def __init__(self, name, email):
+        pass
+    
+    def add_purchase(self, product, quantitiy):
+        pass
+    
+    def get_total_spent(self):
+        pass
+    
+    def get_purhcase_history(self):
+        pass
 
+class ShoppingCart:
+    # Attributes: customer, items (dictionary: product -> quantity)
+    
+    def __init__(self, customer):
+        pass
+    
+    def add_item(self, product, quantitiy):
+        pass
+    
+    def remove_item(self, product):
+        pass
+    
+    def update_quantitiy(self, product):
+        pass
+    
+    def get_total(self):
+        pass
+    
+    def checkout(self):
+        pass
+
+class Store:
+    # Attributes: name, products, customers
+    
+    def __init__(self, name):
+        pass
+    
+    def add_products(self, product):
+        pass
+    
+    def register_customer(self, customer):
+        pass
+    
+    def find_products(self, name):
+        pass
+    
+    def get_low_stock_products(self, threshhold = 5):
+        pass

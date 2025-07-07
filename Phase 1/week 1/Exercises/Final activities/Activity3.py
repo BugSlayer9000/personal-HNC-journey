@@ -193,19 +193,33 @@ class Store:
     # Attributes: name, products, customers
     
     def __init__(self, name):
-        pass
+        self.name = name
+        self.products = []
+        self.customers = []
     
-    def add_products(self, product):
-        pass
+    def add_products(self, product): # adds product to store
+        self.products.append(product)
     
-    def register_customer(self, customer):
-        pass
+    def register_customer(self, customer): # registers a customer
+        self.customers.append(customer)
     
-    def find_products(self, name):
-        pass
+    def find_products(self, name): # finds product by name
+        if name in self.products:
+            print(f"{name} available !")
+        else:
+            print(f"{name} not available ! ")
     
-    def get_low_stock_products(self, threshhold = 5):
-        pass
+    def get_low_stock_products(self, threshhold = 5): # returns products with low stock
+        low_stock = []
+        for product in self.products:
+            if product.stock_quantitiy < threshhold:
+                low_stock.append(product.name)
+            else:
+                pass
+        
+        print("Low Stock products")
+        for i,item  in enumerate(low_stock,1):
+            print(f"{i}.{item}")
 
 # Testing Your Solution
     # python# Test your e-commerce system

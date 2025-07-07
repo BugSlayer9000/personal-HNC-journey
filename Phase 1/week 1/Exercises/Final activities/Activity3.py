@@ -132,16 +132,28 @@ class Customer:
     # Attributes: name, email, customer_id, purchase_history
     
     def __init__(self, name, email):
-        pass
+        self.name = name
+        self.email = email
+        self.customer_id = 0
+        self.purchase_history = []
     
-    def add_purchase(self, product, quantitiy):
-        pass
+    def add_purchase(self, product, quantitiy): #  adds to purchase history
+        self.purchase_history[product] = quantitiy
     
-    def get_total_spent(self):
-        pass
+    def get_total_spent(self): # calculates total amount spent
+        total_spent = 0
+        
+        for product in self.purchase_history:
+            total_spent += Product.price
+        
+        # add a try exept block later
     
-    def get_purhcase_history(self):
-        pass
+    def get_purhcase_history(self): # returns formatted purchase history
+        if len(self.purchase_history) != 0 :
+            for product in self.purchase_history:
+                return f"Product name = {product} X {self.purchase_history[product]}"
+        else: 
+            return f"No product history found ! "
 
 class ShoppingCart:
     # Attributes: customer, items (dictionary: product -> quantity)
@@ -181,3 +193,12 @@ class Store:
     
     def get_low_stock_products(self, threshhold = 5):
         pass
+
+# Testing Your Solution
+    # python# Test your e-commerce system
+    store = Store("TechMart Online")
+
+    # Add products
+    laptop = Product("Gaming Laptop", 999.99, "Electronics", 10)
+    mouse = Product("Wireless Mouse", 29.99, "Electronics", 50)
+    keyboard = Product("Mechanical Keyboard", 79.99, "Electronics", 25)

@@ -107,22 +107,26 @@ class Product:
     # Attributes: name, price, category, stock_quantity, product_id
     
     def __init__(self, name, price, category, stock_quantitiy):
-        pass
+        self.name = name
+        self.price = price
+        self.category = category
+        self.stock_quantitiy = stock_quantitiy
+        self.product_id = 0 # have to work on this 
     
-    def update_stock(self, quantitiy):
-        pass
+    def update_stock(self, quantitiy): # adds/removes stock
+        self.stock_quantitiy += quantitiy
     
-    def apply_discount(self, percentage):
-        pass
+    def apply_discount(self, percentage:int): # applies discount to price
+        self.price = self.price * (percentage/100) 
     
     def __str__(self):
-        pass
+        return f"Product name = {self.name} \nPrice per 1  - 3{self.price} "
     
     def __repr__(self):
-        pass
+        return f"Product({self.name!r}, {self.price!r}, {self.category!r}, {self.stock_quantitiy!r})"
     
     def __eq__(self, value):
-        pass
+        return self.name == self.name
     
 class Customer:
     # Attributes: name, email, customer_id, purchase_history

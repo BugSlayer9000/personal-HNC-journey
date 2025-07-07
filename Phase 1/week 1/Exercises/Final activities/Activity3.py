@@ -116,7 +116,7 @@ class Product:
         self.product_id = 0 # have to work on this 
     
     def update_stock(self, quantitiy): # adds/removes stock
-        self.stock_quantity += quantitiy
+        self.stock_quantity += quantitiy # fix logic here 
     
     def apply_discount(self, percentage:int): # applies discount to price
         self.price = self.price * (percentage/100) 
@@ -127,8 +127,11 @@ class Product:
     def __repr__(self):
         return f"Product({self.name!r}, {self.price!r}, {self.category!r}, {self.stock_quantity!r})"
     
+    def __hash__(self):
+        return hash(self.name)
+    
     def __eq__(self, value):
-        return self.name == self.name
+        return isinstance(value, Product) and self.name == value.name
     
 class Customer:
     # Attributes: name, email, customer_id, purchase_history
@@ -163,18 +166,22 @@ class ShoppingCart:
     def __init__(self, customer):
         self.customer = customer
         self.items = {} # (product -> quantity)
+        self.store = store  # Removed as ShoppingCart does not need a Store instance here
     
-    def add_item(self, product, quantitiy): # adds product to cart
-        self.items[str(product)] = quantitiy
+    def add_item(self, product, quantity): # adds product to cart
+        if product in self.items:
+            self.items[product] += quantity
+        else:
+            self.items[product] = quantity
     
     def remove_item(self, product): # removes product from cart
-        if product.Lower() in self.items.Lower():
+        if product in self.items:
             del self.items[product]
         else:
             print("Product not found !")
     
     def update_quantitiy(self, product, new_quantity): # updates quantity
-        if product.Lower() in self.items.Lower():
+        if product in self.items:
             if not new_quantity < 0:
                 self.items[product] = new_quantity
             else: 
@@ -185,20 +192,22 @@ class ShoppingCart:
     def get_total(self): # calculates total price
         total_price = 0
         
-        for product, quantitiy in self.items.items(): # getting items in the cart
-            match = re.search(r'-\s*(\d+\.\d+)', product) # Searche for prices within the product string 
-            
-            if match:
-                price = float(match.group(1))
-                total_price = price * quantitiy
-            else:
-                return "Price not found" 
+        for product, quantity in self.items.items():
+            total_price += product.price * quantity
         
         return total_price
             
     
     def checkout(self): # processes the order and updates stock
-        pass
+        checkout_items = []
+        
+        for product, quantitiy in self.items.items():
+            product.update_stock(quantitiy)
+            checkout_items.append([product.name,quantitiy])
+
+        
+        for items in checkout_items:
+            return items
 
 class Store:
     # Attributes: name, products, customers

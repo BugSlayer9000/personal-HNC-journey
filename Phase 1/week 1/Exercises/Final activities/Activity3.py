@@ -115,8 +115,12 @@ class Product:
         self.stock_quantity = stock_quantity
         self.product_id = 0 # have to work on this 
     
-    def update_stock(self, quantitiy): # adds/removes stock
-        self.stock_quantity += quantitiy # fix logic here 
+    def update_stock(self, quantitiy, add = True): # adds/removes stock
+        if add:
+            self.stock_quantity += quantitiy
+        else:
+            if quantitiy < self.stock_quantity:
+                self.stock_quantity -= quantitiy
     
     def apply_discount(self, percentage:int): # applies discount to price
         self.price = self.price * (percentage/100) 
@@ -140,16 +144,19 @@ class Customer:
         self.name = name
         self.email = email
         self.customer_id = 0
-        self.purchase_history = []
+        self.purchase_history = [] # [[item_name, price_per_item, quantity]]
     
-    def add_purchase(self, product, quantitiy): #  adds to purchase history
-        self.purchase_history[product] = quantitiy
+    def add_purchase(self, product, price_per_item, quantitiy): #  adds to purchase history
+        self.purchase_history.append([product, price_per_item, quantitiy])
     
     def get_total_spent(self): # calculates total amount spent
         total_spent = 0
         
         for product in self.purchase_history:
-            total_spent += Product.price
+            item_name, price_per_item, quantitiy = product
+            total_spent += price_per_item * quantitiy
+        
+        return total_spent
         
         # add a try exept block later
     
@@ -159,6 +166,9 @@ class Customer:
                 return f"Product name = {product} X {self.purchase_history[product]}"
         else: 
             return f"No product history found ! "
+    
+    def __repr__(self):
+        return f"Customer({self.name!r}, {self.email!r}, {self.customer_id!r}, {self.purchase_history!r})"
 
 class ShoppingCart:
     # Attributes: customer, items (dictionary: product -> quantity)
@@ -202,12 +212,16 @@ class ShoppingCart:
         checkout_items = []
         
         for product, quantitiy in self.items.items():
-            product.update_stock(quantitiy)
-            checkout_items.append([product.name,quantitiy])
-
+            product.update_stock(quantitiy, False)
+            checkout_items.append([product.name, product.price, quantitiy])
         
-        for items in checkout_items:
-            return items
+        for item in checkout_items:
+            product_name, product_price, quantitiy = item
+            customer.add_purchase(product_name, product_price, quantitiy)
+        
+        
+        
+        return checkout_items
 
 class Store:
     # Attributes: name, products, customers

@@ -223,9 +223,32 @@ class Store:
 
 # Testing Your Solution
     # python# Test your e-commerce system
-    store = Store("TechMart Online")
+store = Store("TechMart Online")
 
-    # Add products
-    laptop = Product("Gaming Laptop", 999.99, "Electronics", 10)
-    mouse = Product("Wireless Mouse", 29.99, "Electronics", 50)
-    keyboard = Product("Mechanical Keyboard", 79.99, "Electronics", 25)
+    # # Add products
+laptop = Product("Gaming Laptop", 999.99, "Electronics", 10)
+mouse = Product("Wireless Mouse", 29.99, "Electronics", 50)
+keyboard = Product("Mechanical Keyboard", 79.99, "Electronics", 25)
+
+store.add_product(laptop)
+store.add_product(mouse)
+store.add_product(keyboard)
+
+    # # Register customer
+customer = Customer("John Doe", "john@email.com")
+store.register_customer(customer)
+
+    # # Create shopping cart
+cart = ShoppingCart(customer)
+cart.add_item(laptop, 1)
+cart.add_item(mouse, 2)
+
+print(f"Cart total: £{cart.get_total():.2f}")
+
+    # # Process checkout
+receipt = cart.checkout()
+print(f"\nReceipt: {receipt}")
+
+    # # Check updated stock
+print(f"\nLaptop stock after purchase: {laptop.stock_quantity}")
+print(f"Customer total spent: £{customer.get_total_spent():.2f}")

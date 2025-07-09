@@ -103,7 +103,6 @@
     # Design Pattern Challenge: Implement the Observer pattern to notify customers of stock updates
     # Database Challenge: Modify classes to work with a simple database (using sqlite3)
 
-import re
 
 class Product:
     # Attributes: name, price, category, stock_quantity, product_id

@@ -1,3 +1,168 @@
+Basic tests on Activity 3 Review by Chat GPT
+
+✅ What’s Working Well
+Modular OOP design: Classes are well-separated (Product, Customer, ShoppingCart, Store).
+
+Use of dunder methods (__str__, __repr__, __eq__, __hash__): Great professional touch.
+
+Object referencing: Using objects as dictionary keys (ShoppingCart.items) is advanced and handled correctly.
+
+Dynamic cart/checkout functionality is working.
+
+Clean use of list-of-lists for purchase history: correct for traceability.
+
+get_total_spent() is accurate and demonstrates understanding of accumulation logic.
+
+❌ Critical Problems & Required Fixes
+🔺 apply_discount logic is wrong
+python
+Copy
+Edit
+self.price = self.price * (percentage / 100)
+This makes the price only the discount portion, not the discounted price.
+
+✅ Fix logic:
+
+python
+Copy
+Edit
+self.price *= (1 - (percentage / 100))
+🔺 get_purhcase_history() returns only the first entry, not a full list
+python
+Copy
+Edit
+return f"Product name = {product} X {self.purchase_history[product]}"
+return inside a loop terminates after the first item.
+
+You’re treating purchase_history (a list of lists) as a dictionary.
+
+✅ Fix strategy:
+
+Build a string result with join() or print() line-by-line.
+
+Or return the full list of strings.
+
+🔺 ShoppingCart.checkout() uses customer.add_purchase() but references an external variable customer
+python
+Copy
+Edit
+customer.add_purchase(product_name, product_price, quantitiy)
+This works only because of the global customer used for testing.
+
+It won’t work in production with multiple customers.
+
+✅ Fix:
+
+python
+Copy
+Edit
+self.customer.add_purchase(product_name, product_price, quantitiy)
+🔺 update_stock() logic allows underflow
+python
+Copy
+Edit
+if quantitiy < self.stock_quantity:
+    self.stock_quantity -= quantitiy
+If quantity == stock_quantity, the subtraction is blocked.
+
+Doesn’t protect against quantity > stock_quantity.
+
+✅ Replace with:
+
+python
+Copy
+Edit
+if 0 <= quantity <= self.stock_quantity:
+    self.stock_quantity -= quantity
+else:
+    print("Not enough stock available.")
+⚠️ Minor/Stylistic Fixes
+🟡 __str__() in Product typo:
+python
+Copy
+Edit
+return f"Product name = {self.name} \nPrice per 1  - 3{self.price} "
+"3" before price is a typo.
+
+✅ Should be:
+
+python
+Copy
+Edit
+return f"Product name: {self.name}\nPrice per unit: £{self.price:.2f}"
+🟡 Method name typo
+python
+Copy
+Edit
+def update_quantitiy(self, ...)
+✅ Rename to:
+
+python
+Copy
+Edit
+def update_quantity(self, ...)
+🟡 find_products() does identity comparison, not name match
+python
+Copy
+Edit
+if name in self.products:
+It will always return False, because name is a string and self.products contains Product objects.
+
+✅ Loop through products and check:
+
+python
+Copy
+Edit
+for product in self.products:
+    if product.name == name:
+        return product
+🧠 Suggested Enhancements (Advanced HNC Practice)
+Auto-increment product/customer ID using a class-level counter or UUID.
+
+Persistent storage: Save/load products and customer data using json, csv, or pickle.
+
+Validation wrappers: Add type-checks and input guards (assert, try/except, or @staticmethod validators).
+
+Better formatting in receipt (checkout() should format return cleanly).
+
+Add timestamps in purchase history (datetime.now()).
+
+Use logging module instead of print() for real-world production readiness.
+
+Add unit tests using unittest for each class.
+
+🔚 Final Evaluation (HNC Level 7 Criteria)
+Category	Grade	Notes
+OOP Design & Structure	✅ Merit	Solid class interaction, good encapsulation
+Code Logic & Accuracy	⚠️ Pass	Several logic flaws, but can be corrected easily
+Error Handling	❌ Fail	Missing completely, expected at this level
+User Experience & Output	⚠️ Pass	Functional, but lacks polish (typos, messages, formatting)
+Extendability & Features	✅ Merit	Easy to expand (good architecture)
+
+✅ To-do List (from this review)
+ Fix apply_discount math
+
+ Rewrite get_purchase_history() for full output
+
+ Remove global dependency from checkout()
+
+ Handle stock underflow properly in update_stock()
+
+ Fix all naming typos and string formatting issues
+
+ Implement proper find_product() search
+
+ Add at least one layer of input validation or error handling
+
+ Bonus: start logging, timestamping, or persistence features
+
+
+
+
+
+
+###Advanced Testing
+
 Test Categories Explained: (Powerd by claude ai)
 1. Product Class Logic Tests
 

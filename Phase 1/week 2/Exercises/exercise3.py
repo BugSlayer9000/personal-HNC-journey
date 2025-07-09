@@ -19,6 +19,8 @@ class Car:
             self.__speed += amount
             return True
         else:
+            # capping the spedd at 200 
+            self.__speed = min(self.__speed + amount, 200)
             return False
     
     def brake(self, amount:int) -> bool:
@@ -28,7 +30,7 @@ class Car:
         else:
             return False
     
-    def get_speed(self) -> str:
+    def get_speed(self) -> int:
         return self.__speed
 
 
@@ -39,5 +41,17 @@ print(car.brake(-200))
 print(car.brake(20))
 print(car.get_speed())
 
+# ✅ What You Did Well
 
+    # ✅ Encapsulation
+    # ✅ Constructor Safeguard
+    # ✅ Speed Limits Enforced
+    # ✅ Brake Logic is Defensive
+    # ✅ Type Hints
+
+# ❌ Improvements Needed
+
+    # Incorrect Return Type in get_speed()
+    # Missing Handling for Exceeding Max Speed Gracefully
+    
     

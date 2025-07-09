@@ -42,4 +42,30 @@ bank.withdraw(-50)
 bank.withdraw(50)
 bank.get_balance()
 
+
+
+
+# ✅ What You Did Well (according to chat GPT)
+
+    # Private attributes (__balance, __account_holder): ✅ Correct usage of name mangling to enforce encapsulation.
+
+    # Basic validation on input: ✅ Checking for positive deposits and withdrawals.
+
+    # Readable method names: ✅ Follows good naming conventions.
+
+    # Simple, linear structure: ✅ Clear, maintainable control flow.
+
+# ❌ What Needs Fixing or Improving
+
+    # Flawed withdraw logic 
+        # if self.__balance > amount > 0:
     
+    # Return the massage and let the callser decide how to display
+    
+    # get_balance() should return the value
+    
+    # No Input Validation in Constructor (allowing negative initial balance)
+
+
+
+ 

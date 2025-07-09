@@ -13,26 +13,42 @@
 
 class BankAccount:
     def __init__(self, balance, account_holder ):
-        self.__balance = balance
+        # suggested solution
+        self.__balance = max(0,balance)
+        
+        # my solution 
+        # self.__balance = balance
         self.__account_holder = account_holder
         
     def deposit(self, amount):
         if amount > 0:
             self.__balance += amount
-            print(f"{amount} has been added to your balance.")
+            return True
         else:
-            print("Amount must be above 0 !") 
+            return False
     
     def withdraw(self, amount):
-            if self.__balance > amount > 0:
-                self.__balance -= amount
-                print(f"{amount} has been withdrawn from your balance.")
-            else:
-                print("Amount must be above the Bank balance !")  
+        
+        # suggested solution
+        if 0 < amount <= self.__balance:
+            self.__balance -= amount
+            return True
+        else:
+            return False
+        
+        # My solution
+            # if self.__balance > amount > 0:
+            #     self.__balance -= amount
+            #     print(f"{amount} has been withdrawn from your balance.")
+            # else:
+            #     print("Amount must be above the Bank balance !")  
                 
     
     def get_balance(self):
-        print(f"{self.__account_holder} your account balance is {self.__balance}")
+        return self.__balance
+    
+    def get_account_holder(self):
+        return self.__account_holder
 
 
 bank = BankAccount(100, "samod")

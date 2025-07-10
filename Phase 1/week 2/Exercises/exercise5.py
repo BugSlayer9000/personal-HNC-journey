@@ -22,15 +22,34 @@ class Inventoryitem:
         self.__price = price
         self.__stock = stock
     
-    def restock(self, amount):
-        pass
+    def restock(self, amount:int) -> bool:
+        if 0 < amount:
+            self.__stock += amount
+            return True
+        else:
+            return False
     
-    def sell(quantitiy):
-        pass
+    def sell(self, quantitiy:int) -> bool:
+        if 0 < quantitiy and self.__stock >= quantitiy:
+            self.__stock -= quantitiy
+            return True
+        else:
+            return False 
     
-    def get_stock(self):
-        pass
+    def get_stock(self) -> int:
+        return self.__stock
     
     def get_details(self):
-        pass
-    
+        return f"Product name - {self.__name} \nprice : £ {self.__price:.2f} \nstock available : {self.__stock}"
+
+
+ineventory = Inventoryitem("Laptop", 999, 50)
+print(ineventory.restock(10)) # True
+print(ineventory.restock(-10)) # false
+print(ineventory.sell(-10)) # false
+print(ineventory.sell(10)) # True
+print(ineventory.sell(1000)) # false
+print(ineventory.get_stock()) 
+print(ineventory.get_details())
+
+

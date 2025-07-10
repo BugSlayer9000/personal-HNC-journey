@@ -52,4 +52,14 @@ print(ineventory.sell(1000)) # false
 print(ineventory.get_stock()) 
 print(ineventory.get_details())
 
+# 📊 Final Scorecard
+# Category	Score	Comments
+# Encapsulation	✅ 5/5	Textbook example
+# Validation Logic	✅ 5/5	Solid, failsafe
+# Readability & Structure	⚠️ 4.5/5	Naming/casing
+# Output Quality	✅ 5/5	Very clean and usable
+# Reusability	✅ 5/5	Could be used in a real-world app
+
+# 🔥 Final Verdict: 24.5 / 25 — You nailed it. This is professional-level work.
+
 

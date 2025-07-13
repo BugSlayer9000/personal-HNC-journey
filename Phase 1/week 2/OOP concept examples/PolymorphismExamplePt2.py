@@ -20,27 +20,39 @@ class Car(Vehicles):
         super().__init__(brand, model, year)
         self.number_of_doors = number_of_doors
     
-    # def start(self):   #  we are ooveriding the class method by giving it the same as Vehicles
-    #     print("The car is starting")
+    def start(self):   #  we are ooveriding the class method by giving it the same as Vehicles
+        print("The car is starting")
     
-    # def stop(self):
-    #     print("The car is stopping") # we are going to inherit the method from the main class form now on
+    def stop(self):
+        print("The car is stopping") # we are going to inherit the method from the main class form now on
 
 class Bike(Vehicles):
     def __init__(self, brand, model, year, number_of_wheels):
         super().__init__(brand, model, year)
         self.number_of_wheels = number_of_wheels
     
-    # def start_bike(self):
-    #     print("The car is starting")
+    def start(self):
+        print("The car is starting")
     
-    # def stop_bike(self):
-    #     print("The car is stopping") # # we are going to inherit the method from the main class form now on
+    def stop(self):
+        print("The car is stopping") # # we are going to inherit the method from the main class form now on
+
+class Plane(Vehicles):
+    def __init__(self, brand, model, year, number_of_wheels):
+        super().__init__(brand, model, year)
+        self.number_of_wheels = number_of_wheels
+    
+    def start(self):
+        print("The Plane is starting")
+    
+    def stop(self):
+        print("The Plane is stopping") # # we are going to inherit the method from the main class form now on
         
         
 vehicles : list[Vehicles] = [        
     Car("Ford", "Focus", 2003, 4),
-    Bike("Honda","CBR", 2013, 2)
+    Bike("Honda","CBR", 2013, 2),
+    Plane("Boing" , "747", 2015, 16) # added another class 
 ]
 
 # changes of the solution
@@ -64,6 +76,14 @@ for vehicle in vehicles:
     #     raise Exception("object is not a vali vehicel")
     
     # works with the if loop
+    
+    # Solution 2
+    print(f"Inspecting {vehicle.brand} {vehicle.model}  ({type(vehicle).__name__})") 
+    vehicle.start()
+    vehicle.stop()
+    
+    # get the same result as before having to implement the if loop and change it everytime when a new class added 
+    # with this we can just add another class of vehicle without having to extend our inspection logic 
     
     
 

@@ -41,12 +41,12 @@ class Book:
     
     def __str__(self):
         available = ""
-        if self.is_available == True:
+        if self._available == True:
             available = "Available"
         else:
             available = "Not Avilable"
         
-        return f"Book name - {self.author} by {self.author} \nBorrowed Status - {available}"
+        return f"Book name - {self.title} by {self.author} Is available - {available} Isbn - {self.isbn}"
 
     def __repr__(self):
         return f"Book(title='{self.title}', author='{self.author}', isbn='{self.isbn}', is_available=`{self._available}`, genre=`{self.genre}`, year=`{self.year}` )"
@@ -61,14 +61,20 @@ class Member:
     def borrow_book(self, book) -> bool: # adds to the borrwed list maximum is 3 books
         MAXIMUM_NUMBER_OF_BOOKS = 3
         
-        if len(self._borrowed_books) <= MAXIMUM_NUMBER_OF_BOOKS:
+        if len(self._borrowed_books) >= MAXIMUM_NUMBER_OF_BOOKS:
+            print("Maximum number of books per member reached")
             return False
         else:
-            self._borrowed_books.append(book)
-            return True
+            if book.checkout(): #  make sure the availability chanched before adding the item to the list 
+                self._borrowed_books.append(book)
+                return True
+            else:
+                return False
+            
     
     def return_book(self, book): # removed from borrow list 
         if book in self._borrowed_books:
+            book.return_book()
             self._borrowed_books.remove(book)
             return True
         else:
@@ -91,28 +97,107 @@ class Library:
         self.books = books if books is not None else [] 
         self.members = members if members is not None else []
     
-    def add_book(book):
-        pass
+    def add_book(self, book):
+        if book in self.books:
+            return "This book is already exists"
+        else:
+            self.books.append(book)
+            return "Book added"
+            
     
-    def add_member(member):
-        pass
+    def add_member(self, member):
+        if member in self.members:
+            return "This member already exists"
+        else:
+            self.members.append(member)
+            return "member added "
     
-    def search_books(by_title = None, auther = None , genre = None):
+    def search_books(self, by_title = None, auther = None , genre = None):
         pass
+        # implement it later
     
-    def checkout_book(isbn, member_id):
-        pass
+    def checkout_book(self, isbn, member_id):
+        
+        for book in self.books:
+            
+            for member in self.members:
+                
+                if book.isbn == isbn and member._member_id == member_id:  
+                    # added the book to borroed books list
+                    if member.borrow_book(book):
+                        print(f"{book.title} for member id - {member._member_id} added successfuly.")
+                        
+                    else:
+                        print("Error")
+                    break
+               
     
-    def return_book(isbn, member_id):
-        pass
+    def return_book(self, isbn, member_id):
+        print("return book protocol")
+        for book in self.books:
+            
+            for member in self.members:
+                
+                if book.isbn == isbn and member._member_id == member_id:  
+                    # added the book to borroed books list
+                    if member.return_book(book):
+                        print(f"{book.title} for member id - {member._member_id} returned successfuly.")
+                    else:
+                        print("Error")
+                    break
     
     def generate_report(self): # overdue books, popular genres
         pass
     
-    def validate_member(self):
-        pass
+    def validate_member(self,member_id):
+        for member in self.members:
+            if member.member_id == member_id:
+                return True
+            else:
+                return False
 
 
-book = Book("life of Pi","samod", 1234567890123, 2005, "male", True )
-print(book.checkout())
-print(book.is_available())
+
+book1 = Book("Life of Pi", "Yann Martel", 9780156027328, 2001, "Fiction", True)
+book2 = Book("1984", "George Orwell", 9780451524935, 1949, "Dystopian", True)
+book3 = Book("To Kill a Mockingbird", "Harper Lee", 9780061120084, 1960, "Classic", True)
+book4 = Book("The Hobbit", "J.R.R. Tolkien", 9780547928227, 1937, "Fantasy", True)
+book5 = Book("A Brief History of Time", "Stephen Hawking", 9780553380163, 1988, "Science", True)
+
+
+member = Member(123456, "pakaya@email.com", datetime(2024, 7, 6), None)
+member1 = Member(234567, "alice@example.com", datetime(2023, 5, 12), None)
+member2 = Member(345678, "bob@example.com", datetime(2022, 11, 30), None)
+member3 = Member(456789, "carol@example.com", datetime(2024, 1, 15), None)
+member4 = Member(567890, "dave@example.com", datetime(2021, 8, 22), None)
+
+
+
+library = Library() 
+
+library.add_book(book1)
+library.add_book(book2)
+library.add_book(book3)
+library.add_book(book4)
+library.add_book(book5)
+
+library.add_member(member)
+library.add_member(member1)
+library.add_member(member2)
+library.add_member(member3)
+library.add_member(member4)
+
+
+library.checkout_book(9780156027328,234567)
+library.checkout_book(9780451524935,234567)
+library.checkout_book(9780061120084,234567)
+library.checkout_book(9780547928227,234567) #  cannot add because maximum books per person is 3 
+  
+library.return_book(9780061120084,234567) 
+
+
+
+
+
+
+ 

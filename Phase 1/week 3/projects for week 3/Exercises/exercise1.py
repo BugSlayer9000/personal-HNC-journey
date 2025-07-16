@@ -52,11 +52,12 @@ class Book:
         return f"Book(title='{self.title}', author='{self.author}', isbn='{self.isbn}', is_available=`{self._available}`, genre=`{self.genre}`, year=`{self.year}` )"
     
 class Member:
-    def __init__(self, member_id:int, email:str, join_date, _borrowed_books = None): # join_date = datetime(2024, 7, 16)
+    def __init__(self,name ,member_id:int, email:str, join_date,): # join_date = datetime(2024, 7, 16)
         self._member_id = member_id
         self.email = email
         self.join_date = join_date
-        self._borrowed_books = _borrowed_books if _borrowed_books is not None else [] # list of books objects
+        self._borrowed_books = [] # list of books objects
+        self.name = name
         
     def borrow_book(self, book) -> bool: # adds to the borrwed list maximum is 3 books
         MAXIMUM_NUMBER_OF_BOOKS = 3
@@ -165,35 +166,13 @@ book4 = Book("The Hobbit", "J.R.R. Tolkien", 9780547928227, 1937, "Fantasy", Tru
 book5 = Book("A Brief History of Time", "Stephen Hawking", 9780553380163, 1988, "Science", True)
 
 
-member = Member(123456, "pakaya@email.com", datetime(2024, 7, 6), None)
-member1 = Member(234567, "alice@example.com", datetime(2023, 5, 12), None)
-member2 = Member(345678, "bob@example.com", datetime(2022, 11, 30), None)
-member3 = Member(456789, "carol@example.com", datetime(2024, 1, 15), None)
-member4 = Member(567890, "dave@example.com", datetime(2021, 8, 22), None)
+member = Member("John Smith", 123456, "pakaya@email.com", datetime(2024, 7, 6))
+member1 = Member("Alice Johnson", 234567, "alice@example.com", datetime(2023, 5, 12))
+member2 = Member("Bob Williams", 345678, "bob@example.com", datetime(2022, 11, 30))
+member3 = Member("Carol Brown", 456789, "carol@example.com", datetime(2024, 1, 15))
+member4 = Member("Dave Miller", 567890, "dave@example.com", datetime(2021, 8, 22))
 
 
-
-library = Library() 
-
-library.add_book(book1)
-library.add_book(book2)
-library.add_book(book3)
-library.add_book(book4)
-library.add_book(book5)
-
-library.add_member(member)
-library.add_member(member1)
-library.add_member(member2)
-library.add_member(member3)
-library.add_member(member4)
-
-
-library.checkout_book(9780156027328,234567)
-library.checkout_book(9780451524935,234567)
-library.checkout_book(9780061120084,234567)
-library.checkout_book(9780547928227,234567) #  cannot add because maximum books per person is 3 
-  
-library.return_book(9780061120084,234567) 
 
 
 

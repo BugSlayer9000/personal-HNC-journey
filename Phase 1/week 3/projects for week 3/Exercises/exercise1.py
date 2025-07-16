@@ -34,7 +34,7 @@ class Book:
     
     def validate_isbn(self) -> bool: # checks if isbn is 13 digits
         ISBN_LEGNTH = 13
-        if len(self.isbn) == ISBN_LEGNTH:
+        if len(str(self.isbn)) == ISBN_LEGNTH:
             return True
         else:
             return False
@@ -52,23 +52,39 @@ class Book:
         return f"Book(title='{self.title}', author='{self.author}', isbn='{self.isbn}', is_available=`{self._available}`, genre=`{self.genre}`, year=`{self.year}` )"
     
 class Member:
-    def __init__(self, member_id, email, join_date, _borrowed_books):
+    def __init__(self, member_id:int, email:str, join_date, _borrowed_books = None): # join_date = datetime(2024, 7, 16)
         self._member_id = member_id
         self.email = email
         self.join_date = join_date
-        self._borrowed_books = _borrowed_books
+        self._borrowed_books = _borrowed_books if _borrowed_books is not None else [] # list of books objects
         
-    def borrow_book(self, book): # adds to the borrwed list maximum is 3 books
-        pass
+    def borrow_book(self, book) -> bool: # adds to the borrwed list maximum is 3 books
+        MAXIMUM_NUMBER_OF_BOOKS = 3
+        
+        if len(self._borrowed_books) <= MAXIMUM_NUMBER_OF_BOOKS:
+            return False
+        else:
+            self._borrowed_books.append(book)
+            return True
     
     def return_book(self, book): # removed from borrow list 
-        pass
+        if book in self._borrowed_books:
+            self._borrowed_books.remove(book)
+            return True
+        else:
+            return False
     
     def get_membership_duration(self): # returns days since the join
-        pass
+        return (datetime.now() - self.join_date).days
     
     def list_borrwed_books(self): # Show current borrowe books
-        pass
+        list_of_books = []
+        
+        for book in self._borrowed_books:
+            list_of_books.append(f"{book.title} by {book.author}")
+        
+        return list_of_books
+            
 
 class Library:
     def __init__(self,books = None, members = None):

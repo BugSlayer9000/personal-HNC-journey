@@ -115,3 +115,70 @@ KEY OOP CONCEPTS TO APPLY:
 EXTRA CHALLENGE:
 Implement a decorator system for dynamic discounts (BOGO, %, seasonal).
 """
+
+
+"""
+================================================================================
+EXERCISE 3: TASK MANAGEMENT SYSTEM WITH USER ROLES & NOTIFICATIONS (ADVANCED)
+================================================================================
+
+MODULES TO IMPORT:
+- from abc import ABC, abstractmethod
+- from enum import Enum
+- from datetime import datetime, timedelta
+- import hashlib
+- from functools import wraps
+- import threading
+- from collections import deque
+
+INSTRUCTIONS:
+Design a project management system with users, tasks, and role-based permissions.
+
+CLASS RESPONSIBILITIES:
+
+1. User (Abstract Base):
+   - Attributes: username, email, _password_hash
+   - Methods:
+     * check_password(), get_role(), is_authorized()
+   - Abstract methods: can_create_task(), can_assign_task()
+
+2. Admin, Manager, Employee (inherit User):
+   - Different roles, task limits, permissions
+   - Override permissions accordingly
+
+3. Task:
+   - Attributes: title, description, status, priority, deadline
+   - Methods:
+     * assign_to(user)
+     * change_status()
+     * get_remaining_time()
+     * log_history()
+
+4. Project:
+   - Attributes: tasks, members
+   - Methods:
+     * add_task(), remove_task()
+     * progress_report(), filter_tasks()
+
+5. NotificationService (Singleton):
+   - Method: send_notification()
+   - Tracks notification history
+
+6. TaskObserver (Observer Pattern):
+   - EmailNotifier, SlackNotifier, SMSNotifier
+   - React to task status changes
+
+7. TaskFactory:
+   - Create specialized task types (Bug, Feature, Meeting)
+   - Validate creation rules
+
+KEY OOP CONCEPTS TO APPLY:
+- Abstraction: User roles and observers
+- Inheritance: Role-based user access
+- Polymorphism: Notification handling
+- Encapsulation: Hide user data
+- Patterns: Singleton (Notification), Observer, Factory
+
+EXTRA CHALLENGE:
+Implement a command pattern with undo/redo for task operations.
+"""

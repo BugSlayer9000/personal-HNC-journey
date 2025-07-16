@@ -52,7 +52,7 @@ class Book:
         return f"Book(title='{self.title}', author='{self.author}', isbn='{self.isbn}', is_available=`{self._available}`, genre=`{self.genre}`, year=`{self.year}` )"
     
 class Member:
-    def __init__(self,name ,member_id:int, email:str, join_date,): # join_date = datetime(2024, 7, 16)
+    def __init__(self,name ,member_id:int, email:str, join_date): # join_date = datetime(2024, 7, 16)
         self._member_id = member_id
         self.email = email
         self.join_date = join_date
@@ -91,6 +91,9 @@ class Member:
             list_of_books.append(f"{book.title} by {book.author}")
         
         return list_of_books
+    
+    def __str__(self) -> str:
+        return f"Member name - {self.name} member_id -  {self._member_id} email - {self.email} Num of books borrowed - {len(self._borrowed_books)}"
             
 
 class Library:
@@ -118,34 +121,102 @@ class Library:
         # implement it later
     
     def checkout_book(self, isbn, member_id):
+        # solution 1
+        # running a loop untill i find them
         
-        for book in self.books:
+        # for book in self.books:
             
-            for member in self.members:
+        #     for member in self.members:
                 
-                if book.isbn == isbn and member._member_id == member_id:  
-                    # added the book to borroed books list
-                    if member.borrow_book(book):
-                        print(f"{book.title} for member id - {member._member_id} added successfuly.")
-                        
-                    else:
-                        print("Error")
+        #         if book.isbn == isbn and member._member_id == member_id:  
+        #             # added the book to borroed books list
+        #             if member.borrow_book(book):
+        #                 print(f"{book.title} for member id - {member._member_id} added successfuly.")
+        #                 break
+        #             else:
+        #                 print(f"{book.title} couldn't add")
+        #                 break
+        
+        
+        # solution 2
+        # validate one loop then move into the other 
+        
+        is_isbn_valid = False
+        valid_book = None
+        is_member_id_valid = False
+        valid_member = None
+        
+        
+        for book in self.books: # checked if the isbn arg is valid
+            if book.isbn == isbn:
+                is_isbn_valid = True
+                valid_book = book
+                break
+            else:
+                pass
+        
+        if is_isbn_valid: # checked if the member_id arg is valid
+            for member in self.members:
+                if member._member_id == member_id:
+                    is_member_id_valid = True
+                    valid_member = member
                     break
-               
+                else:
+                    pass
+        
+        if is_isbn_valid and is_member_id_valid and valid_member is not None and valid_book is not None: # run if both of the args are valid
+            print(valid_member.borrow_book(valid_book))
+        else:
+            print(f"Couldn't add book isbn {isbn} to member id {member_id} ")
+
+        
+        
     
     def return_book(self, isbn, member_id):
-        print("return book protocol")
-        for book in self.books:
+        # solution 1
+        # print("return book protocol")
+        # for book in self.books:
             
-            for member in self.members:
+        #     for member in self.members:
                 
-                if book.isbn == isbn and member._member_id == member_id:  
-                    # added the book to borroed books list
-                    if member.return_book(book):
-                        print(f"{book.title} for member id - {member._member_id} returned successfuly.")
-                    else:
-                        print("Error")
+        #         if book.isbn == isbn and member._member_id == member_id:  
+        #             # added the book to borroed books list
+        #             if member.return_book(book):
+        #                 print(f"{book.title} for member id - {member._member_id} returned successfuly.")
+        #                 break
+        #             else:
+        #                 print(f"Error")
+        #                 break
+        
+        # solution 2
+        is_isbn_valid = False
+        valid_book = None
+        is_member_id_valid = False
+        valid_member = None
+        
+        
+        for book in self.books: # checked if the isbn arg is valid
+            if book.isbn == isbn:
+                is_isbn_valid = True
+                valid_book = book
+                break
+            else:
+                pass
+        
+        if is_isbn_valid: # checked if the member_id arg is valid
+            for member in self.members:
+                if member._member_id == member_id:
+                    is_member_id_valid = True
+                    valid_member = member
                     break
+                else:
+                    pass
+        
+        if is_isbn_valid and is_member_id_valid and valid_member is not None and valid_book is not None: # run if both of the args are valid
+            print(valid_member.return_book(valid_book))
+        else:
+            print(f"Couldn't return book isbn {isbn} from member id - {member_id} ")
+
     
     def generate_report(self): # overdue books, popular genres
         pass
@@ -159,22 +230,93 @@ class Library:
 
 
 
-book1 = Book("Life of Pi", "Yann Martel", 9780156027328, 2001, "Fiction", True)
-book2 = Book("1984", "George Orwell", 9780451524935, 1949, "Dystopian", True)
-book3 = Book("To Kill a Mockingbird", "Harper Lee", 9780061120084, 1960, "Classic", True)
-book4 = Book("The Hobbit", "J.R.R. Tolkien", 9780547928227, 1937, "Fantasy", True)
-book5 = Book("A Brief History of Time", "Stephen Hawking", 9780553380163, 1988, "Science", True)
 
+library = Library()
 
-member = Member("John Smith", 123456, "pakaya@email.com", datetime(2024, 7, 6))
-member1 = Member("Alice Johnson", 234567, "alice@example.com", datetime(2023, 5, 12))
-member2 = Member("Bob Williams", 345678, "bob@example.com", datetime(2022, 11, 30))
-member3 = Member("Carol Brown", 456789, "carol@example.com", datetime(2024, 1, 15))
-member4 = Member("Dave Miller", 567890, "dave@example.com", datetime(2021, 8, 22))
+from datetime import datetime
 
+# Test Books - Additional examples for your library system
+book6 = Book("The Great Gatsby", "F. Scott Fitzgerald", 9780743273565, 1925, "Classic", True)
+book7 = Book("Pride and Prejudice", "Jane Austen", 9780141439518, 1813, "Romance", True)
+book8 = Book("The Catcher in the Rye", "J.D. Salinger", 9780316769174, 1951, "Fiction", True)
+book9 = Book("Lord of the Flies", "William Golding", 9780571056866, 1954, "Fiction", True)
+book10 = Book("The Da Vinci Code", "Dan Brown", 9780385504201, 2003, "Thriller", True)
+book11 = Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 9780747532699, 1997, "Fantasy", True)
+book12 = Book("The Alchemist", "Paulo Coelho", 9780062315007, 1988, "Fiction", True)
+book13 = Book("Sapiens", "Yuval Noah Harari", 9780062316097, 2011, "Science", True)
+book14 = Book("The Kite Runner", "Khaled Hosseini", 9781594631931, 2003, "Fiction", True)
+book15 = Book("Gone Girl", "Gillian Flynn", 9780307588364, 2012, "Thriller", True)
 
+# Test Members - Additional examples for your library system (updated with name parameter)
+member5 = Member("Emma Watson", 678901, "emma@example.com", datetime(2023, 3, 8))
+member6 = Member("Frank Rodriguez", 789012, "frank@example.com", datetime(2024, 2, 14))
+member7 = Member("Grace Lee", 890123, "grace@example.com", datetime(2023, 9, 25))
+member8 = Member("Henry Thompson", 901234, "henry@example.com", datetime(2022, 6, 18))
+member9 = Member("Iris Chen", 112345, "iris@example.com", datetime(2024, 4, 12))
+member10 = Member("Jack Wilson", 123450, "jack@example.com", datetime(2023, 12, 3))
+member11 = Member("Karen Davis", 234561, "karen@example.com", datetime(2024, 5, 20))
+member12 = Member("Liam O'Connor", 345672, "liam@example.com", datetime(2022, 10, 7))
+member13 = Member("Mia Garcia", 456783, "mia@example.com", datetime(2023, 7, 15))
+member14 = Member("Noah Martinez", 567894, "noah@example.com", datetime(2024, 1, 28))
 
+# Test scenarios for your library system
+print("=== Testing Library Management System ===")
 
+# Add all books to library
+library.add_book(book6)
+library.add_book(book7)
+library.add_book(book8)
+library.add_book(book9)
+library.add_book(book10)
+
+# Add all members to library
+library.add_member(member5)
+library.add_member(member6)
+library.add_member(member7)
+library.add_member(member8)
+library.add_member(member9)
+
+# Test checkout scenarios
+print("\n=== Testing Checkout Scenarios ===")
+library.checkout_book(9780743273565, 678901)  # The Great Gatsby to Emma Watson
+library.checkout_book(9780141439518, 678901)  # Pride and Prejudice to Emma Watson
+library.checkout_book(9780316769174, 789012)  # The Catcher in the Rye to Frank Rodriguez
+
+# Test return scenarios
+print("\n=== Testing Return Scenarios ===")
+library.return_book(9780743273565, 678901)  # Emma Watson returns The Great Gatsby
+
+# Test member functionality
+print("\n=== Testing Member Functionality ===")
+print(f"{member5.name}'s membership duration: {member5.get_membership_duration()} days")
+print(f"{member5.name}'s borrowed books: {member5.list_borrwed_books()}")
+
+# Test book validation
+print("\n=== Testing Book Validation ===")
+print(f"Book6 ISBN valid: {book6.validate_isbn()}")
+print(f"Book7 availability: {book7.is_available()}")
+
+# Test edge cases
+print("\n=== Testing Edge Cases ===")
+# Try to checkout the same book twice
+library.checkout_book(9780307588364, 789012)  # Should work
+library.checkout_book(9780307588364, 890123)  # Should fail (book not available)
+
+# Try to exceed member limit
+library.checkout_book(9780316769174, 890123)  # Grace Lee gets Catcher in the Rye
+library.checkout_book(9780571056866, 890123)  # Grace Lee gets Lord of the Flies  
+library.checkout_book(9780385504201, 890123)  # Grace Lee gets Da Vinci Code
+library.checkout_book(9780747532699, 890123)  # Should fail (max 3 books)
+
+print("\n=== Library Status ===")
+print(f"Total books in library: {len(library.books)}")
+print(f"Total members in library: {len(library.members)}")
+
+# Display some book information
+print("\n=== Sample Book Information ===")
+print(book6)
+print(book7)
+print(book8)
 
 
 

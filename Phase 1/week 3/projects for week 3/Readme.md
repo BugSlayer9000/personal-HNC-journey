@@ -51,3 +51,67 @@ KEY OOP CONCEPTS TO APPLY:
 EXTRA CHALLENGE:
 Implement a reservation system for checked-out books.
 """
+
+
+"""
+================================================================================
+EXERCISE 2: ONLINE SHOPPING CART WITH PAYMENT PROCESSING (INTERMEDIATE)
+================================================================================
+
+MODULES TO IMPORT:
+- from abc import ABC, abstractmethod
+- from enum import Enum
+- from decimal import Decimal
+- from uuid import uuid4
+- from datetime import datetime
+
+INSTRUCTIONS:
+Create an online store system supporting both digital and physical products.
+
+CLASS RESPONSIBILITIES:
+
+1. Product (Abstract Base):
+   - Attributes: name, price, sku, description
+   - Methods:
+     * get_tax()
+     * get_shipping_cost()
+     * validate_price()
+   - Abstract methods: get_tax(), get_shipping_cost()
+
+2. DigitalProduct (inherits Product):
+   - Additional attributes: file_size, download_link
+   - get_tax(): digital tax rate
+   - get_shipping_cost(): always 0
+
+3. PhysicalProduct (inherits Product):
+   - Additional attributes: weight, dimensions
+   - get_tax(): physical product tax
+   - get_shipping_cost(): based on weight/dimensions
+
+4. ShoppingCart:
+   - Attributes: product list
+   - Methods:
+     * add_product(), remove_product()
+     * calculate_subtotal(), calculate_total()
+     * apply_discount(code)
+     * validate_cart()
+
+5. PaymentProcessor (Abstract Base):
+   - Method: process_payment(amount)
+
+6. CreditCardProcessor / PayPalProcessor:
+   - Specific validation rules, fee structures
+
+7. Order:
+   - Attributes: cart, timestamp, payment_status
+   - Methods: calculate_final_total(), get_order_summary()
+
+KEY OOP CONCEPTS TO APPLY:
+- Abstraction: Abstract base for Product and PaymentProcessor
+- Inheritance: Digital and Physical Product types
+- Polymorphism: PaymentProcessor interface
+- Encapsulation: Price and payment logic
+
+EXTRA CHALLENGE:
+Implement a decorator system for dynamic discounts (BOGO, %, seasonal).
+"""

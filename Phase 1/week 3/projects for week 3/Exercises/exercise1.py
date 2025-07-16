@@ -7,25 +7,49 @@ import re
 from collections import Counter
 
 class Book:
-    def __init__(self, title, auther, isbn, year, genre, is_available):
+    def __init__(self, title:str, author:str, isbn:int, year:int, genre:str, is_available:bool):
         self.title = title
-        self.auther = auther
+        self.author = author
         self.isbn = isbn
         self.year = year
         self.genre = genre
         self._available = is_available
     
-    def checkout(self): #  amrked as checked out
-        pass
+    def checkout(self) -> bool: #  marked as checked out
+        if self._available == False:
+            return False
+        else:
+            self._available = False
+            return True
     
     def return_book(self): # marks as available
-        pass
+        if self._available == True:
+            return False
+        else:
+            self._available = True
+            return True
     
     def is_available(self) -> bool : # returns avilability status
-        pass
+        return self._available 
     
-    def validate_isbn(self): # checks if isbn is 13 digits
-        pass
+    def validate_isbn(self) -> bool: # checks if isbn is 13 digits
+        ISBN_LEGNTH = 13
+        if len(self.isbn) == ISBN_LEGNTH:
+            return True
+        else:
+            return False
+    
+    def __str__(self):
+        available = ""
+        if self.is_available == True:
+            available = "Available"
+        else:
+            available = "Not Avilable"
+        
+        return f"Book name - {self.author} by {self.author} \nBorrowed Status - {available}"
+
+    def __repr__(self):
+        return f"Book(title='{self.title}', author='{self.author}', isbn='{self.isbn}', is_available=`{self._available}`, genre=`{self.genre}`, year=`{self.year}` )"
     
 class Member:
     def __init__(self, member_id, email, join_date, _borrowed_books):
@@ -71,4 +95,8 @@ class Library:
     
     def validate_member(self):
         pass
-    
+
+
+book = Book("life of Pi","samod", 1234567890123, 2005, "male", True )
+print(book.checkout())
+print(book.is_available())

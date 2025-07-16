@@ -219,7 +219,16 @@ class Library:
 
     
     def generate_report(self): # overdue books, popular genres
-        pass
+        avilable_books = []
+        for book in self.books:
+            if book.is_available():
+                avilable_books.append(f"{book.title}")
+            else:
+                pass
+           
+        print("\nAvailable books ")
+        for i,book in enumerate(avilable_books,1):
+            print(f"{i}.{book}")
     
     def validate_member(self,member_id):
         for member in self.members:
@@ -268,6 +277,11 @@ library.add_book(book7)
 library.add_book(book8)
 library.add_book(book9)
 library.add_book(book10)
+library.add_book(book11)
+library.add_book(book12)
+library.add_book(book13)
+library.add_book(book14)
+library.add_book(book15)
 
 # Add all members to library
 library.add_member(member5)
@@ -303,7 +317,7 @@ library.checkout_book(9780307588364, 789012)  # Should work
 library.checkout_book(9780307588364, 890123)  # Should fail (book not available)
 
 # Try to exceed member limit
-library.checkout_book(9780316769174, 890123)  # Grace Lee gets Catcher in the Rye
+library.checkout_book(9781594631931, 890123)  # The Kite Runner 
 library.checkout_book(9780571056866, 890123)  # Grace Lee gets Lord of the Flies  
 library.checkout_book(9780385504201, 890123)  # Grace Lee gets Da Vinci Code
 library.checkout_book(9780747532699, 890123)  # Should fail (max 3 books)
@@ -318,6 +332,10 @@ print(book6)
 print(book7)
 print(book8)
 
+
+# Genarate report
+print("\n=== Genarate report ===")
+library.generate_report()
 
 
 

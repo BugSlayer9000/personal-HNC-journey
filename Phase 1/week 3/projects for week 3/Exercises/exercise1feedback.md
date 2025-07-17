@@ -135,14 +135,14 @@ You're operating at a **strong HNC Level 7** foundation. To level up into **dist
 
 # 🛠️ TODO List — What to Implement Next
 
-- [ ] 🔍 Implement `search_books()` with filters (`title`, `author`, `genre`)
+- [x] 🔍 Implement `search_books()` with filters (`title`, `author`, `genre`)
 - [x] 🧬 Add subclasses of `Book` like `EBook`, `ReferenceBook`
-- [ ] 🔁 Override behavior (e.g., `checkout()`) to demonstrate **polymorphism**
-- [ ] 📚 Add `@property` methods to access protected variables safely
+- [x] 🔁 Override behavior (e.g., `checkout()`) to demonstrate **polymorphism**
+- [x] 📚 Add `@property` methods to access protected variables safely
 - [ ] ⚙ Refactor validation into helper methods to eliminate repetition
 - [ ] 🧾 Add `docstrings` and `type hints` throughout the codebase
-- [ ] ❗ Replace `print()` with raised **custom exceptions**
-- [ ] 💾 Implement **file persistence** using `json` or `pickle`
+- [x] ❗ Replace `print()` with raised **custom exceptions**
+- [ ] 💾 Implement **file persistence** using `json` or `pickle` - Learning in phase 2
 - [ ] ⏱️ Track borrow durations and generate **overdue reports**
-- [ ] 🖥️ Build a basic **CLI or GUI** for user interaction
+- [ ] 🖥️ Build a basic **CLI or GUI** for user interaction - Phase 2 
 

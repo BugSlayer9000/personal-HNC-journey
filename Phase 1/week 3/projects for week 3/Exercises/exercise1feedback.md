@@ -136,7 +136,7 @@ You're operating at a **strong HNC Level 7** foundation. To level up into **dist
 # 🛠️ TODO List — What to Implement Next
 
 - [ ] 🔍 Implement `search_books()` with filters (`title`, `author`, `genre`)
-- [ ] 🧬 Add subclasses of `Book` like `EBook`, `ReferenceBook`
+- [x] 🧬 Add subclasses of `Book` like `EBook`, `ReferenceBook`
 - [ ] 🔁 Override behavior (e.g., `checkout()`) to demonstrate **polymorphism**
 - [ ] 📚 Add `@property` methods to access protected variables safely
 - [ ] ⚙ Refactor validation into helper methods to eliminate repetition

@@ -51,6 +51,23 @@ class Book:
     def __repr__(self):
         return f"Book(title='{self.title}', author='{self.author}', isbn='{self.isbn}', is_available=`{self._available}`, genre=`{self.genre}`, year=`{self.year}` )"
     
+# New class that will inherit from the Book class and override one if the methods to show polumorphism
+
+class EBook(Book):
+    def __init__(self, title: str, author: str, isbn: int, year: int, genre: str, is_available: bool):
+        super().__init__(title, author, isbn, year, genre, is_available)
+        self.is_e_book = True
+        self.download_count = 0
+    
+    def checkout(self) -> bool:
+        if self.is_e_book == True:
+            self._available = True
+            self.download_count += 1
+            return True
+        else:
+            return False
+        
+    
 class Member:
     def __init__(self,name ,member_id:int, email:str, join_date): # join_date = datetime(2024, 7, 16)
         self._member_id = member_id
@@ -238,7 +255,7 @@ class Library:
                 return False
 
 
-
+# Code tests #######################################
 
 library = Library()
 
@@ -338,5 +355,37 @@ print("\n=== Genarate report ===")
 library.generate_report()
 
 
+
+
+
+print("\n=== SUBCLASS TEST ===")
+######### SUB CLASS TEST ################
+
+# Create an Ebook instance
+ebook1 = EBook(
+    title="Digital Fortress",
+    author="Dan Brown",
+    isbn=1234567890123,
+    year=1998,
+    genre="Thriller",
+    is_available=True
+)
+
+# Test 1: Check initial availability (should always be True for eBooks)
+print(f"Is available: {ebook1.is_available()}")  # Expected: True
+
+# Test 2: Checkout/download the ebook (should increment download count)
+print(f"Checkout 1: {ebook1.checkout()}")         # Expected: True
+print(f"Downloads: {ebook1.download_count}")      # Expected: 1
+
+# Test 3: Multiple checkouts
+ebook1.checkout()
+ebook1.checkout()
+print(f"Total Downloads: {ebook1.download_count}")  # Expected: 3
+
+# Test 4: Set is_e_book to False, simulate invalid eBook
+ebook1.is_e_book = False
+print(f"Checkout non-eBook: {ebook1.checkout()}")   # Expected: False
+print(f"Downloads after fail: {ebook1.download_count}")  # Should stay at 3
 
  

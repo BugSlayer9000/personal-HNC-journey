@@ -138,9 +138,26 @@ class Library:
             self.members.append(member)
             return "member added "
     
-    def search_books(self, by_title = None, auther = None , genre = None):
-        pass
-        # implement it later
+    def search_books(self, **kwargs):
+        
+        attrs = ["title", "author", "isbn", "year", "genre", "is_available" ]
+        
+        results = []
+        
+        for key,value in kwargs.items(): 
+            if key in attrs:
+                for book in self.books:
+                    if getattr(book, key) == value:
+                        if value not in results:
+                            results.append(f"Result found - {book.title} Searched by - {key} - {value}")
+                        else:
+                            pass
+            else:
+                pass
+                
+        return results
+
+        
     
     def checkout_book(self, isbn, member_id):
         # solution 1
@@ -191,8 +208,6 @@ class Library:
         else:
             print(f"Couldn't add book isbn {isbn} to member id {member_id} ")
 
-        
-        
     
     def return_book(self, isbn, member_id):
         # solution 1
@@ -312,85 +327,111 @@ library.add_member(member7)
 library.add_member(member8)
 library.add_member(member9)
 
-# Test checkout scenarios
-print("\n=== Testing Checkout Scenarios ===")
-library.checkout_book(9780743273565, 678901)  # The Great Gatsby to Emma Watson
-library.checkout_book(9780141439518, 678901)  # Pride and Prejudice to Emma Watson
-library.checkout_book(9780316769174, 789012)  # The Catcher in the Rye to Frank Rodriguez
+# # Test checkout scenarios
+# print("\n=== Testing Checkout Scenarios ===")
+# library.checkout_book(9780743273565, 678901)  # The Great Gatsby to Emma Watson
+# library.checkout_book(9780141439518, 678901)  # Pride and Prejudice to Emma Watson
+# library.checkout_book(9780316769174, 789012)  # The Catcher in the Rye to Frank Rodriguez
 
-# Test return scenarios
-print("\n=== Testing Return Scenarios ===")
-library.return_book(9780743273565, 678901)  # Emma Watson returns The Great Gatsby
+# # Test return scenarios
+# print("\n=== Testing Return Scenarios ===")
+# library.return_book(9780743273565, 678901)  # Emma Watson returns The Great Gatsby
 
-# Test member functionality
-print("\n=== Testing Member Functionality ===")
-print(f"{member5.name}'s membership duration: {member5.get_membership_duration()} days")
-print(f"{member5.name}'s borrowed books: {member5.list_borrwed_books()}")
+# # Test member functionality
+# print("\n=== Testing Member Functionality ===")
+# print(f"{member5.name}'s membership duration: {member5.get_membership_duration()} days")
+# print(f"{member5.name}'s borrowed books: {member5.list_borrwed_books()}")
 
-# Test book validation
-print("\n=== Testing Book Validation ===")
-print(f"Book6 ISBN valid: {book6.validate_isbn()}")
-print(f"Book7 availability: {book7.is_available()}")
+# # Test book validation
+# print("\n=== Testing Book Validation ===")
+# print(f"Book6 ISBN valid: {book6.validate_isbn()}")
+# print(f"Book7 availability: {book7.is_available()}")
 
-# Test edge cases
-print("\n=== Testing Edge Cases ===")
-# Try to checkout the same book twice
-library.checkout_book(9780307588364, 789012)  # Should work
-library.checkout_book(9780307588364, 890123)  # Should fail (book not available)
+# # Test edge cases
+# print("\n=== Testing Edge Cases ===")
+# # Try to checkout the same book twice
+# library.checkout_book(9780307588364, 789012)  # Should work
+# library.checkout_book(9780307588364, 890123)  # Should fail (book not available)
 
-# Try to exceed member limit
-library.checkout_book(9781594631931, 890123)  # The Kite Runner 
-library.checkout_book(9780571056866, 890123)  # Grace Lee gets Lord of the Flies  
-library.checkout_book(9780385504201, 890123)  # Grace Lee gets Da Vinci Code
-library.checkout_book(9780747532699, 890123)  # Should fail (max 3 books)
+# # Try to exceed member limit
+# library.checkout_book(9781594631931, 890123)  # The Kite Runner 
+# library.checkout_book(9780571056866, 890123)  # Grace Lee gets Lord of the Flies  
+# library.checkout_book(9780385504201, 890123)  # Grace Lee gets Da Vinci Code
+# library.checkout_book(9780747532699, 890123)  # Should fail (max 3 books)
 
-print("\n=== Library Status ===")
-print(f"Total books in library: {len(library.books)}")
-print(f"Total members in library: {len(library.members)}")
+# print("\n=== Library Status ===")
+# print(f"Total books in library: {len(library.books)}")
+# print(f"Total members in library: {len(library.members)}")
 
-# Display some book information
-print("\n=== Sample Book Information ===")
-print(book6)
-print(book7)
-print(book8)
-
-
-# Genarate report
-print("\n=== Genarate report ===")
-library.generate_report()
+# # Display some book information
+# print("\n=== Sample Book Information ===")
+# print(book6)
+# print(book7)
+# print(book8)
 
 
+# # Genarate report
+# print("\n=== Genarate report ===")
+# library.generate_report()
 
 
 
-print("\n=== SUBCLASS TEST ===")
-######### SUB CLASS TEST ################
 
-# Create an Ebook instance
-ebook1 = EBook(
-    title="Digital Fortress",
-    author="Dan Brown",
-    isbn=1234567890123,
-    year=1998,
-    genre="Thriller",
-    is_available=True
-)
 
-# Test 1: Check initial availability (should always be True for eBooks)
-print(f"Is available: {ebook1.is_available()}")  # Expected: True
+# print("\n=== SUBCLASS TEST ===")
+# ######### SUB CLASS TEST ################
 
-# Test 2: Checkout/download the ebook (should increment download count)
-print(f"Checkout 1: {ebook1.checkout()}")         # Expected: True
-print(f"Downloads: {ebook1.download_count}")      # Expected: 1
+# # Create an Ebook instance
+# ebook1 = EBook(
+#     title="Digital Fortress",
+#     author="Dan Brown",
+#     isbn=1234567890123,
+#     year=1998,
+#     genre="Thriller",
+#     is_available=True
+# )
 
-# Test 3: Multiple checkouts
-ebook1.checkout()
-ebook1.checkout()
-print(f"Total Downloads: {ebook1.download_count}")  # Expected: 3
+# # Test 1: Check initial availability (should always be True for eBooks)
+# print(f"Is available: {ebook1.is_available()}")  # Expected: True
 
-# Test 4: Set is_e_book to False, simulate invalid eBook
-ebook1.is_e_book = False
-print(f"Checkout non-eBook: {ebook1.checkout()}")   # Expected: False
-print(f"Downloads after fail: {ebook1.download_count}")  # Should stay at 3
+# # Test 2: Checkout/download the ebook (should increment download count)
+# print(f"Checkout 1: {ebook1.checkout()}")         # Expected: True
+# print(f"Downloads: {ebook1.download_count}")      # Expected: 1
 
- 
+# # Test 3: Multiple checkouts
+# ebook1.checkout()
+# ebook1.checkout()
+# print(f"Total Downloads: {ebook1.download_count}")  # Expected: 3
+
+# # Test 4: Set is_e_book to False, simulate invalid eBook
+# ebook1.is_e_book = False
+# print(f"Checkout non-eBook: {ebook1.checkout()}")   # Expected: False
+# print(f"Downloads after fail: {ebook1.download_count}")  # Should stay at 3
+
+
+
+
+print("\n=== SEARCH BOOKS TEST ===")
+
+search1 = library.search_books(author = "F. Scott Fitzgerald", # works
+                               isbn = 9780743273565, # works
+                               title = "Lord of the Flies", # works
+                               genre = "Fiction", # 4 results works
+                            )
+
+if search1:
+    for i in search1:
+        print(i)
+else:
+    print("No results found")
+
+search2 = library.search_books(author = "pakaya",
+                               isbn = 218764846187264,
+                               title = "harrry potter")
+
+if search2:
+    for i in search2:
+        print(i)
+else:
+    print("no results found for search 2")
+

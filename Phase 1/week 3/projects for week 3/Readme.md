@@ -77,16 +77,31 @@ CLASS RESPONSIBILITIES:
      * get_shipping_cost()
      * validate_price()
    - Abstract methods: get_tax(), get_shipping_cost()
+   - **Responsibilities**
+      * Store common product attributes (name, price, SKU, description)
+      * Define abstract methods for tax calculation and shipping costs
+      * Handle price validation
 
 2. DigitalProduct (inherits Product):
    - Additional attributes: file_size, download_link
    - get_tax(): digital tax rate
    - get_shipping_cost(): always 0
+   
+   - **Responsibilities**
+      * No shipping costs
+      * Immediate delivery
+      * Different tax rates
+      * File size and download link attributes
 
 3. PhysicalProduct (inherits Product):
    - Additional attributes: weight, dimensions
    - get_tax(): physical product tax
    - get_shipping_cost(): based on weight/dimensions
+   - **Responsibilities**
+      * Weight and dimensions for shipping calculation
+      * Inventory tracking
+      * Shipping costs based on weight/size
+      * File size and download link attributes
 
 4. ShoppingCart:
    - Attributes: product list
@@ -95,22 +110,45 @@ CLASS RESPONSIBILITIES:
      * calculate_subtotal(), calculate_total()
      * apply_discount(code)
      * validate_cart()
+   - **Responsibilities**
+      * Add/remove products
+      * Calculate subtotals, taxes, and shipping
+      * Apply discount codes
+      * Validate cart contents before checkout
 
 5. PaymentProcessor (Abstract Base):
    - Method: process_payment(amount)
+   - **Responsibilities**
+      * Define common payment interface
+      * Handle payment validation
 
 6. CreditCardProcessor / PayPalProcessor:
    - Specific validation rules, fee structures
+   - **Responsibilities**
+      * Implement specific payment methods
+      * Different validation rules
+      * Different fee structures
 
 7. Order:
    - Attributes: cart, timestamp, payment_status
    - Methods: calculate_final_total(), get_order_summary()
+   - **Responsibilities**
+        * Store order details and history
+        * Track order status
+        * Calculate final totals
 
 KEY OOP CONCEPTS TO APPLY:
 - Abstraction: Abstract base for Product and PaymentProcessor
 - Inheritance: Digital and Physical Product types
 - Polymorphism: PaymentProcessor interface
 - Encapsulation: Price and payment logic
+
+
+HOW IT SHOULD WORK
+- How It Should Work: Users can add different types of products to their cart, apply discounts, choose payment methods, and complete purchases. The system should handle different tax rates, shipping costs, and payment processing fees.
+Extra Challenge: Implement a decorator pattern for dynamic discount application (percentage off, buy-one-get-one, seasonal discounts) that can be stacked.
+
+
 
 EXTRA CHALLENGE:
 Implement a decorator system for dynamic discounts (BOGO, %, seasonal).

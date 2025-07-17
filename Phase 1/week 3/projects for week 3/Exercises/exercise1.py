@@ -144,16 +144,17 @@ class Library:
         
         results = []
         
-        for key,value in kwargs.items(): 
-            if key in attrs:
-                for book in self.books:
+        for book in self.books:
+            for key,value in kwargs.items(): 
+                if key in attrs:
+                    
                     if getattr(book, key) == value:
                         if value not in results:
                             results.append(f"Result found - {book.title} Searched by - {key} - {value}")
                         else:
                             pass
-            else:
-                pass
+                else:
+                    pass
                 
         return results
 

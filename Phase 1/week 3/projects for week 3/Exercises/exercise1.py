@@ -76,6 +76,11 @@ class Member:
         self._borrowed_books = [] # list of books objects
         self.name = name
         
+        
+    @property
+    def member_id(self):
+        return self._member_id
+        
     def borrow_book(self, book) -> bool: # adds to the borrwed list maximum is 3 books
         MAXIMUM_NUMBER_OF_BOOKS = 3
         
@@ -174,7 +179,7 @@ class Library:
         
         if is_isbn_valid: # checked if the member_id arg is valid
             for member in self.members:
-                if member._member_id == member_id:
+                if member.member_id == member_id:
                     is_member_id_valid = True
                     valid_member = member
                     break
@@ -222,7 +227,7 @@ class Library:
         
         if is_isbn_valid: # checked if the member_id arg is valid
             for member in self.members:
-                if member._member_id == member_id:
+                if member.member_id == member_id:
                     is_member_id_valid = True
                     valid_member = member
                     break

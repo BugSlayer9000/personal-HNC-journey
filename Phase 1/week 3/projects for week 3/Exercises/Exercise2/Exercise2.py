@@ -19,6 +19,8 @@ class Product(ABC):
         self.price = price
         self.description = description if description is not None else "No description"
         self.quantity = quantity if quantity is not None else 1
+        
+        # weak encapsulation add privet attributes 
     
     def __genarate_sku(self):
         prefix = "PHYS" if isinstance(self, PhysicalProduct) else "DIGI"
@@ -59,14 +61,16 @@ class DigitalProduct(Product):
         # add degital tax rate
         return self.price * 0
     
+    # remove the hardcoded tex rates and add them throght added constants through Enum check chatGPT
+    
     def get_shipping_cost(self):
         # always set to zero
         return self.price * 0
 
 
 class PhysicalProduct(Product):
-    def __init__(self, name, price, description, quantitiy, weight, dimensions:tuple) -> None:
-        super().__init__(name, price, description, quantitiy)
+    def __init__(self, name, price, description, quantity, weight, dimensions:tuple) -> None:
+        super().__init__(name, price, description, quantity)
         self.weight = weight
         self.dimensions = dimensions
     
@@ -108,6 +112,9 @@ class PhysicalProduct(Product):
         total = (BASE_RATE * weight_fee * (volume_surcharge or 1)) * self.quantity
         
         return total
+    
+    # after fixing logic in _get_weight_fee() and adding a list method to self.dimentions along with some typos
+    # Score: 7.8 / 10 (HNC Level 7 standard — above-average student work with near-industry design but minor flaws in validation and consistency) by chatGPT
         
 class ShoppingCart:
     def __init__(self, products = None) -> None:
@@ -164,4 +171,4 @@ class Order:
     def get_order_summary(self):
         pass
 
-product1 = PhysicalProduct("Car", 2499.99, "Honda Car 1000cc", 1, 50, 100 * 20 * 50)
+# add a product and test your product classes 

@@ -38,7 +38,9 @@ class Product(ABC):
         
     def get_name(self):
         return self.name
-        
+    
+    def get_price(self):
+        return self.price
         
     @abstractmethod
     def get_tax(self) -> float:
@@ -185,36 +187,47 @@ class ShoppingCart:
                 raise ValueError(f"Failed to validate product = {product}")
         
         return is_valid
-        
-        
-            
 
 class PaymentProcessor(ABC):
-    def __init__(self) -> None:
+    def __init__(self,order) :
         super().__init__()
+        self.order = order
     
     @abstractmethod    
-    def process_payment(self, amount):
+    def process_payment(self, amount) -> str:
         pass
+            
     
 class CreditCardProcessor(PaymentProcessor):
-    def __init__(self) -> None:
-        super().__init__()
-        
+    def __init__(self,order) :
+        super().__init__(order)
     
-    def process_payment(self, amount):
-        # add logic here ?
-        return super().process_payment(amount)
+    def process_payment(self, amount)  -> str:
+        if not self.order.cart.validate_cart():
+            return "Cart validation failed"
+        else:
+            # Simulate payment processing using the amount
+            if self.order.calculate_final_total() == amount:
+                return f"Payment successfull"
+            else:
+                return "Payment failed"
     
 class PayPalProcessor(PaymentProcessor):
-    def __init__(self) -> None:
-        super().__init__()
+    def __init__(self,order) :
+        super().__init__(order)
         
         
-    def process_payment(self, amount):
-        # add logic here 
-        return super().process_payment(amount)
-                
+    def process_payment(self, amount)  -> str:
+        if not self.order.cart.validate_cart():
+            return "Cart validation failed"
+        else:
+            # Simulate payment processing using the amount
+            if self.order.calculate_final_total() == amount:
+                return f"Payment successfull"
+            else:
+                return "Payment failed "
+            
+            
 class Order:
     def __init__(self, cart, payment_status) -> None:
         self.cart = cart
@@ -222,23 +235,31 @@ class Order:
         self.timestamp = datetime.now()
         self.order_id = uuid4()
     
-    def calculate_final_total(self):
-        pass
+    def calculate_final_total(self) -> int:
+        final_total = 0
+        
+        if self.cart.validate_cart():
+            for product in self.cart.products:
+                final_total += product.get_price()
+        
+        return final_total
     
     def get_order_summary(self):
-        pass
+        product_summery = {}
+        
+        if self.cart.validate_cart():
+            for product in self.cart.products:
+                product_summery[product.get_name()] = product.get_price()
+            
+            return product_summery
+                
+        
+        
+            
+
+
+                
+
 
 # add a product and test your product classes 
 
-product1 = DigitalProduct("Minecraft game", 39.99, "Open world RPG game", 2, 1400, "This is the download link")
-
-product2 = PhysicalProduct("Rice", 299.99, "This is rice", 5, 16, (30,20,10))
-
-print(product2.get_shipping_cost())
-print(product2.get_tax())
-
-cart = ShoppingCart()
-print(cart.add_product(product1))
-print(cart.add_product(product2))
-
-print(cart.apply_discount("samod10"))

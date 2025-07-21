@@ -28,6 +28,13 @@ class Product(ABC):
         unique = str(uuid4())[:4].upper() # Take the first 4 characters of a UUID and make them uppercase.
         
         return f"{prefix}-{unique}-{short_name}"
+    
+    def apply_discount(self, discount) -> bool:
+        if discount != 0:
+            self.price += discount
+            return True
+        else:
+            return False
         
         
     @abstractmethod
@@ -66,6 +73,12 @@ class DigitalProduct(Product):
     def get_shipping_cost(self):
         # always set to zero
         return self.price * 0
+    
+    def __str__(self) -> str:
+        return f"Product name - {self.name}, Price - {self.price}, Description - {self.description}, Quantity - {self.quantity}"
+    
+    def __repr__(self) -> str:
+        return f"Product(name={self.name}, price={self.price}, description={self.description}, quantity={self.quantity}, file_size={self.file_size}, download_link={self.download_link})"
 
 
 class PhysicalProduct(Product):
@@ -98,8 +111,6 @@ class PhysicalProduct(Product):
         if volume > BASE_VOLUME:
             return 5
         return 0
-        
-            
     
     def get_shipping_cost(self) -> float : # based on weight/dimensions
         BASE_RATE = 2.50
@@ -113,21 +124,48 @@ class PhysicalProduct(Product):
         
         return total
     
+    def __str__(self) -> str:
+        return f"Product name - {self.name}, Price - {self.price}, Description - {self.description}, Quantity - {self.quantity}"
+    
+    def __repr__(self) -> str:
+        return f"Product(name={self.name}, price={self.price}, description={self.description}, quantity={self.quantity}, weight={self.weight}, dimensions={self.dimensions})"
+    
+    
     # after fixing logic in _get_weight_fee() and adding a list method to self.dimentions along with some typos
     # Score: 7.8 / 10 (HNC Level 7 standard — above-average student work with near-industry design but minor flaws in validation and consistency) by chatGPT
-        
+
+       
 class ShoppingCart:
-    def __init__(self, products = None) -> None:
-        self.products = products if products is not None else []
+    def __init__(self) -> None:
+        self.products = []
+        self.discount_codes = {"samod10": 0.15,
+                               "robert": 0.25,
+                               "kelum": 0.10}
     
-    def add_product(self, product):
-        pass
+    def add_product(self, product) -> bool:
+        if product not in self.products:
+            if isinstance(product, Product):
+                self.products.append(product)
+                return True
+            else:
+                return False
+        else:
+            return False
     
     def remove_product(self, product):
-        pass
+        if product in self.products:
+            self.products.remove(product)
+            return True
+        else:
+            return False
     
     def apply_discount(self, code):
-        pass
+        for discount_code, dicount_value in self.discount_codes.items():
+            if code == discount_code:
+                return dicount_value
+            else:
+                return 0 
+                
     
     def validate_cart(self):
         pass
@@ -172,3 +210,19 @@ class Order:
         pass
 
 # add a product and test your product classes 
+
+product1 = DigitalProduct("Minecraft game", 39.99, "Open world RPG game", 2, 1400, "This is the download link")
+
+product2 = PhysicalProduct("Rice", 299.99, "This is rice", 5, 16, (30,20,10))
+
+print(product2.get_shipping_cost())
+print(product2.get_tax())
+
+cart = ShoppingCart()
+print(cart.add_product(product2)) #  True 
+print(cart.add_product(product2)) #  False : You can't add the same Product twice 
+print(cart.remove_product(product2)) # True
+print(cart.remove_product(product2)) # False : You can't remove the product once it's removed
+
+
+print(product2)

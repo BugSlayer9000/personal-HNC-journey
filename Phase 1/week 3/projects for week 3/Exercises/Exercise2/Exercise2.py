@@ -29,12 +29,12 @@ class Product(ABC):
         
         return f"{prefix}-{unique}-{short_name}"
     
-    def apply_discount(self, discount) -> bool:
+    def apply_discount(self, discount):
         if discount != 0:
-            self.price += (discount * self.price) 
-            return True
+            discounted_price = self.price - (discount * self.price) 
+            return discounted_price
         else:
-            return False
+            return self.price
         
     def get_name(self):
         return self.name
@@ -59,8 +59,6 @@ class Product(ABC):
             is_valid = True
         
         return is_valid
-            
-
 
 class DigitalProduct(Product):
     def __init__(self, name, price, description, quantity , file_size, download_link) -> None:
@@ -84,7 +82,6 @@ class DigitalProduct(Product):
     
     def __repr__(self) -> str:
         return f"Product(name={self.name}, price={self.price}, description={self.description}, quantity={self.quantity}, file_size={self.file_size}, download_link={self.download_link})"
-
 
 class PhysicalProduct(Product):
     def __init__(self, name, price, description, quantity, weight, dimensions:tuple) -> None:
@@ -165,13 +162,24 @@ class ShoppingCart:
             return False
     
     def apply_discount(self, code):
-        for discount_code, dicount_value in self.discount_codes.items():
-            if code == discount_code:
-                for product in self.products:
-                    if product.apply_discount(dicount_value) :
-                        return product.get_name()
-            else:
-                return False 
+        for product in self.products:
+            for discount_code, dicount_value in self.discount_codes.items():
+                if code == discount_code:
+                    product.price = product.apply_discount(dicount_value) 
+                    
+            
+            
+            # if code == discount_code:
+            #     for product in self.products:
+            #         if product.apply_discount(dicount_value) :
+            #             return True
+            #         else:
+            #             return False
+            # else:
+            #     return False 
+    
+    def get_products(self):
+        return self.products
                 
     
     def validate_cart(self):
@@ -229,11 +237,13 @@ class PayPalProcessor(PaymentProcessor):
             
             
 class Order:
-    def __init__(self, cart, payment_status) -> None:
+    def __init__(self, cart) -> None:
         self.cart = cart
-        self.payment_status = payment_status
+        self.payment_status = None
         self.timestamp = datetime.now()
         self.order_id = uuid4()
+        
+    # genarate uuid4 later 
     
     def calculate_final_total(self) -> int:
         final_total = 0
@@ -262,4 +272,63 @@ class Order:
 
 
 # add a product and test your product classes 
+
+# === Product Instances ===
+digital = DigitalProduct(
+    name="Online Course",
+    price=100.0,
+    description="Masterclass in AI",
+    quantity=1,
+    file_size="2GB",
+    download_link="https://course.link"
+)
+
+physical = PhysicalProduct(
+    name="Mechanical Keyboard",
+    price=150.0,
+    description="RGB, clicky keys",
+    quantity=2,
+    weight=1.5,
+    dimensions=(45, 15, 5)
+)
+
+physical1 = PhysicalProduct(
+    name="Computer",
+    price=200.0,
+    description="RGB, clicky keys",
+    quantity=5,
+    weight=2,
+    dimensions=(20, 10, 10)
+)
+
+# === Shopping Cart Setup ===
+cart = ShoppingCart()
+
+# checking remove product
+print(cart.remove_product(digital)) # False
+print(cart.remove_product(physical)) # False
+
+# checks add_product function
+print(cart.add_product(digital)) # True
+print(cart.add_product(physical)) # True
+print(cart.add_product(physical1)) # True
+
+# checks if apply discount works
+print(cart.apply_discount("samod10")) # True
+print(cart.apply_discount("samod15")) # False
+
+print(cart.validate_cart()) # True
+
+
+
+print(cart.get_products())
+    
+
+order1 = Order(cart)
+print(order1.calculate_final_total())
+
+
+
+
+
 

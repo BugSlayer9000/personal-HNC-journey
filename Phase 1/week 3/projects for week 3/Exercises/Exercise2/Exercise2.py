@@ -31,10 +31,13 @@ class Product(ABC):
     
     def apply_discount(self, discount) -> bool:
         if discount != 0:
-            self.price += discount
+            self.price += (discount * self.price) 
             return True
         else:
             return False
+        
+    def get_name(self):
+        return self.name
         
         
     @abstractmethod
@@ -162,13 +165,29 @@ class ShoppingCart:
     def apply_discount(self, code):
         for discount_code, dicount_value in self.discount_codes.items():
             if code == discount_code:
-                return dicount_value
+                for product in self.products:
+                    if product.apply_discount(dicount_value) :
+                        return product.get_name()
             else:
-                return 0 
+                return False 
                 
     
     def validate_cart(self):
-        pass
+        is_valid = True
+        
+        if not self.products:
+            is_valid = False
+            raise ValueError("There is no products in Cart")
+
+        for product in self.products:
+            if 0 >= product.price or 0 >= product.quantity:
+                is_valid = False
+                raise ValueError(f"Failed to validate product = {product}")
+        
+        return is_valid
+        
+        
+            
 
 class PaymentProcessor(ABC):
     def __init__(self) -> None:
@@ -219,10 +238,7 @@ print(product2.get_shipping_cost())
 print(product2.get_tax())
 
 cart = ShoppingCart()
-print(cart.add_product(product2)) #  True 
-print(cart.add_product(product2)) #  False : You can't add the same Product twice 
-print(cart.remove_product(product2)) # True
-print(cart.remove_product(product2)) # False : You can't remove the product once it's removed
+print(cart.add_product(product1))
+print(cart.add_product(product2))
 
-
-print(product2)
+print(cart.apply_discount("samod10"))

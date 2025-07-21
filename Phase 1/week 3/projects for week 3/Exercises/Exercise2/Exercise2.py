@@ -247,12 +247,14 @@ class Order:
     
     def calculate_final_total(self) -> int:
         final_total = 0
+        final_total_shipping_cost = 0
         
         if self.cart.validate_cart():
             for product in self.cart.products:
                 final_total += product.get_price()
+                final_total_shipping_cost += product.get_shipping_cost()
         
-        return final_total
+        return final_total + final_total_shipping_cost
     
     def get_order_summary(self):
         product_summery = {}
@@ -301,6 +303,8 @@ physical1 = PhysicalProduct(
     dimensions=(20, 10, 10)
 )
 
+physical_products = [physical, physical1]
+
 # === Shopping Cart Setup ===
 cart = ShoppingCart()
 
@@ -312,6 +316,10 @@ print(cart.remove_product(physical)) # False
 print(cart.add_product(digital)) # True
 print(cart.add_product(physical)) # True
 print(cart.add_product(physical1)) # True
+
+for i in physical_products:
+    print(f"Shipping cost for {i.get_name()} - {i.get_shipping_cost()}")
+
 
 # checks if apply discount works
 print(cart.apply_discount("samod10")) # True

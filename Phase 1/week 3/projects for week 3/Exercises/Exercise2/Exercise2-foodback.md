@@ -1,88 +1,85 @@
-# by chat GPT
+# 🛠️ Refactor TODO List — Online Shopping Cart (HNC Level 7 Standards)
 
-| Criteria                                                               | Weight   | Score      |
-| ---------------------------------------------------------------------- | -------- | ---------- |
-| OOP Principles (Encapsulation, Inheritance, Abstraction, Polymorphism) | 25%      | ✅ 21/25    |
-| Code Quality / Structure                                               | 20%      | 🟡 13/20   |
-| Input Validation / Error Handling                                      | 15%      | ❌ 7/15     |
-| Design Scalability                                                     | 15%      | 🟡 10/15   |
-| Test Coverage / Demo Use Cases                                         | 15%      | 🟡 10/15   |
-| Maintainability / Readability                                          | 10%      | ✅ 9/10     |
-| **Total**                                                              | **100%** | **70/100** |
+This document outlines the critical tasks needed to elevate this project to HNC Level 7 standards, focusing on software engineering best practices, OOP architecture, testability, and maintainability.
 
+---
 
-# what to add and refactor next
+## 🧱 Product Architecture & Design
 
-### 🧱 PRODUCT ARCHITECTURE & DESIGN
- Delegate SKU generation logic to child classes — avoid relying on isinstance() in the base class.
+- [ ] Delegate SKU generation logic to child classes (avoid using `isinstance()` in base class).
+- [ ] Centralize and standardize validation for all product fields (name, price, quantity, etc.).
+- [ ] Separate product data from product operations (discounts, tax, shipping).
+- [ ] Ensure abstract methods in the base class are clearly implemented by subclasses.
 
- Centralize and standardize validation for price, name, quantity, etc. across all product types.
+---
 
- Separate concerns: product attributes (data) vs. operations (discount, tax, shipping).
+## 🧮 Discount & Price Handling
 
- Ensure all abstract methods in base class are implemented clearly with no redundancy or duplication.
+- [ ] Avoid modifying the `price` attribute directly — make discount application non-destructive.
+- [ ] Implement cart-level discount handling (not per product).
+- [ ] Add support for validating discount codes before applying them.
+- [ ] (Optional) Support stacking/chaining discounts using design patterns (e.g., Decorator or Strategy).
 
-### 🧮 DISCOUNT & PRICE HANDLING
- Stop modifying price directly when applying discounts — make discount application non-destructive.
+---
 
- Introduce a cart-level discount mechanism, not per-product.
+## 📦 Shopping Cart Logic
 
- Allow validation of discount codes before applying.
+- [ ] Allow multiple quantities of the same product (don’t restrict to one instance).
+- [ ] Track product quantities correctly without duplicating product objects.
+- [ ] Move all pricing logic (subtotal, tax, shipping, discounts) into clear, separate methods.
+- [ ] Separate state-changing operations (add/remove) from validation/reporting logic.
 
- Support stacking or chaining discounts using design patterns (optional stretch: use Decorator or Strategy).
+---
 
-### 📦 SHOPPING CART LOGIC
- Allow adding multiple quantities of the same product, not just one instance per product.
+## 🧾 Order & Payment Flow
 
- Track quantities separately, not by duplicating objects.
+- [ ] Integrate tax calculations into the final order total.
+- [ ] Improve `get_order_summary()` to include quantity, unit price, subtotal, tax, shipping, and total.
+- [ ] Improve formatting of timestamps and UUIDs for clarity.
+- [ ] Centralize cart validation logic (avoid repeating it in every payment processor).
 
- Move all cart-level calculations to dedicated methods (e.g., total before tax, tax total, shipping total).
+---
 
- Separate state-changing operations (add/remove) from validation and reporting.
+## 🧪 Validation & Error Handling
 
-### 🧾 ORDER & PAYMENT FLOW
- Integrate tax into final total calculations.
+- [ ] Enforce strict input validation across constructors and public methods.
+- [ ] Raise specific, meaningful exceptions when validation fails.
+- [ ] Log or surface validation failures — avoid silent errors.
+- [ ] Include negative test scenarios (e.g., invalid price, missing name, invalid discount).
 
- Build a robust order summary method that returns quantity, unit price, subtotal, tax, shipping, and final line total per item.
+---
 
- Improve timestamp and UUID formatting for clarity.
+## 🧼 Clean Code & Professional Practices
 
- Avoid duplicating cart validation logic across payment processors — extract this check into a shared utility.
+- [ ] Remove unused comments and print/debug statements.
+- [ ] Improve naming consistency (functions, variables, classes).
+- [ ] Add complete type annotations for all function inputs and return values.
+- [ ] Standardize `__str__` and `__repr__` implementations across all classes.
+- [ ] Split codebase into logical modules (`products.py`, `cart.py`, `payments.py`, `order.py`, etc.).
 
-### 🧪 VALIDATION & ERROR HANDLING
- Enforce strong validation in constructors and public methods.
+---
 
- Raise meaningful, specific errors when validation fails.
+## 🧪 Testing Coverage
 
- Catch and log validation errors during runtime testing instead of allowing silent failures.
+- [ ] Add test cases for:
+  - Product creation and validation
+  - Discount logic
+  - Shipping/tax logic
+  - Cart operations
+  - Payment processing
+- [ ] Include edge case testing: invalid prices, 0 quantity, bad discount codes, etc.
+- [ ] Compare test outputs against expected results (especially totals and logic branches).
+- [ ] Simulate mixed cart scenarios (e.g., both digital and physical products in a single order).
 
- Ensure failure paths are tested just as thoroughly as success paths.
+---
 
-### 🧼 CLEAN CODE & PROFESSIONAL PRACTICES
- Remove commented-out code and unnecessary prints.
+## 🧭 Optional Stretch Goals
 
- Improve method and variable naming consistency.
+- [ ] Implement Strategy Pattern for tax/shipping logic.
+- [ ] Add basic unit testing using `unittest` or `pytest`.
+- [ ] Replace `print()` statements with structured logging.
+- [ ] Enable basic JSON file input/output for product/cart persistence.
 
- Add type hints to all function arguments and return values.
+---
 
- Implement __str__ and __repr__ consistently and purposefully.
-
- Structure your codebase into modules (products.py, cart.py, payments.py, etc.).
-
-### 🧪 TESTING COVERAGE
- Write clear test cases for each major component: product creation, discount application, cart totals, shipping costs, payment processing.
-
- Add edge case tests: invalid prices, missing names, zero quantities, invalid discount codes.
-
- Ensure test outputs are verified against expected values, especially for pricing, tax, and shipping logic.
-
- Create mock orders with combinations of digital and physical products to simulate real usage.
-
-### 🧭 OPTIONAL STRETCH GOALS (IF TIME ALLOWS)
- Implement strategy pattern for dynamic tax/shipping rules.
-
- Add unit testing suite using unittest or pytest.
-
- Integrate basic logging instead of print statements for real-world tracking.
-
- Include JSON import/export of cart and orders to simulate persistence layer.
+> This checklist is designed to turn a functional prototype into a maintainable, scalable, and testable application — aligned with industry expectations at HNC Level 7.

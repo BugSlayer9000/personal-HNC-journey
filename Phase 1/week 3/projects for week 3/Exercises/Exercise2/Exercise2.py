@@ -166,17 +166,6 @@ class ShoppingCart:
             for discount_code, dicount_value in self.discount_codes.items():
                 if code == discount_code:
                     product.price = product.apply_discount(dicount_value) 
-                    
-            
-            
-            # if code == discount_code:
-            #     for product in self.products:
-            #         if product.apply_discount(dicount_value) :
-            #             return True
-            #         else:
-            #             return False
-            # else:
-            #     return False 
     
     def get_products(self):
         return self.products
@@ -257,6 +246,7 @@ class Order:
         return final_total + final_total_shipping_cost
     
     def get_order_summary(self):
+        # improve order summery add order id and timestamp
         product_summery = {}
         
         if self.cart.validate_cart():
@@ -334,6 +324,14 @@ print(cart.get_products())
 
 order1 = Order(cart)
 print(order1.calculate_final_total())
+
+order1_summery = order1.get_order_summary()
+
+print(order1_summery)
+
+payment = PayPalProcessor(order1)
+
+print(payment.process_payment(415))
 
 
 

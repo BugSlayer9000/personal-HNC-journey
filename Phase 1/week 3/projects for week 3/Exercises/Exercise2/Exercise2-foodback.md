@@ -1,3 +1,31 @@
+# ✅ Project Evaluation – Online Shopping Cart (HNC Level 7)
+
+**Overall Score:** `7.2 / 10`  
+**Total Grade:** `70 / 100`  
+**Assessment Level:** *Approaching HNC Level 7 standard with solid fundamentals and room for critical improvements in validation, structure, and test coverage.*
+
+---
+
+## 📊 Grading Breakdown
+
+| **Criteria**                                  | **Weight** | **Score**     |
+|-----------------------------------------------|------------|----------------|
+| OOP Principles (Encapsulation, Inheritance, Abstraction, Polymorphism) | 25%       | ✅ **21 / 25**  |
+| Code Quality / Structure                      | 20%       | 🟡 **13 / 20**  |
+| Input Validation / Error Handling             | 15%       | ❌ **7 / 15**   |
+| Design Scalability                            | 15%       | 🟡 **10 / 15**  |
+| Test Coverage / Demo Use Cases                | 15%       | 🟡 **10 / 15**  |
+| Maintainability / Readability                 | 10%       | ✅ **9 / 10**   |
+
+---
+
+### 🔚 **Final Score: 70 / 100**
+
+> To reach full HNC Level 7 compliance, focus on improving validation logic, refactoring discount handling, expanding test coverage, and modularizing your architecture.
+
+
+
+
 # 🛠️ Refactor TODO List — Online Shopping Cart (HNC Level 7 Standards)
 
 This document outlines the critical tasks needed to elevate this project to HNC Level 7 standards, focusing on software engineering best practices, OOP architecture, testability, and maintainability.

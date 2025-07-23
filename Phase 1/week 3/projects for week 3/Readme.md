@@ -156,7 +156,9 @@ Implement a decorator system for dynamic discounts (BOGO, %, seasonal).
 
 
 """
+================================================================================
 # 🧠 Project Management System – OOP Design (Level 7 with Light Level 8) by chat GPT
+================================================================================
 
 This project is a trimmed yet extensible **object-oriented project management system** built for **HNC Level 7 Software Development**. It introduces core OOP principles while lightly touching on Level 8 design patterns like **Factory** and **Observer**, without crossing into full-blown university-level (Level 9) complexity.
 

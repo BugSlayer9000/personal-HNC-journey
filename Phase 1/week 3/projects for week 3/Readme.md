@@ -290,3 +290,14 @@ This project is a trimmed yet extensible **object-oriented project management sy
    task1 = TaskFactory.create_task("Bug Fix", "Fix login issue", "High", datetime(2025, 7, 20))
    task2 = TaskFactory.create_task("New Feature", "Add analytics", "Medium_
 
+Recomended file 
+ /project_management/
+├── user.py            # Abstract User, Admin, Manager, Employee
+├── task.py            # Task class + Enum for status/priority
+├── factory.py         # TaskFactory
+├── notifier.py        # Notifier + subclasses (Email, SMS)
+├── project.py         # Project class (optional)
+├── main.py            # Driver to demonstrate functionality
+
+
+

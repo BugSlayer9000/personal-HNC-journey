@@ -32,6 +32,8 @@ This document outlines the critical tasks needed to elevate this project to HNC 
 
 ---
 
+> This checklist is designed to turn a functional prototype into a maintainable, scalable, and testable application — aligned with industry expectations at HNC Level 7.
+
 ## 🧱 Product Architecture & Design
 
 - [ ] Delegate SKU generation logic to child classes (avoid using `isinstance()` in base class).
@@ -110,4 +112,4 @@ This document outlines the critical tasks needed to elevate this project to HNC 
 
 ---
 
-> This checklist is designed to turn a functional prototype into a maintainable, scalable, and testable application — aligned with industry expectations at HNC Level 7.
+

@@ -156,67 +156,135 @@ Implement a decorator system for dynamic discounts (BOGO, %, seasonal).
 
 
 """
-================================================================================
-EXERCISE 3: TASK MANAGEMENT SYSTEM WITH USER ROLES & NOTIFICATIONS (ADVANCED)
-================================================================================
+# 🧠 Project Management System – OOP Design (Level 7 with Light Level 8) by chat GPT
 
-MODULES TO IMPORT:
-- from abc import ABC, abstractmethod
-- from enum import Enum
-- from datetime import datetime, timedelta
-- import hashlib
-- from functools import wraps
-- import threading
-- from collections import deque
+This project is a trimmed yet extensible **object-oriented project management system** built for **HNC Level 7 Software Development**. It introduces core OOP principles while lightly touching on Level 8 design patterns like **Factory** and **Observer**, without crossing into full-blown university-level (Level 9) complexity.
 
-INSTRUCTIONS:
-Design a project management system with users, tasks, and role-based permissions.
+---
 
-CLASS RESPONSIBILITIES:
+## 🎯 Project Goals
 
-1. User (Abstract Base):
-   - Attributes: username, email, _password_hash
-   - Methods:
-     * check_password(), get_role(), is_authorized()
-   - Abstract methods: can_create_task(), can_assign_task()
+- Apply **Encapsulation**, **Abstraction**, **Inheritance**, and **Polymorphism**
+- Introduce **basic design patterns** in a practical way (Factory + Observer)
+- Implement **role-based user permissions**
+- Track and manage **tasks with status, deadlines, and priorities**
 
-2. Admin, Manager, Employee (inherit User):
-   - Different roles, task limits, permissions
-   - Override permissions accordingly
+---
 
-3. Task:
-   - Attributes: title, description, status, priority, deadline
-   - Methods:
-     * assign_to(user)
-     * change_status()
-     * get_remaining_time()
-     * log_history()
+## 🧱 Class Responsibilities
 
-4. Project:
-   - Attributes: tasks, members
-   - Methods:
-     * add_task(), remove_task()
-     * progress_report(), filter_tasks()
+### 🔐 `User` (Abstract Base Class)
 
-5. NotificationService (Singleton):
-   - Method: send_notification()
-   - Tracks notification history
+| Attribute       | Type       | Description                            |
+|----------------|------------|----------------------------------------|
+| `username`     | `str`      | Username of the user                   |
+| `email`        | `str`      | Email address                          |
+| `_password_hash` | `str`    | Hashed password (encapsulated)         |
 
-6. TaskObserver (Observer Pattern):
-   - EmailNotifier, SlackNotifier, SMSNotifier
-   - React to task status changes
+| Method                     | Description                                           |
+|---------------------------|-------------------------------------------------------|
+| `check_password(password)`| Validates password input                              |
+| `get_role()`              | Returns user role                                     |
+| `is_authorized(action)`   | Checks if the user has permission for an action       |
+| `can_create_task()`       | Abstract — overridden by subclasses                   |
+| `can_assign_task()`       | Abstract — overridden by subclasses                   |
 
-7. TaskFactory:
-   - Create specialized task types (Bug, Feature, Meeting)
-   - Validate creation rules
+---
 
-KEY OOP CONCEPTS TO APPLY:
-- Abstraction: User roles and observers
-- Inheritance: Role-based user access
-- Polymorphism: Notification handling
-- Encapsulation: Hide user data
-- Patterns: Singleton (Notification), Observer, Factory
+### 👥 `Admin`, `Manager`, `Employee` (User Subclasses)
 
-EXTRA CHALLENGE:
-Implement a command pattern with undo/redo for task operations.
-"""
+| Role     | Can Create Task | Can Assign Task | Notes                                |
+|----------|------------------|-----------------|--------------------------------------|
+| Admin    | ✅               | ✅              | Full permissions                     |
+| Manager  | ✅               | ✅              | Can assign to employees              |
+| Employee | ❌               | ❌              | Can only work on assigned tasks      |
+
+---
+
+### 📌 `Task`
+
+| Attribute     | Type        | Description                                    |
+|---------------|-------------|------------------------------------------------|
+| `title`       | `str`       | Task title                                     |
+| `description` | `str`       | Task details                                   |
+| `status`      | `Enum`      | `Todo`, `InProgress`, `Done`                  |
+| `priority`    | `Enum`      | `Low`, `Medium`, `High`                       |
+| `deadline`    | `datetime`  | Task deadline                                  |
+| `history`     | `list[str]` | Logs task status changes                       |
+
+| Method                  | Description                              |
+|-------------------------|------------------------------------------|
+| `assign_to(user)`       | Assigns task to a user                   |
+| `change_status(status)` | Changes task status                      |
+| `get_remaining_time()`  | Returns remaining time until deadline    |
+| `log_history(message)`  | Logs activity in task history            |
+
+---
+
+### 🧪 `TaskFactory`
+
+| Method             | Description                              |
+|--------------------|------------------------------------------|
+| `create_task(...)` | Creates and returns a `Task` instance     |
+
+✔ Applies **Factory Pattern**  
+✔ Ensures tasks are validated on creation
+
+---
+
+### 📡 `Notifier` + `EmailNotifier`, `SMSNotifier` (Observer Pattern)
+
+| Class         | Description                                          |
+|---------------|------------------------------------------------------|
+| `Notifier`    | Abstract Observer                                    |
+| `EmailNotifier`, `SMSNotifier` | Receive updates on task changes     |
+| `update()`    | Called when a task status is changed                 |
+
+✔ Uses a **simple observer** model  
+✔ Register notifiers to a task and trigger on `change_status`
+
+---
+
+## 🧩 Optional Level 8 Class: `Project`
+
+| Attribute | Description                    |
+|-----------|--------------------------------|
+| `tasks`   | List of all tasks              |
+| `members` | All users in the project       |
+
+| Method            | Description                         |
+|-------------------|-------------------------------------|
+| `add_task(task)`  | Adds a task to the project          |
+| `remove_task()`   | Removes a task                      |
+| `progress_report()` | Generates basic completion report |
+| `filter_tasks()`  | Returns tasks by status or priority |
+
+---
+
+## 🧠 How It Works (Explanation)
+
+1. **Users** log in with credentials, stored as a hash.
+2. **Admins and Managers** create tasks via the **TaskFactory**.
+3. Tasks can be **assigned to employees**.
+4. When a task's status changes, all registered **Notifiers** (email, SMS) are triggered.
+5. Task deadlines and priorities are used to **organize work**.
+6. Optionally, a **Project** can hold groups of tasks and generate reports.
+
+---
+
+## 🧪 How to Test the Program (Testing Instructions)
+
+### Step-by-Step Logic to Validate
+
+✅ In `main.py`, implement:
+
+1. **Create Users:**
+   - 1 Admin
+   - 1 Manager
+   - 1 Employee
+
+2. **Create Tasks:**
+   ```python
+   task1 = TaskFactory.create_task("Bug Fix", "Fix login issue", "High", datetime(2025, 7, 20))
+   task2 = TaskFactory.create_task("New Feature", "Add analytics", "Medium_
+

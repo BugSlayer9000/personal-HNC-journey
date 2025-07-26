@@ -16,3 +16,7 @@
     - Don't force clients to depend on methods they don't use
     - **Instead of one fat interface, split it into lean, role-specific interfaces**
 5. **D - Dependacny Inversion Principle(DIP)**
+    - depend on abstractions, not concretions
+    - *High level module should not import low-level modules directly; Both should talk to an interface or abstract base class*
+
+## 2️⃣ GRASP patterns

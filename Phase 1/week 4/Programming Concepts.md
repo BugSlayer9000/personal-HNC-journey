@@ -20,3 +20,9 @@
     - *High level module should not import low-level modules directly; Both should talk to an interface or abstract base class*
 
 ## 2️⃣ GRASP patterns
+**Meaning** - *Genaral Responsibility Assignment Software patterns*
+### 1. Creator Principle
+   - A class should create instances of classes it contains or closely uses or aggregates.
+   - *Example - A project creates task instances because tasks belong to a project. but a UserInterface Should never be in charge of instantiating Task object directly*
+   - **Why does it matters** - Keeps object creation logical and contextual. Reduces coupling with external constructors.
+### 2. Information Expert

@@ -21,8 +21,12 @@
 
 ## 2️⃣ GRASP patterns
 **Meaning** - *Genaral Responsibility Assignment Software patterns*
-### 1. Creator Principle
+### 1. Creator 
    - A class should create instances of classes it contains or closely uses or aggregates.
    - *Example - A project creates task instances because tasks belong to a project. but a UserInterface Should never be in charge of instantiating Task object directly*
    - **Why does it matters** - Keeps object creation logical and contextual. Reduces coupling with external constructors.
 ### 2. Information Expert
+   - *Assign a responsibility to the class that has the necessary information to fulfill it*
+   - **Example** - if a *Task* onject holds data about deadlines , it should be responsible for calculating if it's overude. you wouldn't give that responsibility to *Project* or *User*
+   - **Why does it matter** - it keeps your logic close to the data -- making your code easiar to reason about and test
+### 3.  Controller 

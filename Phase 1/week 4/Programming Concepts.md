@@ -1,4 +1,4 @@
-# Programming concepts phase 1 week 4 - Provided by Chat GPT for a self-stydying level 7 software dev student
+# Programming concepts phase 1 week 4 
 ## 1️⃣: Main - SOLID principles 
 - **💥Purpose** - Solid principles is to engineer software that is maintainable, scalable, testable and orbust - Specially in the face of **Changing Requrements**. These principles provide a strategic foundation for writing *clean*, *modular* and *extensible object-oriented* code
 ### What does SOLID stands for 

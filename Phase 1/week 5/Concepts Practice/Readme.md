@@ -39,7 +39,7 @@ Add an equipment system where different items modify character abilities differe
 
 # SOLID Principles Exercises
 
-## Exercise 4: Payment Processing System (Single Responsibility & Open/Closed)
+## Exercise 1: Payment Processing System (Single Responsibility & Open/Closed)
 
 Design a payment system handling credit cards, PayPal, and bank transfers. Practice:
 
@@ -51,7 +51,7 @@ Add payment validation, logging, and notification features while maintaining SRP
 
 ---
 
-## Exercise 5: Document Generator (Liskov Substitution & Interface Segregation)
+## Exercise 2: Document Generator (Liskov Substitution & Interface Segregation)
 
 Create a document generation system for PDF, Word, and HTML formats. Focus on:
 
@@ -63,7 +63,7 @@ Add features like password protection, watermarks, and templates, but note that 
 
 ---
 
-## Exercise 6: Database Access Layer (Dependency Inversion)
+## Exercise 3: Database Access Layer (Dependency Inversion)
 
 Build a data access system for a student management application. Practice:
 

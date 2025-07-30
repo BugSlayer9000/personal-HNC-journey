@@ -30,3 +30,30 @@
    - **Example** - if a *Task* onject holds data about deadlines , it should be responsible for calculating if it's overude. you wouldn't give that responsibility to *Project* or *User*
    - **Why does it matter** - it keeps your logic close to the data -- making your code easiar to reason about and test
 ### 3.  Controller 
+   - *Handles system events in controller classes, not directly in the user interface*
+   - **Example** - Rather than putting login logic in a *Login form* GUI class, create a *userconroller* That handles the login event.
+   - **why it matters** - Keeps UI and logic sperate -- promotes cleaner, layerd architecture.
+### 4. Protected Variations
+   - *Protect parts of system from the impact of variations or change*
+   - **Example** - Use interface or abstract classes. if you decide to swap your storage backend from JSON and SQL, your code shouln't break -- as long as the storage interface remains stable
+   - **Why it matters** - Keeps your system adaptable to future requrements.
+### 5. Idirection
+   - *Use intermedairy objects to decouple direct interactions between classes*
+   - **Example** - instead of *Task* directly updating the *Database*, you pass the request to a *Taskservice*, which handles coordination.
+   - **Why does it matter** - Promotes flexibility and future proofing
+### 6. Low Coupling
+   - *Classes should have minimal knowledge of other classes*
+   - **Example** - *Task* should work with *User* through omterface or interfaces, not by knwoing internal methods of user
+   - **Why does it matter** - when classes are too tightly coupled, changing one breakes others, Loose coupling = Flexibility
+### 7. High Cehesion
+   - *Each class should do one job well - be focusd and not overloaded with multiple responsibilities*
+   - **Example** - A *Task* should only handle task-related logic -- not user notifications, logging or report genaration
+   - **Why does it matter** - High cohension improves clarity, reusability and maintainability
+### 8. Polymorphism
+   - *Use inheritance or interface to allow interchangable behavior betwen classes*
+   - **Example** - A *PaymentProcessor* abstract with subclasses like *CreditCardProcessor* and *PayPalProcessor* -- Each handles *Process_payment()* differently
+   - **Why does it matter** - You can add new behaviors without modifying existing code -- This aligns with the open/closed principle
+### 9. pure Fabrication 
+   - *Invent a class that doesn't represent a domain concept to achive better design goals like low coupling or high cohesion*
+   - **Example** - A *taskRepository* class that handles data presistence (save/load tasks to file/ DB). This isn't part of your business model, but helps keep *Task* clean.
+   - **Why does it matters** - useful for separating concerns when real-world analogies don't cut it

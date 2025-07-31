@@ -44,10 +44,8 @@ Add an equipment system where different items modify character abilities differe
 Design a payment system handling credit cards, PayPal, and bank transfers. Practice:
 
 - Each class having one reason to change (Single Responsibility Principle - SRP)  
-- Adding new payment methods without modifying existing code (Open/Closed Principle - OCP)  
-
-**Challenge:**  
-Add payment validation, logging, and notification features while maintaining SRP across all classes.
+- Adding new payment methods without modifying existing code (Open/Closed Principle - OCP)
+### ✅ DONE - [Click me](https://github.com/BugSlayer9000/personal-HNC-journey/blob/main/Phase%201/week%205/Concepts%20Practice/Solid%20Exercises/Exercise1/Exercise1.py)
 
 ---
 

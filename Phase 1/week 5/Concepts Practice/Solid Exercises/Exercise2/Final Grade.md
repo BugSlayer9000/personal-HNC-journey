@@ -41,4 +41,5 @@ You’ve respected **ISP** by splitting interfaces based on actual responsibilit
 | ✅ Interface Segregation | **10/10** | No class is burdened with unnecessary interfaces                        |
 
 This Review was focusd on Mainly Testing the usage of pronciple and the Exercise code may have logic or typo errors
+---
 by CHATGPT

@@ -40,6 +40,8 @@ You’ve respected **ISP** by splitting interfaces based on actual responsibilit
 | ✅ Liskov Compliance   | **10/10** | All generators behave predictably via base type                        |
 | ✅ Interface Segregation | **10/10** | No class is burdened with unnecessary interfaces                        |
 
+### Program UML [Click me](https://github.com/BugSlayer9000/personal-HNC-journey/blob/main/Assets/umls/DocumentGenerator.png)
+
 This Review was focusd on Mainly Testing the usage of pronciple and the Exercise code may have logic or typo errors
 ---
 by CHATGPT

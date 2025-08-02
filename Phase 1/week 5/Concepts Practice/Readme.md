@@ -54,10 +54,7 @@ Design a payment system handling credit cards, PayPal, and bank transfers. Pract
 Create a document generation system for PDF, Word, and HTML formats. Focus on:
 
 - Ensuring derived classes can replace base classes without breaking functionality (Liskov Substitution Principle - LSP)  
-- Creating focused interfaces rather than one large interface (Interface Segregation Principle - ISP)  
-
-**Challenge:**  
-Add features like password protection, watermarks, and templates, but note that not all document types support all features.
+- Creating focused interfaces rather than one large interface (Interface Segregation Principle - ISP)
 ### ✅ DONE - [Click me](https://github.com/BugSlayer9000/personal-HNC-journey/tree/main/Phase%201/week%205/Concepts%20Practice/Solid%20Exercises/Exercise2)
 
 ---

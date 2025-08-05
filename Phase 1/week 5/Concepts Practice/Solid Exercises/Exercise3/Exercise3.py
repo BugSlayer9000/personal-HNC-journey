@@ -6,7 +6,8 @@
 
 from abc import ABC, abstractmethod
 from student import Student
-
+import json
+import os
 
 
 class IStudentRepository(ABC):
@@ -14,34 +15,96 @@ class IStudentRepository(ABC):
         pass
     
     @abstractmethod
-    def add_student(self,student):
+    def add_student(self,student) -> str:
         pass
     
     @abstractmethod
-    def get_student(self, student_name):
+    def get_student(self, student_name) -> str:
         pass
     
     @abstractmethod
-    def remove_student(self, student_name):
+    def remove_student(self, student_name) -> str:
         pass
     
     @abstractmethod
-    def list_all_students(self):
+    def list_all_students(self) -> list:
         pass
 
 class JSONStudentRepository(IStudentRepository):
+    
+    FILE_NAME = "students.json"
+    FILE_PATH = "C:/my stuff/git/personal-HNC-journey/Phase 1/week 5/Concepts Practice/Solid Exercises/Exercise3/students.json"
+    
     def __init__(self) -> None:
         super().__init__()
+        self.students = self.__load_students()
     
-    def add_student(self, student):
-        pass
+    def __load_students(self):
+        if not os.path.exists(self.FILE_PATH):
+            with open(self.FILE_PATH, "w") as f:
+                json.dump([], f) 
+            return []
+        else:
+            with open(self.FILE_PATH, "r") as file:
+                return json.load(file)
+    
+    def _save_students(self,students):
+        with open(self.FILE_PATH, "w") as file:
+            json.dump(students, file, indent=4)
+    
+    def add_student(self, student) -> str:
+        if not student.to_dict() in self.students:
+            self.students.append(student.to_dict())
+            self._save_students(self.students)
+            return f"Student added sucessfully"
+        else:
+            return f"This student already exixsts"
 
-    def get_student(self, student_name):
-        pass
+    def get_student(self, student_name:str) -> str:
+        for student in self.students:
+            if   student["name"] == student_name:
+                return str(student)
+        return f"Student not found"
+  
+    def remove_student(self, student_name) -> str:
+        original_count = len(self.students)
+        
+        self.students = [s for s in self.students if s["name"] != student_name] # "Keep every student s in the list except the one whose name matches student_name."
+        
+        if len(self.students) == original_count:
+            return f"Student was not found"
+        
+        self._save_students(self.students) # rewriting the whole file because json doesn't support partial deletetion
+        return f"Student removed sucessfully"
     
-    def remove_student(self, student_name):
-        pass
-    
-    def list_all_students(self):
-        pass
+    def list_all_students(self) -> list[dict[str,str]]:
+        return self.students
+
+
+student1 = Student("John Doe", 12345, "2000-01-01")
+student2 = Student("Jane Smith", 67890, "1999-12-31")
+student3 = Student("Alice Johnson", 11223, "2001-05-15")
+
+
+repo = JSONStudentRepository()
+
+print(repo.add_student(student1))
+print(repo.add_student(student2))
+print(repo.add_student(student3))
+
+print(repo.list_all_students()) # fix
+
+print(repo.get_student("John Doe"))
+
+print(repo.remove_student("Jane Smith"))
+
+students_lsit = repo.list_all_students
+
+for student in repo.list_all_students():
+    studen_name = student["name"]
+    student_id = student["ID"]
+    student_DOB = student["DOB"]
+    print(f"\n\nStudent name = {studen_name}. \nStudent ID = {student_id}. \nStudent DOB = {student_DOB}")
+
+
 

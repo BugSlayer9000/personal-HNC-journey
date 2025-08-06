@@ -52,4 +52,4 @@ The implementation is **clean**, **extensible**, and **ready to scale**. This is
 
 ---
 
-_If you’d like, I can mock up a service layer and unit tests next._
+

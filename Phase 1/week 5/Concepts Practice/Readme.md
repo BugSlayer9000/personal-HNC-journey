@@ -66,8 +66,8 @@ Build a data access system for a student management application. Practice:
 - Depending on abstractions rather than concrete implementations (Dependency Inversion Principle - DIP)  
 - Creating interfaces for data access that can work with different databases  
 
-**Challenge:**  
-Implement caching, connection pooling, and transaction management while maintaining dependency inversion.
+### ✅ DONE - [Click me](https://github.com/BugSlayer9000/personal-HNC-journey/tree/main/Phase%201/week%205/Concepts%20Practice/Solid%20Exercises/Exercise3)
+
 
 ---
 

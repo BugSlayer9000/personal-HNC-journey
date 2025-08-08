@@ -41,5 +41,8 @@
 
   - `@dataclass`
   - Puts on top a class
-  - 
+  - Automatically fills up the boiler plate for your class
+  - Both classes will behave the same way, but Product2 is more concise and easier to read
+  - Example - URl
+
 

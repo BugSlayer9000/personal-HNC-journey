@@ -71,7 +71,7 @@ inventory_app/
 │   └── exportable.py
 ├── cli.py
 └── main.py
-
+```
 
 ---
 

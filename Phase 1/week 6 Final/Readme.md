@@ -54,21 +54,24 @@ A command-line inventory management tool that:
 
 ## 📂 Suggested File Structure
 
+
+```plaintext
 inventory_app/
 ├── items/
-│ ├── base_item.py
-│ ├── item.py
-│ ├── perishable_item.py
-│ └── digital_item.py
+│   ├── base_item.py
+│   ├── item.py
+│   ├── perishable_item.py
+│   └── digital_item.py
 ├── managers/
-│ └── inventory_manager.py
+│   └── inventory_manager.py
 ├── patterns/
-│ ├── item_factory.py
-│ └── singleton.py
+│   ├── item_factory.py
+│   └── singleton.py
 ├── interfaces/
-│ └── exportable.py
+│   └── exportable.py
 ├── cli.py
 └── main.py
+
 
 ---
 

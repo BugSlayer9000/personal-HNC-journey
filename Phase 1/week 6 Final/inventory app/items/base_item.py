@@ -67,11 +67,11 @@ class BaseClassItem(ABC):
         return self.__str__()
 
     @abstractmethod
-    def get_item_type(self):
+    def get_item_type(self) -> str:
         pass
     
     @abstractmethod
-    def to_dict(self):
+    def to_dict(self) -> dict:
         pass
     
     @abstractmethod

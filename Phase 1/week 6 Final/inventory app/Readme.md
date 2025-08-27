@@ -1,5 +1,5 @@
 # 📦 Inventory Manager CLI App – Phase 1 Integration Project
-
+# [UML](https://github.com/BugSlayer9000/personal-HNC-journey/blob/main/Assets/umls/Inventory_app_latest.png)
 ## **📌 Project Requirements – Inventory Manager CLI**
 
 ### **Core Objective**

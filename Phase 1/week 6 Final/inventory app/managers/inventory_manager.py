@@ -15,12 +15,22 @@ class InventoryManager:
         if not isinstance(item, Item):
             raise ValueError("item is not compatible must be an instance of item class")
         
-        if len(self.items) >= 1:
-
-            for i in self.items:
-                if i.id == item.id:
-                    raise  ValueError("Each item must have a unique id")
-                self.items[item.id] = item
+        
+        if len(self.items) >= 1: 
+            id_status = False
+            
+            for list_item in self.items.keys():
+                if list_item == item.id:
+                    raise ValueError("item id must be uniqe")
+                else:
+                    id_status = True
+            
+            if id_status:
+                 self.items[item.id] = item
+            
+            
+        else:
+            self.items[item.id] = item
 
     def remove_item(self, item_id):
         pass
@@ -29,7 +39,7 @@ class InventoryManager:
         pass
     
     def list_all_items(self):
-        pass
+        return self.items
     
     def search_by_category(self):
         pass

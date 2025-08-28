@@ -14,6 +14,8 @@ class Item(BaseClassItem):
                                 "digital items":["e-book", "music", "software", "NFT"]}
     
         
+    
+    
     def get_item_type(self) -> str:
         if self._category in [item for sublist in self._category_items.values() for item in sublist]:
             return self._category

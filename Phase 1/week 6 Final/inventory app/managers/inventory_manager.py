@@ -3,6 +3,8 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
 
 from items.item import Item
+from items.digital_item import DigitalItem
+from items.perishable_item import PerishableItem
 
 
 from datetime import datetime
@@ -15,7 +17,7 @@ class InventoryManager:
         return list(self.items.keys())
     
     def add_item(self, item):
-        if not isinstance(item, Item):
+        if not isinstance(item, (DigitalItem, PerishableItem)):
             raise ValueError("item is not compatible must be an instance of item class")
         
         
@@ -59,8 +61,17 @@ class InventoryManager:
     def list_all_items(self):
         return self.items
     
-    def search_by_category(self):
-        pass
+    def search_by_category(self, category:str):
+        
+        search_results = []
+        
+        for item in self.items.values():
+            if category == item.get_item_type():
+                search_results.append(item)
+            
+        return search_results
+        
+        
     
     def filter_by_expity_date(self):
         pass

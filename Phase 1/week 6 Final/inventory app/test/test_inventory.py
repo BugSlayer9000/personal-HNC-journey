@@ -21,20 +21,27 @@ manager = InventoryManager()
 perishable = PerishableItem("2", "Milk", 3.50, 10, "Groceries", datetime.now(), datetime.now() + timedelta(days=7))
 digital = DigitalItem("3", "E-Book", 5.99, 100, "E-Books", datetime.now(), 2.5, "http://example.com/ebook")
 digital1 = DigitalItem("4", "E-Book", 5.99, 100, "E-Books", datetime.now(), 2.5, "http://example.com/ebook")
+digital2 = DigitalItem("5", "E-Book", 5.99, 100, "NFT", datetime.now(), 2.5, "http://example.com/ebook")
+digital3 = DigitalItem("6", "E-Book", 5.99, 100, "NFT", datetime.now(), 2.5, "http://example.com/ebook")
 
 
 
 manager.add_item(perishable)
 manager.add_item(digital)
 manager.add_item(digital1) # added three items 
+manager.add_item(digital2)
+manager.add_item(digital3)
 
 print(manager.list_all_items()) # Showes 3 items 
 
 
 manager.remove_item("3") # removes item under the id "3"
 
+
+
 print(manager.list_all_items()) # Showed 2 items
 
-print(manager.get_an_item("2"))
+print(manager.get_an_item("2")) #  returns the items with the id 2 
 
 
+print(manager.search_by_category("NFT")) # Works

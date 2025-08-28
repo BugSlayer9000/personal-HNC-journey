@@ -1,4 +1,8 @@
 # test inventory class 
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
+
 from items.item import Item
 from items.base_item import BaseClassItem
 from items.digital_item import DigitalItem

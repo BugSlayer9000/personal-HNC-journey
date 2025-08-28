@@ -1,5 +1,10 @@
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
+
+from items.base_item import BaseClassItem
 from datetime import datetime
-from base_item import BaseClassItem
+
 
 
 class Item(BaseClassItem):

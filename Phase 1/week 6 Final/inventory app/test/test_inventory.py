@@ -35,4 +35,6 @@ manager.remove_item("3") # removes item under the id "3"
 
 print(manager.list_all_items()) # Showed 2 items
 
+print(manager.get_an_item("2"))
+
 

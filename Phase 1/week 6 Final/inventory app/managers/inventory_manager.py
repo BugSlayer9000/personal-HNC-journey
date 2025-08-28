@@ -11,6 +11,9 @@ class InventoryManager:
     def __init__(self) -> None:
         self.items = {}
     
+    def __list_keys(self):
+        return list(self.items.keys())
+    
     def add_item(self, item):
         if not isinstance(item, Item):
             raise ValueError("item is not compatible must be an instance of item class")
@@ -37,16 +40,21 @@ class InventoryManager:
         if len(self.items) == 0:
             raise ValueError("No items found in the system")
         
-        list_keys = list(self.items.keys())
-        
-        if item_id  in list_keys:
+        if item_id  in self.__list_keys():
             del self.items[item_id]
         else:
             raise ValueError("Item not found")
         
     
     def get_an_item(self, item_id):
-        pass
+        if len(self.items) == 0:
+            raise ValueError("Invenotry is empty")
+        
+        if item_id in self.__list_keys():
+            return self.items[item_id]
+        else:
+            raise ValueError("item is not in the inventory")
+        
     
     def list_all_items(self):
         return self.items

@@ -26,7 +26,13 @@ digital1 = DigitalItem("4", "E-Book", 5.99, 100, "E-Books", datetime.now(), 2.5,
 
 manager.add_item(perishable)
 manager.add_item(digital)
+manager.add_item(digital1) # added three items 
 
-print(manager.list_all_items())
+print(manager.list_all_items()) # Showes 3 items 
+
+
+manager.remove_item("3") # removes item under the id "3"
+
+print(manager.list_all_items()) # Showed 2 items
 
 

@@ -32,8 +32,18 @@ class InventoryManager:
         else:
             self.items[item.id] = item
 
-    def remove_item(self, item_id):
-        pass
+    def remove_item(self, item_id:str):
+        
+        if len(self.items) == 0:
+            raise ValueError("No items found in the system")
+        
+        list_keys = list(self.items.keys())
+        
+        if item_id  in list_keys:
+            del self.items[item_id]
+        else:
+            raise ValueError("Item not found")
+        
     
     def get_an_item(self, item_id):
         pass

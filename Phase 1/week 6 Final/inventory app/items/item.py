@@ -17,6 +17,7 @@ class Item(BaseClassItem):
     
     def get_item_type(self) -> str:
         return self._category
+    
 
     def to_dict(self):
         return {

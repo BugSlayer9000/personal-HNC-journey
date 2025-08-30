@@ -68,11 +68,25 @@ class InventoryManager:
         for item in self.items.values():
             if category == item.get_item_type():
                 search_results.append(item)
+            else:
+                pass    
             
         return search_results
         
         
     
-    def filter_by_expity_date(self):
-        pass
+    def filter_by_expity_date(self, date:datetime):
+        
+        result_items = []
+        
+        for i in self.items.values():
+            if isinstance(i, PerishableItem):
+                dates_to_expire = i.expiry_date - date
+                item_name = i.name
+                
+                result_items.append([dates_to_expire.days, item_name])
+        
+        return result_items
+        
+                
     

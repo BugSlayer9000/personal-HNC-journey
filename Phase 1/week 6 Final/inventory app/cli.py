@@ -6,6 +6,11 @@ from managers.inventory_manager import InventoryManager
 from patterns.singleton import Logger
 from datetime import datetime, timedelta, date
 
+from items.base_item import BaseClassItem
+from items.item import Item
+from items.digital_item import DigitalItem
+from items.perishable_item import PerishableItem
+
 
 
 def options():
@@ -16,12 +21,19 @@ def options():
 """ 
 class Item:
     
+    def __init__(self) -> None:
+        pass
+    
     def item_inputs(self):
         id = int(input("Enter the id : "))
+        name = str(input("Enter the name of the item : "))
         price = float(input("Enter the price of the item : "))
         quantitiy = int(input("Enter the number of items for the product : "))
         category = self.check_category()
         created_at = datetime.now()
+        
+        
+        
         
     
     def check_category(self):

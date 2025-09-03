@@ -19,19 +19,28 @@ def options():
 """
     This class down below contains the basic inputs for an item and then extra inputs needed under different item category
 """ 
-class Item:
+class ItemCollector:
     
     def __init__(self) -> None:
-        pass
+        self.item_type = None
     
     def item_inputs(self):
-        id = int(input("Enter the id : "))
-        name = str(input("Enter the name of the item : "))
-        price = float(input("Enter the price of the item : "))
-        quantitiy = int(input("Enter the number of items for the product : "))
-        category = self.check_category()
-        created_at = datetime.now()
+        self.id = str(input("Enter the id : "))
+        self.name = str(input("Enter the name of the item : "))
+        self.price = float(input("Enter the price of the item : "))
+        self.quantitiy = int(input("Enter the number of items for the product : "))
+        self.category = self.check_category()
+        self.created_at = datetime.now()
         
+        
+        
+        self.create_item()
+
+    
+
+    def create_item(self): # this should return an instance of the added item according to the input
+        if self.item_type == "perishable_item":
+            return f"item created" # return an instance of the perishable item
         
         
         
@@ -71,10 +80,13 @@ class Item:
                         date_obj = datetime.strptime(date, "%Y-%m-%d").date()
                         self.get_expiry_date(date_obj)
                         print(f"You choose {date_obj}")
+                        
+                        self.item_type = "perishable_item"
+                        
                     except:
                         ValueError("Invalid date format. Please use YYYY-MM-DD.")
                 
-                elif category_class == "digital items": # run if the input is in the Digital item category
+                elif category_class == "digital_item": # run if the input is in the Digital item category
                     # file size function and download link function
                     
                     
@@ -84,26 +96,36 @@ class Item:
                     if len(download_link) > 1 and download_size >= 0 :
                         self.get_download_link(download_link)
                         self.get_download_size(download_size)
+                        
+                        self.item_type = "digital_item"
+                        
                     else:
                         print("download link must be above 0  and download link must be longer")
                     
                     
                 else:
-                    print("Items must be from the library")
+                    print("item class is not in the database")
+                    self.item_type = "item"
                 
             
-        return "None"
+        return "Unknown category"
                 
 
     
     def get_expiry_date(self, date:date):
-        expiry_date = date
+        self.expiry_date = date
+    
+    
+        
     
     def get_download_link(self,link):
         download_link = link
     
     def get_download_size(self, size):
         download_size = size 
+    
+    
+    
         
     
 
@@ -132,9 +154,9 @@ def main():
             print("Choose a number between 1-6")
             pass
         elif chosen == 1:
-            item = Item()
+            item = ItemCollector()
             item.item_inputs()
-            
+            print(item.create_item())
             
             
         

@@ -19,6 +19,7 @@ def main():
     
     while True:
         manager = InventoryManager()
+        manager1 = InventoryManager()
         logger = Logger()
         
         chosen = 0
@@ -43,6 +44,10 @@ def main():
             
             
             item = ItemFactory.create(data) # creates an item based using the made dict 
+            
+            manager.add_item(item)
+            
+            print(manager == manager1)
             
             
             

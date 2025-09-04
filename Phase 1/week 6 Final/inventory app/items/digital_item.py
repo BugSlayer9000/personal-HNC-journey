@@ -22,14 +22,5 @@ class DigitalItem(Item):
     def download_link(self):
         return self._download_link
 
-    def _attribute_check(self):
-        if not isinstance(self._file_size, (int, float)):
-            raise ValueError("File size must be a number")
-        
-        if self._file_size <= 0:
-            raise ValueError("File size must be positive")
-
-        if not isinstance(self._download_link, str):
-            raise ValueError("Download link must be a string")
-        return super()._attribute_check()
+    
 

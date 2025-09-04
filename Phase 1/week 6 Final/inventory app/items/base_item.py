@@ -9,32 +9,7 @@ class BaseClassItem(ABC):
         self._quantity = _quantity
         self._category = _category
         self._created_at = _created_at
-        self._attribute_check()
         
-    def _attribute_check(self):
-        
-        if not isinstance(self._price, (int, float)):
-            raise TypeError("Price must be a float")
-        
-        if type(self._id) != str:
-            raise TypeError("Id type must be String")
-        
-        if not type(self._quantity) == int:
-            raise TypeError("Quantity type must be int")
-        
-        if self._quantity <= 0 :
-            raise ValueError("Error in the quantity attribute")
-        
-        if self._price < 0 :
-            raise ValueError("Error in the price attribute")
-        
-        if not len(self._name) > 1:
-            raise ValueError("Name attribute must have at least 2 characters")
-        
-        if self._created_at is None:
-            self._created_at = datetime.now()
-        elif not isinstance(self._created_at,  datetime):
-            raise TypeError("created_at must be a datetime object")
         
     
     @property

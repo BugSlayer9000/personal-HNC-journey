@@ -11,11 +11,6 @@ class PerishableItem(Item):
         super().__init__(_id, _name, _price, _quantity, _category, _created_at)
         
         
-    
-    def _attribute_check(self):
-        if not isinstance(self._expiry_date, datetime):
-            raise ValueError("Expiry date must be an instance of datetime")
-        return super()._attribute_check()
 
     @property
     def expiry_date(self):

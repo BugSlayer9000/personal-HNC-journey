@@ -60,7 +60,7 @@ class ItemCollector:
                     
                     self.data["category"] = "digital items"
                     
-                    self.data["download-link"] = str(input("Enter the download link for the item :"))
+                    self.data["download_link"] = str(input("Enter the download link for the item :"))
                     self.data["download_size"] = str(input("Enter the download size for the item : "))
                     
                     

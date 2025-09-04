@@ -6,12 +6,9 @@ from managers.inventory_manager import InventoryManager
 from patterns.singleton import Logger
 from datetime import datetime, timedelta, date
 
-from items.base_item import BaseClassItem
-from items.item import Item
-from items.digital_item import DigitalItem
-from items.perishable_item import PerishableItem
 
 from item_collect import ItemCollector
+from patterns.item_factory import ItemFactory
 
 def options():
     print(f"\n1.Add an Item\n2.Remove an Item\n3.Check one Item\n4.Search by Category\n5.Filter By Expiry Date\n6. Exit\n")
@@ -39,8 +36,16 @@ def main():
             print("Choose a number between 1-6")
             pass
         elif chosen == 1:
-            item = ItemCollector()
-            data = item.collect_item()
+            Collector = ItemCollector() # Collects all the data for the item
+            
+            
+            data = Collector.collect_item() # turns it all into a dictionary
+            
+            
+            item = ItemFactory.create(data) # creates an item based using the made dict 
+            
+            
+            
             
             
             

@@ -1,5 +1,6 @@
 import sys
 from pathlib import Path
+from typing_extensions import Self
 sys.path.append(str(Path(__file__).parent.parent))
 
 from items.item import Item
@@ -10,6 +11,15 @@ from items.perishable_item import PerishableItem
 from datetime import datetime
 
 class InventoryManager:
+    _isinstance = None
+    
+    def __new__(cls, *args, **kwargs) -> Self:
+        if cls._isinstance is None:
+            cls._isinstance = super(InventoryManager, cls).__new__(cls)
+            cls._isinstance.items = {}
+        return cls._isinstance
+    
+    
     def __init__(self) -> None:
         self.items = {}
     

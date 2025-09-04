@@ -1,6 +1,7 @@
+from typing import Self
 import sys
 from pathlib import Path
-from typing_extensions import Self
+
 sys.path.append(str(Path(__file__).parent.parent))
 
 from items.item import Item
@@ -12,16 +13,18 @@ from datetime import datetime
 
 class InventoryManager:
     _isinstance = None
+    _initialized = False
     
     def __new__(cls, *args, **kwargs) -> Self:
         if cls._isinstance is None:
             cls._isinstance = super(InventoryManager, cls).__new__(cls)
-            cls._isinstance.items = {}
         return cls._isinstance
     
     
     def __init__(self) -> None:
-        self.items = {}
+        if not InventoryManager._initialized:
+            self.items = {}
+            InventoryManager._initialized = True
     
     def __list_keys(self):
         return list(self.items.keys())

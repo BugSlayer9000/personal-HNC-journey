@@ -76,8 +76,37 @@ def main():
             
             
         elif chosen == 3: # chekc one item
-            pass
+            input_id = None
+            item_list = manager.list_all_items() # get the dict directly
+            
+            if len(item_list) <= 0: # chekcks the item list before proceeding
+                print("No items in the Inventory")
+                continue
+            
+            list_of_id = []
+            
+            for id , item in item_list.items(): # prints the id and item name to the user 
+                list_of_id.append(id)
+                print(f"{id} - {item.get_name}")
+            
+            try:
+                input_id = str(input("Enter the id of the item : "))
+            except:
+                ValueError("Input Invalid")
+            
+            if  input_id not in list_of_id:
+                print("Id Not found")
+                continue
+            
+            result = manager.get_an_item(input_id)
         
+            print(result.to_dict())
+            
+            
+            print("\nItem Details\n")
+            for key, value in result.to_dict().items():
+                print(f"{key} : {value}")
+            
         elif chosen == 4: # search by category
             pass
             

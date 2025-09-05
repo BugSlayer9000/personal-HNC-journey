@@ -22,5 +22,10 @@ class DigitalItem(Item):
     def download_link(self):
         return self._download_link
 
+    def to_dict(self):
+        return super().to_dict() | {
+            "file_size": self._file_size,
+            "download_link": self._download_link
+        }
     
 

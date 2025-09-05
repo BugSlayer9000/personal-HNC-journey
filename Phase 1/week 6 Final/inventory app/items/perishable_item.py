@@ -16,6 +16,11 @@ class PerishableItem(Item):
     def expiry_date(self):
         return self._expiry_date
     
+    def to_dict(self):
+        return super().to_dict() | {
+            "expiry_date": self._expiry_date
+        }
+    
 
 
 

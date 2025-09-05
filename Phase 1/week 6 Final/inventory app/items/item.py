@@ -13,7 +13,9 @@ class Item(BaseClassItem):
         
     
         
-    
+    @property
+    def get_name(self):
+        return self._name
     
     def get_item_type(self) -> str:
         return self._category

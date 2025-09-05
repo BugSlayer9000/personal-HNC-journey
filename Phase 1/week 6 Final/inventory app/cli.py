@@ -3,7 +3,6 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent))
 
 from managers.inventory_manager import InventoryManager
-from patterns.singleton import Logger
 from datetime import datetime, timedelta, date
 
 
@@ -19,8 +18,6 @@ def main():
     
     while True:
         manager = InventoryManager()
-        manager1 = InventoryManager()
-        logger = Logger()
         
         chosen = 0
         
@@ -35,7 +32,8 @@ def main():
         
         if chosen > 6:
             print("Choose a number between 1-6")
-            pass
+            continue
+            
         elif chosen == 1:
             Collector = ItemCollector() # Collects all the data for the item
             
@@ -47,7 +45,42 @@ def main():
             
             manager.add_item(item)
             
-            print(manager == manager1)
+        elif chosen == 2: # remove an item
+            
+            input_id = None
+            item_list = manager.list_all_items() # get the dict directly
+            
+            if len(item_list) <= 0: # chekcks the item list before proceeding
+                print("No items in the Inventory")
+                continue
+            
+            list_of_id = []
+            
+            for id , item in item_list.items(): # prints the id and item name to the user 
+                list_of_id.append(id)
+                print(f"{id} - {item.get_name}")
+            
+            try:
+                input_id = str(input("Enter the id of the item : "))
+            except:
+                ValueError("Input Invalid")
+            
+            if  input_id not in list_of_id:
+                print("Id Not found")
+                continue
+            
+            print(f"item Sucessfully removed from the inventory ")
+            
+            manager.remove_item(str(input_id))
+            
+            
+            
+        elif chosen == 3: # chekc one item
+            pass
+        
+        elif chosen == 4: # search by category
+            pass
+            
             
             
             

@@ -9,6 +9,8 @@
 A sophisticated command-line inventory management system built as a **Phase 1 Integration Project** for HNC Computing Level 7. This application demonstrates mastery of advanced Object-Oriented Programming concepts, SOLID principles, and industry-standard design patterns.
 
 ### -- Project UML - [View](https://github.com/BugSlayer9000/personal-HNC-journey/blob/main/Assets/umls/Inventory_app.png)
+### -- Technical Documentation - [View](https://github.com/BugSlayer9000/personal-HNC-journey/blob/main/Phase%201/week%206%20Final/inventory%20app/technical_documentation.md)
+### -- Review - [View](https://github.com/BugSlayer9000/personal-HNC-journey/blob/main/Phase%201/week%206%20Final/inventory%20app/Rarting%20By%20claude.md)       
 
 ### 🏆 Academic Achievement Highlights
 - **Comprehensive OOP Implementation**: All core concepts from Weeks 1-5 integrated cohesively

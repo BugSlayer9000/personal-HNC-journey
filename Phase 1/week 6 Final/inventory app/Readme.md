@@ -14,6 +14,23 @@ A sophisticated command-line inventory management system built as a **Phase 1 In
 - **SOLID Principles**: Single Responsibility, Open/Closed principles demonstrated
 - **Clean Architecture**: Clear separation of concerns with modular design
 
+## 🏅 Academic Standards Compliance
+
+This project demonstrates **HNC Level 7** competencies in:
+- **Advanced Programming Concepts**: Complex OOP implementation
+- **Software Design**: Industry-standard patterns and principles
+- **Problem Solving**: Real-world inventory management scenarios
+- **Documentation**: Professional-grade technical documentation
+- **Testing**: Comprehensive validation and error handling
+
+## 📊 Performance Characteristics
+
+- **Time Complexity**: O(1) for item access, O(n) for category search
+- **Space Complexity**: O(n) linear with item count
+- **Scalability**: Designed for thousands of items
+- **Memory Management**: Efficient singleton pattern usage
+
+
 ## 🚀 Core Capabilities
 
 ### ✨ Item Management
@@ -280,21 +297,6 @@ python cli.py
 6. Exit
 ```
 
-## 🏅 Academic Standards Compliance
-
-This project demonstrates **HNC Level 7** competencies in:
-- **Advanced Programming Concepts**: Complex OOP implementation
-- **Software Design**: Industry-standard patterns and principles
-- **Problem Solving**: Real-world inventory management scenarios
-- **Documentation**: Professional-grade technical documentation
-- **Testing**: Comprehensive validation and error handling
-
-## 📊 Performance Characteristics
-
-- **Time Complexity**: O(1) for item access, O(n) for category search
-- **Space Complexity**: O(n) linear with item count
-- **Scalability**: Designed for thousands of items
-- **Memory Management**: Efficient singleton pattern usage
 
 ## 🤝 Contributing Guidelines
 

@@ -109,6 +109,9 @@ def main():
             
         elif chosen == 4: # search by category
             pass
+        
+        elif chosen == 5: # filter by expiry date
+            pass
             
             
             

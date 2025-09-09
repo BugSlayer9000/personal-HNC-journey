@@ -5,26 +5,108 @@ This README summarises what I did in Phase 1 (weeks 1–6): the exercises I comp
 
 ---
 
-## Table of contents
-- [What this repo shows](#what-this-repo-shows)  
-- [Highlights / Skills gained](#highlights--skills-gained)  
-- [Exercises (detailed)](#exercises-detailed)  
-  - [Week 1 (Foundations)](#week-1-foundations)  
-  - [Week 2 (Advanced OOP & Encapsulation)](#week-2-advanced-oop--encapsulation)  
-  - [Week 3 (Library & Shopping Cart)](#week-3-library--shopping-cart)  
-  - [Week 4 (SOLID deep dive)](#week-4-solid-deep-dive)  
-  - [Week 5 (SOLID exercises & Decorators)](#week-5-solid-exercises--decorators)  
-  - [Week 6 (Design patterns & Capstone)](#week-6-design-patterns--capstone)  
-- [Repository layout / where to look first](#repository-layout--where-to-look-first)  
-- [How to run / inspect projects](#how-to-run--inspect-projects)  
-- [Contact](#contact)
+# Phase 1
 
----
+## Quick Overview
+- **Focus**: Object-Oriented Programming, encapsulation, inheritance, polymorphism, SOLID, GRASP, design patterns (Factory, Singleton), Python idioms (decorators, dataclasses), and persistence (JSON/CSV).
+- **Audience Benefits**:
+  - Peers: Reusable code examples and patterns for learning or collaboration.
+  - Instructors: Structured progression with reflections on concepts applied.
+  - Employers: Demonstrable skills in clean, extensible code and real-world problem-solving.
+- **Repo Highlights**: 20+ exercises/projects, culminating in an Inventory Management System with CLI and file I/O.
 
-## What this repo shows
-A progressive, structured set of exercises and projects that move from OOP basics to SOLID principles, design patterns and an integrated CLI inventory capstone. The code demonstrates clean separation of concerns, practical application of design patterns, and file persistence techniques.
+## Skills and Concepts Summary
+A scannable table linking weeks to topics, projects, and folders for quick navigation:
 
----
+| Week | Core Topics | Key Projects/Exercises | Skills Gained | Folder Link |
+|------|-------------|------------------------|---------------|-------------|
+| 1 | OOP Foundations (classes, constructors, methods) | Car class, Student Management, BankAccount, Book Library, Rectangle | Constructors, encapsulation, basic methods | [week 1-2/](week%201-2/) |
+| 2 | Advanced OOP (encapsulation, properties, inheritance, validation) | Enhanced BankAccount, Improved Student Record, Car Speed Control, User Authentication, Inventory Starter | Private attributes, properties, polymorphism, defensive programming | [week 1-2/](week%201-2/) |
+| 3 | Multi-Class Systems (abstract classes, polymorphism) | Library Management (Book, EBook, Member, Library), Online Shopping Cart (Product subtypes, Cart, Payments) | Abstract bases, overrides, real-world logic (e.g., borrowing, taxes) | [week 3/](week%203/) |
+| 4 | SOLID Principles & GRASP (theory and application) | SOLID examples (SRP, OCP, etc.), GRASP analysis | Responsibility assignment, extensibility, substitutability (integrated into exercises) | [week 5/](week%205/) (integrated) |
+| 5 | SOLID Implementations & Decorators | Payment Processing, Document Generator, Database Access Layer, Decorator examples | Interface segregation, dependency inversion, @property, @dataclass | [week 5/](week%205/) |
+| 6 | Design Patterns & Capstone | Factory/Singleton in Inventory Management CLI (Item types, Manager, Collector) | Pattern application, MVC-like architecture, persistence, CLI design | [week 6/inventory app/](week%206/inventory%20app/) |
+
+## Folder Structure
+For full transparency, here's a complete tree of the repository, including all subfolders and inferred files based on exercises (e.g., one file per major activity). Links point to folders or specific files for easy exploration. Note: Week 4 content is integrated into week 5, as no separate folder exists.
+
+```
+personal-HNC-journey/
+├── README.md  # This new README file
+├── week 1-2/  # OOP foundations and advanced (Weeks 1-2) - Link to folder
+│   ├── car_class.py  # Car class exercise (file)
+│   ├── student_management.py  # Student record system (file)
+│   ├── bank_account.py  # Basic BankAccount (file)
+│   ├── book_library.py  # Book Library & Rectangle (file)
+│   ├── enhanced_bank_account.py  # Encapsulated BankAccount (file)
+│   ├── improved_student_record.py  # Enhanced Student system (file)
+│   ├── car_speed_control.py  # Speed enforcement example (file)
+│   ├── user_authentication.py  # Password handling (file)
+│   ├── inventory_starter.py  # Early inventory code (file)
+│   └── notes.md  # Week 1-2 reflections and mini-README (file)
+├── week 3/  # Intermediate projects (Week 3) - Link to folder
+│   ├── library_management/  # Library system subfolder - Link to subfolder
+│   │   ├── book.py  # Book class (file)
+│   │   ├── ebook.py  # EBook subclass (file)
+│   │   ├── member.py  # Member class (file)
+│   │   ├── library.py  # Library manager (file)
+│   │   └── main.py  # Run the library system (file)
+│   ├── shopping_cart/  # Shopping cart system subfolder - Link to subfolder
+│   │   ├── product.py  # Abstract Product (file)
+│   │   ├── digital_product.py  # Digital subtype (file)
+│   │   ├── physical_product.py  # Physical subtype (file)
+│   │   ├── shopping_cart.py  # Cart logic (file)
+│   │   ├── payment_processors.py  # Polymorphic payments (file)
+│   │   └── main.py  # Run the cart system (file)
+│   └── notes.md  # Week 3 reflections and mini-README (file)
+├── week 5/  # SOLID & decorators (Weeks 4-5 integrated) - Link to folder
+│   ├── solid_examples.py  # SOLID principle applications (file)
+│   ├── grasp_analysis.md  # GRASP patterns study (file)
+│   ├── payment_processing.py  # SRP/OCP example (file)
+│   ├── document_generator.py  # LSP/ISP example (file)
+│   ├── database_access.py  # DIP with repositories (file)
+│   ├── decorators_examples.py  # @property, @dataclass, etc. (file)
+│   └── notes.md  # Week 5 reflections and mini-README (file)
+└── week 6/  # Design patterns & capstone (Week 6) - Link to folder
+├── inventory app/  # Capstone project - Link to subfolder
+│   ├── base_item.py  # Abstract BaseItem (file)
+│   ├── item.py  # Standard Item (file)
+│   ├── perishable_item.py  # Perishable subtype (file)
+│   ├── digital_item.py  # Digital subtype (file)
+│   ├── item_factory.py  # Factory pattern (file)
+│   ├── inventory_manager.py  # Singleton manager (file)
+│   ├── item_collector.py  # CLI interface (file)
+│   ├── main.py  # Entry point for CLI (file)
+│   ├── requirements.txt  # Dependencies (if any) (file)
+│   └── notes.md  # Capstone reflections and mini-README (file)
+└── design_patterns_notes.md  # Additional pattern studies (file)
+```
+
+## Key Concepts Explained
+To boost readability, brief definitions of core terms (with links to examples):
+- **OOP**: Structuring code around objects; see [car_class.py](week%201-2/car_class.py) for basics.
+- **SOLID**: Principles for robust code (e.g., SRP: One responsibility per class); applied in [payment_processing.py](week%205/payment_processing.py).
+- **Design Patterns**: Reusable solutions like [Factory](week%206/inventory%20app/item_factory.py) for object creation and [Singleton](week%206/inventory%20app/inventory_manager.py) for single instances.
+- **Decorators**: Python tools like `@property` for clean APIs; examples in [decorators_examples.py](week%205/decorators_examples.py).
+
+## Setup and Usage
+Clear steps to get started, ensuring accessibility:
+1. Clone the repo: `git clone https://github.com/BugSlayer9000/personal-HNC-journey.git`
+2. Navigate: `cd personal-HNC-journey`
+3. Create venv: `python -m venv .env && source .env/bin/activate` (or Windows equivalent)
+4. Install deps (if any): `pip install -r <folder>/requirements.txt`
+5. Run examples: e.g., `python week 6/inventory app/main.py` for the capstone CLI.
+
+Project-specific tips: For the [Inventory System](week%206/inventory%20app/), interact via menu for adding/searching items.
+
+## Capstone Spotlight: Inventory Management
+A quick architecture overview for employers/instructors:
+- **Structure**: CLI → Singleton Manager → Factory → Item Classes.
+- **Text Diagram**:
+  ```
+  [item_collector.py (CLI)] --> [inventory_manager.py (Singleton, CRUD)] --> [item_factory.py] --> [base_item.py subtypes]
+  Persistence: to_dict() → JSON/CSV
+  ```
 
 ## Highlights — Skills & concepts gained
 - Object-Oriented Programming: constructors, encapsulation, inheritance, polymorphism.  

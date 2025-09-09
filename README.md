@@ -68,17 +68,17 @@ personal-HNC-journey/
 │   ├── decorators_examples.py  # @property, @dataclass, etc. (file)
 │   └── notes.md  # Week 5 reflections and mini-README (file)
 └── week 6/  # Design patterns & capstone (Week 6) - Link to folder
-├── inventory app/  # Capstone project - Link to subfolder
-│   ├── base_item.py  # Abstract BaseItem (file)
-│   ├── item.py  # Standard Item (file)
-│   ├── perishable_item.py  # Perishable subtype (file)
-│   ├── digital_item.py  # Digital subtype (file)
-│   ├── item_factory.py  # Factory pattern (file)
-│   ├── inventory_manager.py  # Singleton manager (file)
-│   ├── item_collector.py  # CLI interface (file)
-│   ├── main.py  # Entry point for CLI (file)
-│   ├── requirements.txt  # Dependencies (if any) (file)
-│   └── notes.md  # Capstone reflections and mini-README (file)
+│   ├── inventory app/  # Capstone project - Link to subfolder
+│     ├── base_item.py  # Abstract BaseItem (file)
+│     ├── item.py  # Standard Item (file)
+│     ├── perishable_item.py  # Perishable subtype (file)
+│     ├── digital_item.py  # Digital subtype (file)
+│     ├── item_factory.py  # Factory pattern (file)
+│     ├── inventory_manager.py  # Singleton manager (file)
+│     ├── item_collector.py  # CLI interface (file)
+│     ├── main.py  # Entry point for CLI (file)
+│     ├── requirements.txt  # Dependencies (if any) (file)
+│     └── notes.md  # Capstone reflections and mini-README (file)
 └── design_patterns_notes.md  # Additional pattern studies (file)
 ```
 

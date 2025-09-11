@@ -1,2 +1,2 @@
-Student name - samod -> course name - HNC level 6 Software dev
-Student name - Robert -> course name - Gardnening level 8
+Student name - samod -> course name - software dev
+Student name - kelum -> course name - pakaya

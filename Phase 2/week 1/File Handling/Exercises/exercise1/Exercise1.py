@@ -32,6 +32,14 @@ def writeFiles(content) -> None:
 def readfiles():
     with open(file_path, "r") as read:
         return read.read()
+    
+    
+def readlines():
+    with open(file_path, "r") as f:
+        return f.readlines()
+
+
+  
         
 file_initiation()
 
@@ -58,8 +66,8 @@ while True:
     elif user_input == 2: # write files
         print("Option 2")
         
-        student_name = str(input("Enter the name of the student : "))
-        course_name = str(input("Enter the name of the course : "))
+        student_name = str(input("Enter the name of the student : ")).lower().strip()
+        course_name = str(input("Enter the name of the course : ")).lower().strip()
         
         full_detail = f"Student name - {student_name} -> course name - {course_name}"
         
@@ -70,6 +78,20 @@ while True:
     elif user_input == 3:
         print("\nOption 3 - Delete an item\n")
         
+        line_list = readlines()
+        
+        for number ,line in enumerate(line_list , 1):
+            print(f"{number}. {line}")
+        
+        delete_input = str(input("Enter the name of the student you want to delete : ")).lower().strip()
+        
+        
+        with open(file_path, "w") as f: #  need to keep file open then work in it to work otherwise it will overwrite the same file again and again
+            for line in line_list:
+                if delete_input not in line:
+                    f.write(line)
+                  
+            
         
     
         

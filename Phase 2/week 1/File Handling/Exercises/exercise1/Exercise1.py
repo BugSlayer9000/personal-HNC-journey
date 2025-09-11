@@ -8,7 +8,9 @@
 # Features 
     # Try to open a txt file from the given file path and if not creates one
     # different fucntions for appending and viewing the file without earing the history
-    
+
+
+# Notes - Exercise 1 added (Basic file handling)
 
 from datetime import datetime
 
@@ -48,16 +50,19 @@ while True:
     
     user_input = int
     
-    print("1.view file\n2.add details\n3.Delete an item\n")
+    print("\n0.Enter 0 to exit\n1.view file(Exercise 1)\n2.add details(Exercise 1)\n3.Delete an item(Extra)\n4.Line counter (Exercise 2)")
     
     try:
         user_input = int(input("Enter the choice : "))
-        if user_input >= 4:
+        if user_input >= 5:
             print("Enter a valid choice !")
             continue
         
     except ValueError:
         print("Enter a number please ! ")
+
+    if user_input == 0:
+        break
     
     if user_input == 1:
         print("\nOption 1")
@@ -90,7 +95,27 @@ while True:
             for line in line_list:
                 if delete_input not in line:
                     f.write(line)
-                  
+    
+    elif user_input == 4:
+        print("\nLine count")
+        
+        with open(file_path, "r") as f:
+            lines_show = f.readlines()
+        
+        with open(file_path, "r") as f:
+            chars = f.read()
+        
+        
+            
+        
+        print(f"Number of lines - {len(lines_show)}")
+        print(f"Number of charachters - {len(chars)}")
+        
+        
+        
+            
+        
+        
             
         
     

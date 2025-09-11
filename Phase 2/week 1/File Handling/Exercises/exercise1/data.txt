@@ -1,2 +1,3 @@
-Student name - samod -> course name - software dev
-Student name - kelum -> course name - pakaya
+Student name - samod -> course name - hnc level 7
+Student name - kelum -> course name - web devolopment level 7
+Student name - robert -> course name - html level 8

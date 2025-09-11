@@ -11,19 +11,12 @@
 
 
 # Notes - Exercise 1 added (Basic file handling)
+# Notes - Exercise 2 added (Reading lines and chars)
 
 from datetime import datetime
 
 file_path = "C:\\my stuff\\git\\personal-HNC-journey\\Phase 2\\week 1\\File Handling\\Exercises\\exercise1\\data.txt"
 
-
-def file_initiation() -> None:
-    try:
-        with open(file_path, "x"):   # Creates a file if one doesn't exixst in the given location
-            pass
-    except FileExistsError:
-        with open(file_path, "r"):
-            pass
             
 
 
@@ -41,9 +34,6 @@ def readlines():
         return f.readlines()
 
 
-  
-        
-file_initiation()
 
 
 while True:
@@ -100,16 +90,15 @@ while True:
         print("\nLine count")
         
         with open(file_path, "r") as f:
-            lines_show = f.readlines()
+            content = f.read()
+            lines_show = content.splitlines()
         
-        with open(file_path, "r") as f:
-            chars = f.read()
         
         
             
         
         print(f"Number of lines - {len(lines_show)}")
-        print(f"Number of charachters - {len(chars)}")
+        print(f"Number of charachters - {len(content)}")
         
         
         

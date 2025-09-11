@@ -7,6 +7,11 @@ content = f.read()
 f.close()
 ```
 
+**Tips**
+- Use .readlines() if you want the raw file (newlines included).
+- Use .splitlines() if you want just the text, without worrying about platform differences.
+
+
 **Modes:**
 - `"r"` = read  
 - `"w"` = write (overwrites)  

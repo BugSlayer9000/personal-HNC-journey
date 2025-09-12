@@ -1,0 +1,2 @@
+Date and time - 2025-09-12 15:56:28.235662 -> msg - samod
+Date and time - 2025-09-12 15:56:40.806735 -> msg - pakaya

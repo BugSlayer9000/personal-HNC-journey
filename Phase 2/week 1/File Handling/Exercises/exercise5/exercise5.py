@@ -12,6 +12,8 @@
 import json
 from datetime import datetime
 from pathlib import Path
+import os
+
 
 """
 Plan of JSON File
@@ -42,19 +44,33 @@ class QuizzGame():
     QUESTIONS.touch(exist_ok=True)
     SCORE_BOARD.touch(exist_ok=True)
     
-    def __init__(self) -> None:
-        pass
+    
+    
+    def _initial_json_file(self):
+        if os.path.exists(self.QUESTIONS):
+            with open(self.QUESTIONS, "w") as f:
+                json.dump([], f, indent=4)
+    
+    def _load_file(self):
+        with open(self.QUESTIONS, "r") as f:
+            return json.load(f)
+    
+    
+    # data must be a dict 
+    def _savefile(self, data:list):
+        with open(self.QUESTIONS, "w") as f:
+            json.dump(data, f, indent=4)
     
     def add_question(self, question, answer):
         # add the questions
-        with open(self.QUESTIONS, "r") as read_file:
-            data = json.load(read_file)
-            print(len(data))
-            print(data)
+        # turn the question and answer into a list and then pass it onto load file
+        data = self._load_file()
         
+        structured_question = {"question":question, "answer":answer }
         
-        with open(self.QUESTIONS, "w") as file:
-            json.dump({question:[answer]}, file, indent=4)
+        data.append(structured_question)
+        
+        self._savefile(data)
     
     def delete_questions(self, question):
         # delete the question

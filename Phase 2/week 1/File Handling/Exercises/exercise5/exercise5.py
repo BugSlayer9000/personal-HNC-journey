@@ -72,13 +72,21 @@ class QuizzGame():
         
         self._savefile(data)
     
-    def delete_questions(self, question):
-        # delete the question
-        pass
+    def delete_question(self, question):
+        
+        data = self._load_file()
+        updated_data = []
+        
+        for item in data:
+            if not item["question"] == question:
+                updated_data.append(item)
+        
+        self._savefile(updated_data)
+        
+        print(f"`{question}` deleted from data")
     
     def get_questions(self):
-        # return all the questions
-        pass
+        return self._load_file()
     
     def add_score(self, player_name, score):
         pass

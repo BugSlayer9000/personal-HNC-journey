@@ -2,7 +2,9 @@ from exercise5 import QuizzGame
 
 q = QuizzGame()
 
-q._initial_json_file()
+q._initial_json_file_questions()
+q._initial_json_file_score()
+
 
 q.add_question("ubada pakaya mamada1", "1")
 q.add_question("ubada pakaya mamada2", "2")
@@ -27,5 +29,9 @@ input_to_del = "ubada pakaya mamada1"
 # print(updated_questions)
 
 q.delete_question(input_to_del) # deletes the first item in the list
+
+q.add_score("samod", 1)
+q.add_score("samod", 2)
+q.add_score("Robert", 2)
 
 

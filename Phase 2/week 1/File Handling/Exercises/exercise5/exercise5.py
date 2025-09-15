@@ -44,9 +44,9 @@ class QuizzGame():
     QUESTIONS.touch(exist_ok=True)
     SCORE_BOARD.touch(exist_ok=True)
     
+  ### QUESTION file handling fucntions  
     
-    
-    def _initial_json_file(self):
+    def _initial_json_file_questions(self):
         if os.path.exists(self.QUESTIONS):
             with open(self.QUESTIONS, "w") as f:
                 json.dump([], f, indent=4)
@@ -55,11 +55,25 @@ class QuizzGame():
         with open(self.QUESTIONS, "r") as f:
             return json.load(f)
     
-    
     # data must be a dict 
     def _savefile_questions(self, data:list):
         with open(self.QUESTIONS, "w") as f:
             json.dump(data, f, indent=4)
+
+  ### SCORE file handling fuctions
+  
+    def _initial_json_file_score(self):
+        if os.path.exists(self.SCORE_BOARD):
+            with open(self.SCORE_BOARD, "w") as f:
+                json.dump([], f, indent=4) 
+    
+    def _load_file_score(self):
+        with open(self.SCORE_BOARD, "r") as f:
+            return json.load(f)
+    
+    def _save_file_score(self, score):
+        with open(self.SCORE_BOARD, "w") as f:
+            json.dump(score, f, indent=4)
     
     def add_question(self, question, answer):
         # add the questions
@@ -88,11 +102,26 @@ class QuizzGame():
     def get_questions(self):
         return self._load_file_questions()
     
-    def add_score(self, player_name, score):
-        pass
-    
+    def add_score(self, player_name:str, score:int):
+        print("works")
+        
+        player_data = {"player_name": player_name, "score": score}
+
+        data = self._load_file_score()
+        
+        if len(data) == 0:
+            data.append(player_data)
+        else:
+            for player in data:
+                if player["player_name"] == player_name:
+                    player["score"] = score
+                else:
+                    data.append(player_data)
+        self._save_file_score(data)
+            
+        
     def get_score(self):
-        pass
+        return self._load_file_score()
 
 
 

@@ -30,8 +30,8 @@ input_to_del = "ubada pakaya mamada1"
 
 q.delete_question(input_to_del) # deletes the first item in the list
 
-q.add_score("samod", 1)
-q.add_score("samod", 2)
-q.add_score("Robert", 2)
+q.add_score("samod", 1) # adds a name and the score 
+q.add_score("samod", 2) # tries to update the score under the same name without adding it separately to the JSON file  -- WORKS
+q.add_score("Robert", 2) # Adds a second player name and score to test
 
 

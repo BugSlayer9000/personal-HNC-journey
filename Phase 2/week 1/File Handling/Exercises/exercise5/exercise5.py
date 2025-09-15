@@ -51,42 +51,42 @@ class QuizzGame():
             with open(self.QUESTIONS, "w") as f:
                 json.dump([], f, indent=4)
     
-    def _load_file(self):
+    def _load_file_questions(self):
         with open(self.QUESTIONS, "r") as f:
             return json.load(f)
     
     
     # data must be a dict 
-    def _savefile(self, data:list):
+    def _savefile_questions(self, data:list):
         with open(self.QUESTIONS, "w") as f:
             json.dump(data, f, indent=4)
     
     def add_question(self, question, answer):
         # add the questions
         # turn the question and answer into a list and then pass it onto load file
-        data = self._load_file()
+        data = self._load_file_questions()
         
         structured_question = {"question":question, "answer":answer }
         
         data.append(structured_question)
         
-        self._savefile(data)
+        self._savefile_questions(data)
     
     def delete_question(self, question):
         
-        data = self._load_file()
+        data = self._load_file_questions()
         updated_data = []
         
         for item in data:
             if not item["question"] == question:
                 updated_data.append(item)
         
-        self._savefile(updated_data)
+        self._savefile_questions(updated_data)
         
         print(f"`{question}` deleted from data")
     
     def get_questions(self):
-        return self._load_file()
+        return self._load_file_questions()
     
     def add_score(self, player_name, score):
         pass

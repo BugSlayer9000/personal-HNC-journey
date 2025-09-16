@@ -56,8 +56,9 @@ class FileHandlingJSON():
             return json.load(f)
             
     
-    def _save_file(self):
-        pass
+    def _save_file(self, data):
+        with open(self.student_details_with_marks_json, "r") as file:
+            json.dump(data, file, indent=4)
     
     
 csv_handling  = FileHandlingCSV()

@@ -35,7 +35,11 @@ class FileHandlingCSV():
             return csv.DictReader(f)
            
     
-    
+# Json file strucrue
+
+# [{"name": "samod", "subject": "science", "score": 10}]
+
+
 class FileHandlingJSON():
     student_details_with_marks_json = Path("Phase 2\\week 1\\File Handling\\practice\\exercise1\\files\\student_details_with_marks.json")
     student_details_with_marks_json.touch(exist_ok=True)
@@ -48,7 +52,9 @@ class FileHandlingJSON():
             json.dump([], f, indent=4)
     
     def _load_file(self):
-        pass
+        with open(self.student_details_with_marks_json, "r") as f:
+            return json.load(f)
+            
     
     def _save_file(self):
         pass

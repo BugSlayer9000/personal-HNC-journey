@@ -1,14 +1,10 @@
-# rogram 2: Student Results Analyzer (Level 7–8)
-
-# Read results.csv with name, subject, score.
-
-# Print average score for each student.
-
-# Identify the top performer.
-
-# put it in a json file 
+from file_handling_CSV import FileHandlingCSV
+from file_handling_JSON import FileHandlingJSON
 
 
 
+class MarksAnalyzer():
+    pass
 
-# a class to collect student detials and put it in a csv 
+
+

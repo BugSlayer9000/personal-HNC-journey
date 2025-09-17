@@ -1,4 +1,5 @@
-from file_handling import FileHandlingJSON, FileHandlingCSV
+from file_handling_CSV import FileHandlingCSV
+from file_handling_JSON import FileHandlingJSON
 
 
 class Student():
@@ -47,14 +48,3 @@ class Student():
         
         
 
-
-s = Student()
-s.add_student("samod", "science", 30)
-s.add_student("robert", "science", 30)
-s.add_student("kelum", "science", 30)
-
-s.remove_student("samod")
-
-
-s.get_student("kelum")
-s.get_student("samod")

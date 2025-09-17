@@ -15,7 +15,7 @@ class FileHandlingCSV():
         self._initialize_file()
     
     def _initialize_file(self):
-        with open(self.student_details_csv, "w")as f:
+        with open(self.student_details_csv, "w", newline="")as f:
             writer = csv.writer(f)
             writer.writerow(["name", "subject","score"])
     
@@ -23,18 +23,24 @@ class FileHandlingCSV():
         with open(self.student_details_csv, "r") as f:
             reader = csv.reader(f)
             next(reader)
-            return reader
+            return list(reader)
     
     def _save_file(self, name, subject, score):
         with open(self.student_details_csv , "a", newline="")as f:
             writer = csv.writer(f)
             writer.writerow([name, subject, score])
     
+    def rewrite_csv(self, updated_student_list):
+        with open(self.student_details_csv, "w", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow(["name","subject","score"])
+            writer.writerows(updated_student_list)
+    
     def csv_to_dict(self):
         with open(self.student_details_csv, "r") as f:
-            return csv.DictReader(f)
-           
-    
+            reader = (csv.DictReader(f))
+            return list(reader)
+        
 # Json file strucrue
 
 # [{"name": "samod", "subject": "science", "score": 10}]
@@ -60,8 +66,7 @@ class FileHandlingJSON():
         with open(self.student_details_with_marks_json, "r") as file:
             json.dump(data, file, indent=4)
     
-    
-csv_handling  = FileHandlingCSV()
-json_handling = FileHandlingJSON() 
-    
+    def _get_file_content(self):
+        data = self._load_file()
+        return list(data)
     

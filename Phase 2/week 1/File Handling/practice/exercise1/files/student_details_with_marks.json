@@ -2,16 +2,11 @@
     {
         "name": "Samod",
         "subject": "science",
-        "score": "30"
-    },
-    {
-        "name": "Robert",
-        "subject": "science",
-        "score": "30"
+        "score": "15"
     },
     {
         "name": "Kelum",
         "subject": "science",
-        "score": "30"
+        "score": "2"
     }
 ]

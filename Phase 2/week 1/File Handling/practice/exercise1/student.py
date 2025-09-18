@@ -48,11 +48,4 @@ class Student():
         print("CSV converted into a json !")
         
         return self.JSON_file._load_file()
-            
-                
-        
-        
-        
-        
-        
-
+    

@@ -3,10 +3,9 @@ from file_handling_JSON import FileHandlingJSON
 
 
 class Student():
-    
-    def __init__(self) -> None:
-        self.JSON_file = FileHandlingJSON()
-        self.CSV_file = FileHandlingCSV()
+    JSON_file = FileHandlingJSON()
+    CSV_file = FileHandlingCSV()
+        
     
     def add_student(self, name, subject, score:int):
         self.CSV_file._save_file(name, subject, score)
@@ -40,6 +39,15 @@ class Student():
         
         if not student_found:
             print("student not found in the system")
+    
+    def convert_csv_to_json(self):
+        data = self.CSV_file.csv_to_dict()
+        
+        self.JSON_file._save_file(data)
+        
+        print("CSV converted into a json !")
+        
+        return self.JSON_file._load_file()
             
                 
         

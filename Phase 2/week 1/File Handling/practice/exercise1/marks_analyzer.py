@@ -3,8 +3,4 @@ from file_handling_JSON import FileHandlingJSON
 
 
 
-class MarksAnalyzer():
-    pass
-
-
-
+    

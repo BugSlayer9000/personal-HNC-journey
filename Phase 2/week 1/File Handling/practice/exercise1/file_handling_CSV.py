@@ -8,6 +8,8 @@ import json
 
 
 class FileHandlingCSV():
+    
+    
     student_details_csv = Path("Phase 2\\week 1\\File Handling\\practice\\exercise1\\files\\student_details.csv")
     student_details_csv.touch(exist_ok=True)
     

@@ -1,1 +1,17 @@
-[]
+[
+    {
+        "name": "Samod",
+        "subject": "science",
+        "score": "30"
+    },
+    {
+        "name": "Robert",
+        "subject": "science",
+        "score": "30"
+    },
+    {
+        "name": "Kelum",
+        "subject": "science",
+        "score": "30"
+    }
+]

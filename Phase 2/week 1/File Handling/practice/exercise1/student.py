@@ -40,7 +40,10 @@ class Student():
         if not student_found:
             print("student not found in the system")
     
-    def convert_csv_to_json(self):
+    def get_a_dict(self):
+        return list(self.CSV_file.csv_to_dict())
+    
+    def csv_to_json(self):
         data = self.CSV_file.csv_to_dict()
         
         self.JSON_file._save_file(data)

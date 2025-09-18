@@ -14,7 +14,8 @@ class FileHandlingCSV():
     student_details_csv.touch(exist_ok=True)
     
     def __init__(self) -> None:
-        self._initialize_file()
+        if len(self.csv_to_dict()) == 0:
+            self._initialize_file()
     
     def _initialize_file(self):
         with open(self.student_details_csv, "w", newline="")as f:

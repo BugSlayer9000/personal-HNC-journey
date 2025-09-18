@@ -1,12 +1,22 @@
 [
     {
-        "name": "Samod",
+        "name": "samod",
         "subject": "science",
-        "score": "15"
+        "score": "30"
     },
     {
-        "name": "Kelum",
+        "name": "robert",
         "subject": "science",
-        "score": "2"
+        "score": "40"
+    },
+    {
+        "name": "robert",
+        "subject": "kelum",
+        "score": "60"
+    },
+    {
+        "name": "pakaya",
+        "subject": "computer science",
+        "score": "100"
     }
 ]

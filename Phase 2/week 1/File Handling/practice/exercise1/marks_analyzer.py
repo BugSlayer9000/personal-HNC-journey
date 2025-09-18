@@ -26,7 +26,7 @@ class MarksAnalyzer:
         for i in score_list:
             total_marks += i
 
-        return total_marks/len(data)
+        return f"Avarage Marks per student - {total_marks/len(data):.2f}"
 
     def most_marks(self):
         data = self._get_details()

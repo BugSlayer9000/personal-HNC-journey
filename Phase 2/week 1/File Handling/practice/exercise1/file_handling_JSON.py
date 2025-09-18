@@ -10,7 +10,8 @@ class FileHandlingJSON():
 
     
     def __init__(self) -> None:
-        self._initialize_file()
+        if len(self._get_file_content()) == 0:
+            self._initialize_file()
     
     def  _initialize_file(self):
         with open(self.student_details_with_marks_json,"w") as f:

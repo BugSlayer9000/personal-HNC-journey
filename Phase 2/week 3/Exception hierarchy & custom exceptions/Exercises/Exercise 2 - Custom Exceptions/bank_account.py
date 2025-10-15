@@ -1,28 +1,33 @@
+from bank_exeptions import NegativeAmountError, InsufficientFundsError, AccountError
 
-from bank_exeptions import NegativeAmountError, InsufficiebtFunds
 
-class BankAccount():
+class BankAccount:
     
-    def __init__(self,initial_amount:float) -> None:
-        self.balance = 0 if initial_amount is None else initial_amount
+    def __init__(self, initial_balance: float = 0) -> None:
+        """Initialize bank account with optional starting balance"""
+        self.balance = initial_balance
     
-    def deposit(self,amount:float):
+    def deposit(self, amount: float):
+        """Add money to account"""
         if amount < 0:
-            return NegativeAmountError
-        else:
-            self.balance += amount
-            print(f"Balance Updated \nNew Balance = {self.balance}")
+            raise NegativeAmountError(amount)
         
-    def withdraw(self,amount:float):
-        
+        self.balance += amount
+        print(f"Deposit successful! New balance: £{self.balance:.2f}")
+        return self.balance
+    
+    def withdraw(self, amount: float):
+        """Remove money from account"""
         if amount < 0:
-            return InsufficiebtFunds
+            raise NegativeAmountError(amount)
         
         if amount > self.balance:
-            return InsufficiebtFunds
-        else:
-            self.balance -= amount
-            print(f"{amount} Withdrawn sucessfully. \nNew available balance is  = {self.balance}")
+            raise InsufficientFundsError(self.balance, amount)
+        
+        self.balance -= amount
+        print(f"Withdrawal successful! New balance: £{self.balance:.2f}")
+        return self.balance
     
     def get_balance(self):
+        """Return current balance"""
         return self.balance

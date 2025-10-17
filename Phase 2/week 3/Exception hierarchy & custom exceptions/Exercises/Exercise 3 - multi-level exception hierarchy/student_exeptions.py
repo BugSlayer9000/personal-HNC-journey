@@ -7,12 +7,12 @@ class StudentSystemError(Exception):
 class InvalidStudentIDError(StudentSystemError):
     """Raised when student ID fromat is Invalid (Must be 6 digits)"""
     def __init__(self) -> None:
-        massage = f"The ID format is invalid must be 8 digits ! "
+        massage = f"The ID format is invalid must be 6 digits ! "
         super().__init__(massage)
 
 class DuplicateStudentError(StudentSystemError):
     """Raised when tried to add a student that's already exists"""
-    def __init__(self,student_id:int) -> None:
+    def __init__(self,student_id) -> None:
         massage = f"A student under the if of - {student_id} Already exists in the system"
         super().__init__(massage)
 

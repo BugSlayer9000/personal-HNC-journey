@@ -6,44 +6,7 @@ class Gradebook():
     
     def __init__(self) -> None:
         
-        self.grade_book = {
-            "100001": {
-                "name": "Alice Johnson",
-                "grades": {
-                    "Math": 88,
-                    "English": 92,
-                    "Science": 79,
-                    "Computing": 85
-                }
-            },
-            "100002": {
-                "name": "Brian Smith",
-                "grades": {
-                    "Math": 76,
-                    "English": 81,
-                    "Science": 74,
-                    "Computing": 90
-                }
-            },
-            "100003": {
-                "name": "Chloe Williams",
-                "grades": {
-                    "Math": 93,
-                    "English": 87,
-                    "Science": 91,
-                    "Computing": 89
-                }
-            },
-            "100004": {
-                "name": "David Brown",
-                "grades": {
-                    "Math": 69,
-                    "English": 73,
-                    "Science": 70,
-                    "Computing": 78
-                }
-            }
-        }
+        self.grade_book = { }
 
         # key : student_id(str)
         # value : dectionary with "name" and "grades" (dict of subject:grade pairs)
@@ -86,6 +49,8 @@ class Gradebook():
         print(f"Successfully added Student - {name} under {student_id}")
         
     def add_grades(self,student_id, subject, grade):
+        
+        grade = str(grade)
         
         subjects = ["Math","English","Science","Computing"]
         
@@ -151,10 +116,10 @@ class Gradebook():
             
             print(f"\nStudent id   - {i[0]}")
             print(f"Student name - {i[1]["name"]}")
-            print(f"Math grade   - {i[1]["grades"]["Math"]}%")
-            print(f"Math grade   - {i[1]["grades"]["English"]}%")
-            print(f"Math grade   - {i[1]["grades"]["Science"]}%")
-            print(f"Math grade   - {i[1]["grades"]["Computing"]}%")
+            print(f"Math grade   - {i[1]["grades"]["Math"]} %")
+            print(f"English grade   - {i[1]["grades"]["English"]} %")
+            print(f"Science grade   - {i[1]["grades"]["Science"]} %")
+            print(f"Computing grade   - {i[1]["grades"]["Computing"]} %")
             
         
         

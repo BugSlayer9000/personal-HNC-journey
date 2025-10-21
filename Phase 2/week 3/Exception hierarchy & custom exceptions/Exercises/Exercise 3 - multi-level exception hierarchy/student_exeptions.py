@@ -13,7 +13,7 @@ class InvalidStudentIDError(StudentSystemError):
 class DuplicateStudentError(StudentSystemError):
     """Raised when tried to add a student that's already exists"""
     def __init__(self,student_id) -> None:
-        massage = f"A student under the if of - {student_id} Already exists in the system"
+        massage = f"A student under the id of - {student_id} Already exists in the system"
         super().__init__(massage)
 
 class StudentNotFoundError(StudentSystemError):

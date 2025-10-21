@@ -177,32 +177,32 @@ exercise3/
 ## Testing Checklist
 
 **Exception Hierarchy:**
-- [ ] `StudentSystemError` created as base
-- [ ] `InvalidStudentIDError` inherits correctly
-- [ ] `DuplicateStudentError` inherits correctly
-- [ ] `StudentNotFoundError` inherits correctly
-- [ ] `GradeError` inherits from `StudentSystemError`
-- [ ] `GradeOutOfRangeError` inherits from `GradeError`
-- [ ] `InvalidGradeTypeError` inherits from `GradeError`
-- [ ] All exceptions have docstrings
+- [x] `StudentSystemError` created as base
+- [x] `InvalidStudentIDError` inherits correctly
+- [x] `DuplicateStudentError` inherits correctly
+- [x] `StudentNotFoundError` inherits correctly
+- [x] `GradeError` inherits from `StudentSystemError`
+- [x] `GradeOutOfRangeError` inherits from `GradeError`
+- [x] `InvalidGradeTypeError` inherits from `GradeError`
+- [x] All exceptions have docstrings
 
 **GradeBook Functionality:**
-- [ ] Students stored in dictionary correctly
-- [ ] `add_student()` validates ID format (6 digits)
-- [ ] `add_student()` prevents duplicates
-- [ ] `add_grade()` validates student exists
-- [ ] `add_grade()` validates grade is numeric
-- [ ] `add_grade()` validates grade range (0-100)
-- [ ] `get_student()` retrieves correct data
-- [ ] `get_average()` calculates correctly
-- [ ] `display_all_students()` formats output nicely
+- [x] Students stored in dictionary correctly
+- [x] `add_student()` validates ID format (6 digits)
+- [x] `add_student()` prevents duplicates
+- [x] `add_grade()` validates student exists
+- [x] `add_grade()` validates grade is numeric
+- [x] `add_grade()` validates grade range (0-100)
+- [x] `get_student()` retrieves correct data
+- [x] `get_average()` calculates correctly
+- [x] `display_all_students()` formats output nicely
 
 **Exception Handling:**
-- [ ] Each exception type is triggered at least once
-- [ ] Specific exceptions are caught individually
+- [x] Each exception type is triggered at least once
+- [x] Specific exceptions are caught individually
 - [ ] General `StudentSystemError` catch works
-- [ ] Exception messages are clear and helpful
-- [ ] Program continues after exceptions
+- [x] Exception messages are clear and helpful
+- [x] Program continues after exceptions
 
 ## Extension Challenges
 

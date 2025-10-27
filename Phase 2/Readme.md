@@ -1,4 +1,4 @@
-# Weekly Reflection - Phase 2 Week 4
+# Weekly Reflection - Phase 2 Week 3
 
 **Week of:** 13th of Oct 25 - 19th of Oct 25  
 **Phase Focus:** File Handling, GUI, Data Validation & Error Handling

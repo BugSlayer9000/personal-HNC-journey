@@ -7,7 +7,7 @@
 <!-- What did you plan to accomplish this week? -->
 - [x] Input Handling
 - [x] Exception hierarchy & custom exceptions
-- [ ] Django 15 hour course pt1 (Moved to next week)
+- [ ] Django 15 hour course pt1 (Cancelled due to lack of sourses)
 
 ## ✅ What I Accomplished
 <!-- What did you actually complete? Be specific! -->
